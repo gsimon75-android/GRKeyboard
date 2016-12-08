@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+       	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:fules="http://schemas.android.com/apk/res/org.dyndns.fules.ck"
+	android:title="@string/settings_label"
+        android:key="settings">
+
+	<PreferenceScreen
+		android:key="pg_about"
+		android:title="@string/pg_about"
+		android:summary="@string/pg_about_summary"
+		android:orderingFromXml="true">
+		<Preference
+			android:key="version"
+			android:title="@string/version"
+			android:summary="@string/version_summary"
+			android:selectable="false"/>
+		<Preference
+			android:key="source"
+			android:title="@string/source"
+			android:summary="@string/source_summary"
+			android:selectable="false"/>
+		<Preference
+			android:key="copyright"
+			android:title="@string/copyright"
+			android:summary="@string/copyright_summary"
+			android:selectable="false"/>
+	</PreferenceScreen>
+</PreferenceScreen>

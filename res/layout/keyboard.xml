@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<org.dyndns.fules.grkey.GRKeyboardView xmlns:a="http://schemas.android.com/apk/res/android"
+	a:layout_width="fill_parent" a:layout_height="wrap_content">
+
+	<LinearLayout a:id="@+id/row_1" a:orientation="horizontal"
+		a:layout_width="wrap_content" a:layout_height="wrap_content"
+		a:layout_alignParentLeft="true" a:layout_alignParentTop="true">
+		<Button a:id="@+id/key_Q" a:layout_width="wrap_content" a:layout_height="wrap_content" a:layout_weight="1" a:text="Q"/>
+		<Button a:id="@+id/key_W" a:layout_width="wrap_content" a:layout_height="wrap_content" a:layout_weight="1" a:text="W"/>
+		<Button a:id="@+id/key_E" a:layout_width="wrap_content" a:layout_height="wrap_content" a:layout_weight="1" a:text="E"/>
+		<Button a:id="@+id/key_R" a:layout_width="wrap_content" a:layout_height="wrap_content" a:layout_weight="1" a:text="R"/>
+		<Button a:id="@+id/key_T" a:layout_width="wrap_content" a:layout_height="wrap_content" a:layout_weight="1" a:text="T"/>
+		<Button a:id="@+id/key_Y" a:layout_width="wrap_content" a:layout_height="wrap_content" a:layout_weight="1" a:text="Y"/>
+		<Button a:id="@+id/key_U" a:layout_width="wrap_content" a:layout_height="wrap_content" a:layout_weight="1" a:text="U"/>
+		<Button a:id="@+id/key_I" a:layout_width="wrap_content" a:layout_height="wrap_content" a:layout_weight="1" a:text="I"/>
+		<Button a:id="@+id/key_O" a:layout_width="wrap_content" a:layout_height="wrap_content" a:layout_weight="1" a:text="O"/>
+		<Button a:id="@+id/key_P" a:layout_width="wrap_content" a:layout_height="wrap_content" a:layout_weight="1" a:text="P"/>
+    </LinearLayout>
+
+	<LinearLayout a:id="@+id/row_2" a:orientation="horizontal"
+		a:layout_width="wrap_content" a:layout_height="wrap_content"
+		a:layout_alignParentLeft="true" a:layout_below="@id/row_1">
+		<Button a:id="@+id/key_A" a:layout_width="wrap_content" a:layout_height="wrap_content" a:layout_weight="1" a:text="A"/>
+		<Button a:id="@+id/key_S" a:layout_width="wrap_content" a:layout_height="wrap_content" a:layout_weight="1" a:text="S"/>
+		<Button a:id="@+id/key_D" a:layout_width="wrap_content" a:layout_height="wrap_content" a:layout_weight="1" a:text="D"/>
+		<Button a:id="@+id/key_F" a:layout_width="wrap_content" a:layout_height="wrap_content" a:layout_weight="1" a:text="F"/>
+		<Button a:id="@+id/key_G" a:layout_width="wrap_content" a:layout_height="wrap_content" a:layout_weight="1" a:text="G"/>
+		<Button a:id="@+id/key_H" a:layout_width="wrap_content" a:layout_height="wrap_content" a:layout_weight="1" a:text="H"/>
+		<Button a:id="@+id/key_J" a:layout_width="wrap_content" a:layout_height="wrap_content" a:layout_weight="1" a:text="J"/>
+		<Button a:id="@+id/key_K" a:layout_width="wrap_content" a:layout_height="wrap_content" a:layout_weight="1" a:text="K"/>
+		<Button a:id="@+id/key_L" a:layout_width="wrap_content" a:layout_height="wrap_content" a:layout_weight="1" a:text="L"/>
+    </LinearLayout>
+
+	<LinearLayout a:id="@+id/row_3" a:orientation="horizontal"
+		a:layout_width="wrap_content" a:layout_height="wrap_content"
+		a:layout_alignParentLeft="true" a:layout_below="@id/row_2">
+		<Button a:id="@+id/key_Z" a:layout_width="wrap_content" a:layout_height="wrap_content" a:layout_weight="1" a:text="Z"/>
+		<Button a:id="@+id/key_X" a:layout_width="wrap_content" a:layout_height="wrap_content" a:layout_weight="1" a:text="X"/>
+		<Button a:id="@+id/key_C" a:layout_width="wrap_content" a:layout_height="wrap_content" a:layout_weight="1" a:text="C"/>
+		<Button a:id="@+id/key_V" a:layout_width="wrap_content" a:layout_height="wrap_content" a:layout_weight="1" a:text="V"/>
+		<Button a:id="@+id/key_B" a:layout_width="wrap_content" a:layout_height="wrap_content" a:layout_weight="1" a:text="B"/>
+		<Button a:id="@+id/key_N" a:layout_width="wrap_content" a:layout_height="wrap_content" a:layout_weight="1" a:text="N"/>
+		<Button a:id="@+id/key_M" a:layout_width="wrap_content" a:layout_height="wrap_content" a:layout_weight="1" a:text="M"/>
+    </LinearLayout>
+
+</org.dyndns.fules.grkey.GRKeyboardView>
+<!-- vim: set sw=4 ts=4 noet nowrap: -->
+
