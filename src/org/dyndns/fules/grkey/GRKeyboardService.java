@@ -41,7 +41,7 @@ import android.view.ViewParent;
 
 public class GRKeyboardService extends InputMethodService implements KeyboardView.OnKeyboardActionListener, SharedPreferences.OnSharedPreferenceChangeListener  {
 	public static final String	SHARED_PREFS_NAME = "GRKeyboardSettings";
-	private static final String	TAG = "GRKeyboardService";
+	private static final String	TAG = "GRKeyboard";
 
 	LayoutInflater inflater;
 	private SharedPreferences	mPrefs;					// the preferences instance

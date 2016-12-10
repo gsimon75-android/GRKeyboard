@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="FilePicker">
-        <attr name="workingDir" format="string"/>
-        <attr name="showHidden" format="boolean"/>
-        <attr name="showFiles" format="boolean"/>
-        <attr name="showOthers" format="boolean"/>
-        <attr name="showUnreadable" format="boolean"/>
-        <attr name="regex" format="string"/>
-        <attr name="preferenceName" format="string"/>
-        <attr name="preferenceKey" format="string"/>
+    <declare-styleable name="GRKey">
+        <attr name="ingyom" format="boolean"/>
     </declare-styleable>
 </resources>
 

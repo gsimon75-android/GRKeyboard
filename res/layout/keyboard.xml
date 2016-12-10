@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<org.dyndns.fules.grkey.GRKeyboardView xmlns:a="http://schemas.android.com/apk/res/android"
+<org.dyndns.fules.grkey.GRKeyboardView
+	xmlns:a="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
 	a:layout_width="fill_parent" a:layout_height="wrap_content">
 
 	<LinearLayout a:id="@+id/row_1" a:orientation="horizontal"
@@ -41,6 +43,7 @@
 		<Button a:id="@+id/key_B" a:layout_width="wrap_content" a:layout_height="wrap_content" a:layout_weight="1" a:text="B"/>
 		<Button a:id="@+id/key_N" a:layout_width="wrap_content" a:layout_height="wrap_content" a:layout_weight="1" a:text="N"/>
 		<Button a:id="@+id/key_M" a:layout_width="wrap_content" a:layout_height="wrap_content" a:layout_weight="1" a:text="M"/>
+		<org.dyndns.fules.grkey.GRKey a:id="@+id/key_What" a:layout_width="wrap_content" a:layout_height="wrap_content" a:layout_weight="1" a:text="What" app:ingyom="true"/>
     </LinearLayout>
 
 </org.dyndns.fules.grkey.GRKeyboardView>
