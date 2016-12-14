@@ -23,6 +23,7 @@ import android.view.inputmethod.InputConnection;
 import android.view.inputmethod.ExtractedText;
 import android.view.inputmethod.ExtractedTextRequest;
 import android.view.LayoutInflater;
+import android.widget.TextView;
 import android.R.id;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -268,6 +269,16 @@ public class GRKeyboardService extends InputMethodService implements KeyboardVie
 		else if (key.contentEquals("portrait_only")) {
 			getWindow().dismiss();
 			forcePortrait = mPrefs.getBoolean("portrait_only", false);
+		}
+	}
+
+	public void keyClicked(View keyview) {
+		if (keyview instanceof TextView) {
+			TextView tv = (TextView)keyview;
+			Log.d(TAG, "keyClicked('" + tv.getText().toString() + "')");
+		}
+		else {
+			Log.d(TAG, "keyClicked(...)");
 		}
 	}
 }

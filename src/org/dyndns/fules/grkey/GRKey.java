@@ -33,14 +33,31 @@ public class GRKey extends Button {
 
 	public GRKey(Context context) {
 		super(context);
+		init(context);
 	}
 
 	public GRKey(Context context, AttributeSet attributes) {
 		super(context, attributes);
+		init(context);
 	}
 
 	public GRKey(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
+		init(context);
+	}
+
+	void init(Context context) {
+		if (context instanceof GRKeyboardService) {
+			final GRKeyboardService svc = (GRKeyboardService)context;
+			setOnClickListener(new View.OnClickListener() {
+				public void onClick(View v) {
+					svc.keyClicked(v);
+				}
+			});
+		}
+		else {
+			Log.d(TAG, "Context of key is not a GRKeyboardService");
+		}
 	}
 
 }
