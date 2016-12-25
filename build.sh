@@ -16,21 +16,15 @@ rm -rf bin gen
 
 mkdir -p bin
 mkdir -p bin/res
-mkdir -p bin/rsObj
-mkdir -p bin/rsLibs
 mkdir -p gen
 mkdir -p bin/classes
 mkdir -p bin/dexedLibs
-
-# FIXME: merge with others if needed
-cp AndroidManifest.xml bin/AndroidManifest.xml
-# TODO: process aidl if any
 
 $ANDROID_BUILDTOOLS/aapt package \
 	-f \
 	-m \
 	-0 apk \
-	-M bin/AndroidManifest.xml \
+	-M AndroidManifest.xml \
 	-S bin/res \
 	-S res \
 	-I $ANDROID_SDK/platforms/android-$ANDROID_SDK_PLATFORM/android.jar \
@@ -54,14 +48,14 @@ find src gen -type f -name '*.java' -print0 | xargs -0r javac -source 1.5 -targe
 
 $ANDROID_BUILDTOOLS/dx \
 	--dex \
-	--output bin/dexedLibs/annotations-a764dfa84f45e186cc6d0f4a25a67274.jar \
+	--output bin/dexedLibs/annotations.jar \
 	$ANDROID_SDK/tools/support/annotations.jar
 
 $ANDROID_BUILDTOOLS/dx \
 	--dex \
 	--output bin/classes.dex \
 	bin/classes \
-	bin/dexedLibs/annotations-a764dfa84f45e186cc6d0f4a25a67274.jar
+	bin/dexedLibs
 
 $ANDROID_BUILDTOOLS/aapt crunch \
 	-v \
@@ -73,17 +67,17 @@ $ANDROID_BUILDTOOLS/aapt package \
 	-f \
 	--debug-mode \
 	-0 apk \
-	-M bin/AndroidManifest.xml \
+	-M AndroidManifest.xml \
 	-S bin/res \
 	-S res \
 	-I $ANDROID_SDK/platforms/android-$ANDROID_SDK_PLATFORM/android.jar \
-	-F bin/grkey.ap_ \
+	-F bin/grkey.unsigned.apk \
 	--generate-dependencies
 
 (
 cd bin
 $ANDROID_BUILDTOOLS/aapt add \
-	-f grkey.ap_ \
+	-f grkey.unsigned.apk \
 	classes.dex
 )
 
@@ -93,11 +87,11 @@ jarsigner \
 	-digestalg SHA1 \
 	-sigalg MD5withRSA \
 	-sigfile CERT \
-	-signedjar bin/grkey-debug-unaligned.apk \
-	bin/grkey.ap_ \
+	-signedjar bin/grkey.unaligned.apk \
+	bin/grkey.unsigned.apk \
 	androiddebugkey
 
 $ANDROID_BUILDTOOLS/zipalign \
 	-f 4 \
-	bin/grkey-debug-unaligned.apk \
-	bin/grkey-debug.apk
+	bin/grkey.unaligned.apk \
+	bin/grkey.apk
