@@ -40,13 +40,13 @@ import android.inputmethodservice.AbstractInputMethodService;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 
-public class GRKeyboardService extends InputMethodService implements KeyboardView.OnKeyboardActionListener, SharedPreferences.OnSharedPreferenceChangeListener  {
+public class GRKeyboardService extends InputMethodService implements SharedPreferences.OnSharedPreferenceChangeListener  {
 	public static final String	SHARED_PREFS_NAME = "GRKeyboardSettings";
 	private static final String	TAG = "GRKeyboard";
 
 	LayoutInflater inflater;
 	private SharedPreferences	mPrefs;					// the preferences instance
-	GRKeyboardView			kv;					// the current layout view
+	View				kv;					// the current layout view
 
 	boolean				forcePortrait;				// use the portrait layout even for horizontal screens
 	int				lastOrientation = -1;
@@ -81,8 +81,7 @@ public class GRKeyboardService extends InputMethodService implements KeyboardVie
 		Log.d(TAG, "onConfigurationChanged;");
 		if (newConfig.orientation != lastOrientation) {
 			lastOrientation = newConfig.orientation;
-			kv = (GRKeyboardView)inflater.inflate(R.layout.keyboard, null);
-			kv.setOnKeyboardActionListener(this);
+			kv = inflater.inflate(R.layout.keyboard, null);
 			setInputView(kv);
 		}
 	}
@@ -101,17 +100,9 @@ public class GRKeyboardService extends InputMethodService implements KeyboardVie
 
 		Configuration config = getResources().getConfiguration();
 		lastOrientation = config.orientation;
-		kv = (GRKeyboardView)inflater.inflate(R.layout.keyboard, null);
+
+		kv = inflater.inflate(R.layout.keyboard, null);
 		Log.v(TAG, "kv=" + kv);
-		kv.setOnKeyboardActionListener(this);
-
-		/*kv.setLeftMargin(getPrefFloat("margin_left", 0));
-		kv.setRightMargin(getPrefFloat("margin_right", 0));
-		kv.setBottomMargin(getPrefFloat("margin_bottom", 0));
-		kv.setMaxKeySize(getPrefFloat("max_keysize", 12));*/
-
-		//kv.calculateSizesForMetrics(metrics);	// don't reload, only resize
-
 		return kv;
 	} 
 
@@ -122,12 +113,12 @@ public class GRKeyboardService extends InputMethodService implements KeyboardVie
 	private void sendModifiers(InputConnection ic, int action) {
 		if (kv == null)
 			return;
-		if (kv.checkState("shift"))
+		/*if (kv.checkState("shift"))
 			ic.sendKeyEvent(new KeyEvent(action, KeyEvent.KEYCODE_SHIFT_LEFT));
 		if (kv.checkState("alt"))
 			ic.sendKeyEvent(new KeyEvent(action, KeyEvent.KEYCODE_ALT_LEFT));
 		if (kv.checkState("altgr"))
-			ic.sendKeyEvent(new KeyEvent(action, KeyEvent.KEYCODE_ALT_RIGHT));
+			ic.sendKeyEvent(new KeyEvent(action, KeyEvent.KEYCODE_ALT_RIGHT));*/
 	}
 
 	// Process a generated keycode
@@ -250,7 +241,7 @@ public class GRKeyboardService extends InputMethodService implements KeyboardVie
 	// Handle one change in the preferences
 	public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
 		//Log.d(TAG, "Changing pref "+key);
-		if (key.endsWith("margin_left")) {
+		/*if (key.endsWith("margin_left")) {
 			kv.setLeftMargin(getPrefFloat("margin_left", 0));
 			getWindow().dismiss();
 		}
@@ -269,7 +260,7 @@ public class GRKeyboardService extends InputMethodService implements KeyboardVie
 		else if (key.contentEquals("portrait_only")) {
 			getWindow().dismiss();
 			forcePortrait = mPrefs.getBoolean("portrait_only", false);
-		}
+		}*/
 	}
 
 	public void keyClicked(View keyview) {
