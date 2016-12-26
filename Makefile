@@ -85,7 +85,7 @@ bin/classes/$(PACKAGE_PATH)/BuildConfig.class:	gen/$(PACKAGE_PATH)/BuildConfig.j
 	$(JAVAC) $(JAVA_FLAGS) $<
 
 # Compile rule for the generic .java sources under src/
-bin/classes/%.class:	src/%.java bin/classes bin/classes/$(PACKAGE_PATH)/R.class bin/classes/$(PACKAGE_PATH)/BuildConfig.class
+bin/classes/%.class:	src/%.java bin/classes bin/classes/$(PACKAGE_PATH)/BuildConfig.class
 	$(JAVAC) $(JAVA_FLAGS) $<
 
 # Pre-optimising rule for .jars
