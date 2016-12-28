@@ -4,9 +4,9 @@
 	<uses-sdk a:minSdkVersion="15" a:targetSdkVersion="15"/>
 	<uses-permission a:name="android.permission.BIND_INPUT_METHOD"/>
 
-	<application a:label="@string/app_label" a:icon="@drawable/icon_launcher" a:theme="@style/Theme.Holo.GRKeyboard">
+	<application a:label="@string/app_label" a:icon="@drawable/icon_launcher" a:theme="@style/Theme.GRKeyApp">
 
-		<service a:name="GRKeyboardService" a:permission="android.permission.BIND_INPUT_METHOD" a:theme="@style/Theme.Holo.GRKeyboard"> 
+		<service a:name="GRKeyboardService" a:permission="android.permission.BIND_INPUT_METHOD"> 
 			<intent-filter>
 				<action a:name="android.view.InputMethod"/>
 				<action a:name="android.intent.action.DELETE"/>

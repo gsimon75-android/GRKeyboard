@@ -6,7 +6,7 @@
 		<item name="android:layout_height">40dp</item>
 	</style>
 
-	<style name="Widget.Holo.Button.GRKey" parent="@android:style/Widget.Holo.Button">
+	<style name="Widget.Button.GRKey" parent="@android:style/Widget.Holo.Button">
 		<item name="android:minHeight">0px</item>
 		<item name="android:padding">0px</item>
 		<item name="android:layout_margin">0px</item>
@@ -14,12 +14,12 @@
 	</style>
 
 	<!-- THEMES -->
-	<style name="Theme.Holo.GRKeyApp" parent="@android:style/Theme.Holo">
+	<style name="Theme.GRKeyApp" parent="@android:style/Theme.Holo">
 		<item name="android:editTextStyle">@style/myEditTextStyle</item>
 	</style>
 
-	<style name="Theme.Holo.GRKeyboard" parent="@android:style/Theme.Holo">
-		<item name="android:buttonStyle">@style/Widget.Holo.Button.GRKey</item>
+	<style name="Theme.GRKeyboard" parent="@android:style/Theme.NoTitleBar">
+		<item name="android:buttonStyle">@style/Widget.Button.GRKey</item>
 	</style>
 
 </resources>
