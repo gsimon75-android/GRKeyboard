@@ -81,11 +81,16 @@ gen/$(PACKAGE_PATH)/R.java:	AndroidManifest.xml bin/res gen $(PNG_FILES) $(NONPN
 bin/classes/$(PACKAGE_PATH)/R.class:	gen/$(PACKAGE_PATH)/R.java bin/classes
 	$(JAVAC) $(JAVA_FLAGS) $<
 
+
+# Barrier copy to prevent recompiling all java if only a resource detail (but not the id) has changed
+bin/R.class.last:	bin/classes/$(PACKAGE_PATH)/R.class
+	cmp -s $< $@ || cp $< $@
+
 bin/classes/$(PACKAGE_PATH)/BuildConfig.class:	gen/$(PACKAGE_PATH)/BuildConfig.java bin/classes
 	$(JAVAC) $(JAVA_FLAGS) $<
 
 # Compile rule for the generic .java sources under src/
-bin/classes/%.class:	src/%.java bin/classes bin/classes/$(PACKAGE_PATH)/BuildConfig.class bin/classes/$(PACKAGE_PATH)/R.class
+bin/classes/%.class:	src/%.java bin/classes bin/classes/$(PACKAGE_PATH)/BuildConfig.class bin/R.class.last
 	$(JAVAC) $(JAVA_FLAGS) $<
 
 # Pre-optimising rule for .jars

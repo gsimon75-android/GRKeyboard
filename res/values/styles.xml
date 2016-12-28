@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<!-- STYLES -->
+	<style name="myEditTextStyle" parent="@android:style/Widget.EditText">
+		<item name="android:layout_height">40dp</item>
+	</style>
+
+	<style name="Widget.Holo.Button.GRKey" parent="@android:style/Widget.Holo.Button">
+		<item name="android:minHeight">0px</item>
+		<item name="android:padding">0px</item>
+		<item name="android:layout_margin">0px</item>
+		<item name="android:textColor">@android:color/primary_text_light</item>
+	</style>
+
+	<!-- THEMES -->
+	<style name="Theme.Holo.GRKeyApp" parent="@android:style/Theme.Holo">
+		<item name="android:editTextStyle">@style/myEditTextStyle</item>
+	</style>
+
+	<style name="Theme.Holo.GRKeyboard" parent="@android:style/Theme.Holo">
+		<item name="android:buttonStyle">@style/Widget.Holo.Button.GRKey</item>
+	</style>
+
+</resources>
+
+<!-- vim: set sw=4 ts=4 noet nowrap: -->

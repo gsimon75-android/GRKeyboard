@@ -64,6 +64,12 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
 		Log.e(TAG, title+"; "+msg);
 	}*/
 
+	@Override public void onCreate() {
+		Log.d(TAG, "onCreate;");
+		setTheme(R.style.Theme_Holo_GRKeyboard);
+		super.onCreate();
+	}
+
 	@Override public AbstractInputMethodService.AbstractInputMethodImpl onCreateInputMethodInterface() {
 		Log.d(TAG, "onCreateInputMethodInterface;");
 

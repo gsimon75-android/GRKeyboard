@@ -10,6 +10,8 @@ import android.graphics.RectF;
 import android.graphics.Shader.TileMode;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.StateListDrawable;
 import android.net.Uri;
 import android.text.InputType;
 import android.util.AttributeSet;
@@ -36,47 +38,29 @@ public class GRKey extends Button {
 	private int[] statePressed		= { android.R.attr.state_enabled, android.R.attr.state_window_focused, android.R.attr.state_multiline, android.R.attr.state_pressed };
 
 	public GRKey(Context context) {
-		super(context);
-		init(context);
+		this(context, null);
 	}
 
 	public GRKey(Context context, AttributeSet attributes) {
-		super(context, attributes);
-		Log.d(TAG, "GRKey(" + context + ", " + attributes + ")");
-		//dumpAttributeSet(attributes);
-		init(context);
+		this(context, attributes, android.R.attr.buttonStyle);
 	}
 
 	public GRKey(Context context, AttributeSet attributes, int defStyleAttr) {
 		super(context, attributes, defStyleAttr);
 		Log.d(TAG, "GRKey(" + context + ", " + attributes + ", " + defStyleAttr + ")");
 		//dumpAttributeSet(attributes);
-		init(context);
-	}
-
-	void dumpAttributeSet(AttributeSet attrs) {
-		for (int i = 0; i < attrs.getAttributeCount(); ++i) {
-			Log.d(TAG, "attr; name='" + attrs.getAttributeName(i) + "', value='" + attrs.getAttributeValue(i) + "'");
-		}
-	}
-
-	void init(Context context) {
 		if (context instanceof GRKeyboardService) {
 			svc = (GRKeyboardService)context;
 		}
 		else {
 			Log.d(TAG, "Context of key is not a GRKeyboardService");
 		}
-		/*setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				svc.keyClicked(v);
-			}
-		});
-		setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				svc.keyClicked(v);
-			}
-		});*/
+	}
+
+	void dumpAttributeSet(AttributeSet attrs) {
+		for (int i = 0; i < attrs.getAttributeCount(); ++i) {
+			Log.d(TAG, "attr; name='" + attrs.getAttributeName(i) + "', value='" + attrs.getAttributeValue(i) + "'");
+		}
 	}
 
 	@Override public boolean onTouchEvent(MotionEvent event) {

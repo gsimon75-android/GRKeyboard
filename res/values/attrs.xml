@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="GRKey">
-        <attr name="ingyom" format="boolean"/>
-    </declare-styleable>
+
+	<declare-styleable name="GRKey">
+		<attr name="ingyom" format="boolean"/>
+	</declare-styleable>
+	
 </resources>
+<!-- vim: set sw=4 ts=4 noet nowrap: -->
 

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:a="http://schemas.android.com/apk/res/android" package="org.dyndns.fules.grkey"
 	a:versionCode="@integer/version_number" a:versionName="@string/version_summary">
-	<uses-sdk a:minSdkVersion="7" a:targetSdkVersion="8"/>
+	<uses-sdk a:minSdkVersion="15" a:targetSdkVersion="15"/>
 	<uses-permission a:name="android.permission.BIND_INPUT_METHOD"/>
 
-	<application a:label="@string/app_label" a:icon="@drawable/icon_launcher">
-		<service a:name="GRKeyboardService" a:permission="android.permission.BIND_INPUT_METHOD"> 
+	<application a:label="@string/app_label" a:icon="@drawable/icon_launcher" a:theme="@style/Theme.Holo.GRKeyboard">
+
+		<service a:name="GRKeyboardService" a:permission="android.permission.BIND_INPUT_METHOD" a:theme="@style/Theme.Holo.GRKeyboard"> 
 			<intent-filter>
 				<action a:name="android.view.InputMethod"/>
 				<action a:name="android.intent.action.DELETE"/>
@@ -14,7 +15,7 @@
 		</service>
 
 		<activity
-			a:name="CompassKeyboardSettings"
+			a:name="GRKeyboardSettings"
 			a:label="@string/settings_label"
 			a:exported="true">
 		</activity>
