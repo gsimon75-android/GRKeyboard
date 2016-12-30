@@ -269,10 +269,10 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
 		}*/
 	}
 
-	public void keyClicked(View keyview) {
+	public void keyClicked(View keyview, int gestureCode) {
 		if (keyview instanceof TextView) {
 			TextView tv = (TextView)keyview;
-			Log.d(TAG, "keyClicked('" + tv.getText().toString() + "')");
+			Log.d(TAG, "keyClicked('" + tv.getText().toString() + "'), code=" + gestureCode);
 		}
 		else {
 			Log.d(TAG, "keyClicked(...)");

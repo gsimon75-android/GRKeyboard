@@ -1,6 +1,8 @@
 package org.dyndns.fules.grkey;
 
 class PointF {
+	public static final float PI = (float)Math.PI;
+
 	float x, y;
 
 	PointF() {
@@ -14,6 +16,10 @@ class PointF {
 
 	public final String toString() {
 		return "(" + x + ", " + y + ")";
+	}
+
+	public float abs2() {
+		return x*x + y*y;
 	}
 }
 

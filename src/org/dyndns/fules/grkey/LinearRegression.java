@@ -5,8 +5,6 @@ import java.util.Vector;
 import java.util.Iterator;
 
 public class LinearRegression {
-
-	public static final float PI = (float)Math.PI;
 	Vector<PointF>	input = new Vector<PointF>();
 
 	float		qualityThreshold;
@@ -117,18 +115,18 @@ public class LinearRegression {
 			if (yy > xx) {
 				// the correct angle is perpendicular to 'angle', and
 				// the direction must also be considered
-				angle += (p.y > input.firstElement().y) ? PI / 2 : - PI / 2;
+				angle += (p.y > input.firstElement().y) ? PointF.PI / 2 : - PointF.PI / 2;
 			}
 			else if (p.x < input.firstElement().x) {
 				// 'angle' is correct, but it must be 'turned backwards'
-				angle += (angle < 0) ? PI : - PI;
+				angle += (angle < 0) ? PointF.PI : - PointF.PI;
 			}
 		}
 		else if (xy > 0) {
-			angle = (p.x > input.firstElement().x) ? PI / 4 : -3 * PI / 4;
+			angle = (p.x > input.firstElement().x) ? PointF.PI / 4 : -3 * PointF.PI / 4;
 		}
 		else if (xy < 0) {
-			angle = (p.x > input.firstElement().x) ? - PI / 4 : 3 * PI / 4;
+			angle = (p.x > input.firstElement().x) ? - PointF.PI / 4 : 3 * PointF.PI / 4;
 		}
 
 		// calculate the squared deviation (x means trend-wise span, y is perpendicular to it)

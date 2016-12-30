@@ -38,6 +38,7 @@ public class GRKey extends Button {
 
 	JitterFilter		jitterFilter = new JitterFilter(0.6f);
 	LinearRegression	strokeFinder = new LinearRegression(0.8f);
+	int			gestureCode;
 
 	public GRKey(Context context) {
 		this(context, null);
@@ -70,6 +71,52 @@ public class GRKey extends Button {
 		PointF deviation = strokeFinder.getDeviation();
 		float quality = strokeFinder.getQuality();
 		Log.d(TAG, "Gesture part finished; angle=" + (angle * 180.0f / Math.PI) + "', deviation='" + deviation + "', quality='" + quality + "'");
+
+		// codify the angle to a 1-digit number, as on the numeric keypad
+		// eg. 8=North, 3=South-East, etc., reserve 5 for long-tap
+		int gestureDigit;
+
+		// on the (touch)screen, positive y axis points downwards
+		angle = -angle;
+		// rotate by PI/8 for easier boundary comparison
+		angle += PointF.PI / 8;
+		/// convert to [0..2*PI)
+		if (angle < 0)
+			angle += 2*PointF.PI;
+
+		if (deviation.abs2() < 1) {
+			gestureDigit = 0; // Tap
+		}
+		else if (angle < PointF.PI) {
+			if (angle < PointF.PI/2) {
+				if (angle < PointF.PI/4)
+					gestureDigit = 6; // East
+				else
+					gestureDigit = 9; // North-East
+			}
+			else { // PointF.PI/2 <= angle
+				if (angle < 3*PointF.PI/4)
+					gestureDigit = 8; // North
+				else
+					gestureDigit = 7; // North-West
+			}
+		}
+		else { // PointF.PI <= angle
+			if (angle < 3*PointF.PI/2) {
+				if (angle < 5*PointF.PI/4)
+					gestureDigit = 4; // West
+				else
+					gestureDigit = 1; // South-West
+			}
+			else { // 3*PointF.PI/2 <= angle
+				if (angle < 7*PointF.PI/4)
+					gestureDigit = 2; // South
+				else
+					gestureDigit = 3; // South-East
+			}
+		}
+
+		gestureCode = 10*gestureCode + gestureDigit;
 	}
 
 	void processGestureMove(float x, float y) {
@@ -94,7 +141,8 @@ public class GRKey extends Button {
 				Drawable bg = getBackground();
 				if (bg.setState(statePressed))
 					bg.invalidateSelf();
-				Log.d(TAG, "Start gesture;");
+				//Log.d(TAG, "Start gesture;");
+				gestureCode = 0;
 				jitterFilter.clear();
 				strokeFinder.clear();
 				processGestureMove(event.getX(), event.getY());
@@ -127,9 +175,9 @@ public class GRKey extends Button {
 					strokeFinder.add(pp);
 				}
 				gesturePartFinished();
-				Log.d(TAG, "Stop gesture;");
+				//Log.d(TAG, "Stop gesture;");
 				if (svc != null)
-					svc.keyClicked(this);
+					svc.keyClicked(this, gestureCode);
 			}
 			break;
 		}
