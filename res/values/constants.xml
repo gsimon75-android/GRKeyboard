@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<!-- shift states -->
+	<integer name="all">0</integer>
+	<integer name="normal">1</integer>
+	<integer name="shift">2</integer>
+	<integer name="ctrl">3</integer>
+	<integer name="ctrl_shift">4</integer>
+	<integer name="shift_state_max">5</integer>
+
+	<!-- accent gestures -->
+	<integer name="acute">9</integer>
+	<integer name="dblacute">292</integer>
+	<integer name="grave">7</integer>
+	<integer name="caron">39</integer>
+	<integer name="cedilla">34</integer>
+	<integer name="circumflex">93</integer>
+	<integer name="umlaut">4</integer>
+	<integer name="dot">3</integer>
+	<integer name="macron">6</integer>
+	<integer name="ogonek">16</integer>
+	<integer name="ring">8</integer>
+	<integer name="bar">1</integer>
+	<integer name="tilde">929</integer>
+
+	<!-- other gestures -->
+	<integer name="tap">0</integer>
+	<integer name="dirNW">7</integer>
+	<integer name="dirN">8</integer>
+	<integer name="dirNE">9</integer>
+	<integer name="dirW">4</integer>
+	<integer name="longtap">5</integer>
+	<integer name="dirE">6</integer>
+	<integer name="dirSW">1</integer>
+	<integer name="dirS">2</integer>
+	<integer name="dirSE">3</integer>
+	<integer name="left_x">183</integer>
+	<integer name="right_x">381</integer>
+
+</resources>
+
+<!-- vim: set sw=4 ts=4 noet nowrap: -->
+

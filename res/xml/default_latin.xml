@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<GRKeyboard name="Latin"
+    xmlns:a="http://schemas.android.com/apk/res/android">
+
+    <Key a:id="@id/key_1">
+        <State>
+            <Action text="1"/>
+        </State>
+    </Key>
+
+    <Key a:id="@id/key_O">
+        <State a:id="@integer/normal">
+            <Action                             text="o"/>
+            <Action gesture="@integer/acute"    text="ó"/>
+            <Action gesture="@integer/dblacute" text="ő"/>
+            <Action gesture="@integer/grave"    text="ò"/>
+        </State>
+        <State id="@integer/shift">
+            <Action                             text="O"/>
+            <Action gesture="@integer/acute"    text="Ó"/>
+            <Action gesture="@integer/dblacute" text="Ő"/>
+            <Action gesture="@integer/grave"    text="Ò"/>
+        </State>
+    </Key>
+
+    <Key a:id="@id/key_Shift">
+        <State id="@integer/normal">
+            <Action                             cmd="shift"/>
+            <Action gesture="@integer/dirN"     cmd="caps"/>
+            <Action gesture="@integer/dirE"     cmd="ctrl"/>
+            <Action gesture="@integer/dirW"     text="%1b"/> <!-- esc -->
+            <Action gesture="13"                cmd="copy"/>
+            <Action gesture="@integer/right_x"  cmd="cut"/>
+            <Action gesture="93"                cmd="selectAll"/>
+            <Action gesture="31"                cmd="paste"/>
+        </State>
+        <State id="@integer/shift">
+            <Action                             cmd="normal"/>
+            <Action gesture="@integer/dirN"     cmd="caps"/>
+            <Action gesture="@integer/dirE"     cmd="ctrl"/>
+        </State>
+        <State id="@integer/ctrl">
+            <Action                             cmd="shift"/>
+            <Action gesture="@integer/dirN"     cmd="caps"/>
+            <Action gesture="@integer/dirE"     cmd="normal"/>
+        </State>
+    </Key>
+
+    <Key a:id="@id/key_Left">
+        <State>
+            <Action                             code="21"/>
+        </State>
+    </Key>
+
+</GRKeyboard>
+
+<!-- vim: set sw=4 ts=4 et nowrap: -->
