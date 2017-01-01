@@ -456,7 +456,7 @@
         <Action gesture="@integer/dirN"     cmd="caps"/>
         <Action gesture="@integer/dirS"     cmd="hide"/>
         <Action gesture="@integer/dirE"     cmd="ctrl"/>
-        <Action gesture="@integer/dirW"     text="%1b"/> <!-- esc -->
+        <Action gesture="@integer/dirW"     code="111"/> <!-- esc -->
         <Action gesture="13"                cmd="copy"/>
         <Action gesture="@integer/right_x"  cmd="cut"/>
         <Action gesture="93"                cmd="selectAll"/>
@@ -477,7 +477,7 @@
 
     <!-- Special keys: At, Dollar, Dot, Quote -->
 
-    <Key id="@id/key_At" text="%40"> <!-- @ -->
+    <Key id="@id/key_At" text="\@"> <!-- @ -->
         <Action gesture="13"                text="&lt;"/>
         <Action gesture="31"                text="&gt;"/>
         <Action gesture="@integer/dirW"     text="["/>
@@ -492,11 +492,11 @@
 
     <Key id="@id/key_Dollar" text="$">
         <Action gesture="@integer/dirNE"    text="/"/>
-        <Action gesture="@integer/dirSE"    text="%5c"/> <!-- \ -->
+        <Action gesture="@integer/dirSE"    text="&#92;"/> <!-- \ -->
         <Action gesture="@integer/dirE"     text="-"/>
         <Action gesture="@integer/dirW"     text="+"/>
         <Action gesture="@integer/dirN"     text="^"/>
-        <Action gesture="@integer/dirS"     text="%25"/> <!-- % -->
+        <Action gesture="@integer/dirS"     text="&#37;"/> <!-- % -->
         <Action gesture="616"               text="="/>
         <Action gesture="64"                text="="/>
         <Action gesture="381"               text="*"/>
@@ -510,7 +510,7 @@
         <Action gesture="@integer/dirE"     text="_"/>
         <Action gesture="79"                text="¿"/>
         <Action gesture="13"                text="¿"/>
-        <Action gesture="31"                text="%3f"/> <!-- ? -->
+        <Action gesture="31"                text="\?"/>
         <Action gesture="93"                text=";"/>
         <Action gesture="39"                text=":"/>
     </Key>
@@ -522,8 +522,8 @@
         <Action gesture="@integer/dirS"     text="|"/>
         <Action gesture="82"                text="&amp;"/>
         <Action gesture="183"               text="&amp;"/>
-        <Action gesture="64"                text="%23"/> <!-- # -->
-        <Action gesture="616"               text="%23"/> <!-- # -->
+        <Action gesture="64"                text="\#"/>
+        <Action gesture="616"               text="\#"/>
         <Action gesture="@integer/dirSW"    text="`"/>
         <Action gesture="@integer/dirSE"    text="'"/>
     </Key>
