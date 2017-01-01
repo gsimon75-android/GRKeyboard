@@ -50,7 +50,7 @@ public class GRKey extends Button {
 
 	public GRKey(Context context, AttributeSet attributes, int defStyleAttr) {
 		super(context, attributes, defStyleAttr);
-		Log.d(TAG, "GRKey(" + context + ", " + attributes + ", " + defStyleAttr + ")");
+		//Log.d(TAG, "GRKey(" + context + ", " + attributes + ", " + defStyleAttr + ")");
 		//dumpAttributeSet(attributes);
 		if (context instanceof GRKeyboardService) {
 			svc = (GRKeyboardService)context;

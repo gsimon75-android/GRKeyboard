@@ -103,7 +103,8 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
 
             // parse contents
             while (parser.getEventType() == XmlResourceParser.START_TAG) {
-                parseContent(parser);
+                if (!parseContent(parser))
+                    throw new XmlPullParserException("Tag <" + parser.getName() + "> is not valid here", parser, null);
                 skipUntilTag(parser);
             }
 
@@ -114,16 +115,15 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
 
         // Parse the attributes, but do not modify (eg. step ahead) the parser
         protected void parseAttributes(XmlResourceParser parser) throws XmlPullParserException, IOException {
-            int n = parser.getAttributeCount();
+            /*int n = parser.getAttributeCount();
             for (int i = 0; i < n; ++i) {
                 Log.d(TAG, "<" + tagName + "> attribute[" + i + "] = { ns='" + parser.getAttributeNamespace(i) + "', name='" + parser.getAttributeName(i) + "', value='" + parser.getAttributeValue(i) + "' }");
-            }
-
+            }*/
         }
 
         // Parse a content tag, and leave the parser at the closing of this tag
-        protected void parseContent(XmlResourceParser parser) throws XmlPullParserException, IOException {
-            throw new XmlPullParserException("This tag may not have nested content; name='" + tagName + "'", parser, null);
+        protected boolean parseContent(XmlResourceParser parser) throws XmlPullParserException, IOException {
+            return false;
         }
     }
 
@@ -153,7 +153,7 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
             text = parser.getAttributeValue(null, "text");
             cmd = parser.getAttributeValue(null, "cmd");
             code = parser.getAttributeIntValue(null, "code", -1);
-            Log.d(TAG, "Action.parseAttributes; this=" + this + ", gesture=" + gesture + ", code=" + code + ", text='" + nullSafe(text) + "', cmd='" + nullSafe(cmd) +"'");
+            //Log.d(TAG, "Action.parseAttributes; this=" + this + ", gesture=" + gesture + ", code=" + code + ", text='" + nullSafe(text) + "', cmd='" + nullSafe(cmd) +"'");
         }
 
         public int getGesture() {
@@ -184,19 +184,20 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
         protected void parseAttributes(XmlResourceParser parser) throws XmlPullParserException, IOException {
             super.parseAttributes(parser);
             mod = res.getInteger(parser.getAttributeResourceValue(null, "mod", R.integer.normal));
-            Log.d(TAG, "State.parseAttributes; this=" + this + ", mod=" + mod);
+            //Log.d(TAG, "State.parseAttributes; this=" + this + ", mod=" + mod);
         }
 
-        protected void parseContent(XmlResourceParser parser) throws XmlPullParserException, IOException {
+        protected boolean parseContent(XmlResourceParser parser) throws XmlPullParserException, IOException {
+            if (super.parseContent(parser))
+                return true;
             if (parser.getName().equals("Action")) {
                 Action action = new Action();
-                Log.d(TAG, "State.parseContent; this=" + this + ", action=" + action);
+                //Log.d(TAG, "State.parseContent; this=" + this + ", action=" + action);
                 action.parse(parser);
                 actions.put(action.getGesture(), action);
+                return true;
             }
-            else {
-                super.parseContent(parser);
-            }
+            return false;
         }
 
         public int getMod() {
@@ -205,7 +206,7 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
 
         public Action getAction(int gesture) {
             Action action = actions.get(gesture);
-            Log.d(TAG, "State; lookup gesture=" + gesture + ", action=" + action);
+            //Log.d(TAG, "State; lookup gesture=" + gesture + ", action=" + action);
             return (action != null) ? action : this;
         }
     }
@@ -220,19 +221,20 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
         protected void parseAttributes(XmlResourceParser parser) throws XmlPullParserException, IOException {
             super.parseAttributes(parser);
             id = parser.getAttributeResourceValue(null, "id", -1);
-            Log.d(TAG, "Key.parseAttributes; this=" + this + ", id=" + id);
+            //Log.d(TAG, "Key.parseAttributes; this=" + this + ", id=" + id);
         }
 
-        protected void parseContent(XmlResourceParser parser) throws XmlPullParserException, IOException {
+        protected boolean parseContent(XmlResourceParser parser) throws XmlPullParserException, IOException {
+            if (super.parseContent(parser))
+                return true;
             if (parser.getName().equals("State")) {
                 State state = new State();
-                Log.d(TAG, "Key.parseContent; this=" + this + ", state=" + state);
+                //Log.d(TAG, "Key.parseContent; this=" + this + ", state=" + state);
                 state.parse(parser);
                 states[state.getMod()] = state;
+                return true;
             }
-            else {
-                super.parseContent(parser);
-            }
+            return false;
         }
 
         public int getId() {
@@ -241,7 +243,7 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
 
         public State getState(int mod) {
             State state = states[mod];
-            Log.d(TAG, "Key; lookup mod=" + mod + ", state=" + state);
+            //Log.d(TAG, "Key; lookup mod=" + mod + ", state=" + state);
             return (state != null) ? state : this;
         }
 
@@ -262,25 +264,25 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
         protected void parseAttributes(XmlResourceParser parser) throws XmlPullParserException, IOException {
             super.parseAttributes(parser);
             String s = parser.getAttributeValue(null, "name");
-            Log.d(TAG, "KeyMap.parseAttributes; this=" + this + ", name='" + nullSafe(s) + "'");
+            //Log.d(TAG, "KeyMap.parseAttributes; this=" + this + ", name='" + nullSafe(s) + "'");
         }
 
-        protected void parseContent(XmlResourceParser parser) throws XmlPullParserException, IOException {
+        protected boolean parseContent(XmlResourceParser parser) throws XmlPullParserException, IOException {
+            if (super.parseContent(parser))
+                return true;
             if (parser.getName().equals("Key")) {
                 Key key = new Key();
-                Log.d(TAG, "KeyMap.parseContent; this=" + this + ", key=" + key);
+                //Log.d(TAG, "KeyMap.parseContent; this=" + this + ", key=" + key);
                 key.parse(parser);
                 keys.put(key.getId(), key);
+                return true;
             }
-            else {
-                super.parseContent(parser);
-            }
-
+            return false;
         }
 
         public Key getKey(int id) {
             Key key = keys.get(id);
-            Log.d(TAG, "KeyMap; lookup id=" + id + ", key=" + key);
+            //Log.d(TAG, "KeyMap; lookup id=" + id + ", key=" + key);
             return (key != null) ? key : this;
         }
     }
@@ -415,6 +417,12 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
             ic.performContextMenuAction(android.R.id.switchInputMethod);
         else if (cmd.equals("hide"))
             requestHideSelf(0);
+        else if (cmd.equals("normal"))
+            currentState = res.getInteger(R.integer.normal);
+        else if (cmd.equals("shift"))
+            currentState |= res.getInteger(R.integer.shift);
+        else if (cmd.equals("ctrl"))
+            currentState |= res.getInteger(R.integer.ctrl);
         else
             Log.w(TAG, "Unknown cmd '" + cmd + "'");
     }
@@ -516,12 +524,12 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
             Log.d(TAG, "keyClicked('" + tv.getText().toString() + "'), id=" + tv.getId() + ", state=" + currentState + ", gesture=" + gestureCode);
 
             // find the most appropriate action and process it
-            //Action a = keyMap.getKey(tv.getId()).getState(currentState).getAction(gestureCode);
+            Action a = keyMap.getKey(tv.getId()).getState(currentState).getAction(gestureCode);
 
-            Key k = keyMap.getKey(tv.getId());
+            /*Key k = keyMap.getKey(tv.getId());
             State st = k.getState(currentState);
             Action a = st.getAction(gestureCode);
-            Log.d(TAG, "keyClicked; k=" + k + ", st=" + st + ", a=" + a);
+            Log.d(TAG, "keyClicked; k=" + k + ", st=" + st + ", a=" + a);*/
 
             if (a.getCode() >= 0)
                 onKey(a.getCode());
