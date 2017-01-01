@@ -60,152 +60,13 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
     ExtractedTextRequest        etreq = new ExtractedTextRequest();
     int                         selectionStart = -1, selectionEnd = -1;
 
-    SparseArray<Key>            keys = new SparseArray<Key>(64);
+    KeyMap                      keyMap;
 
     int                         currentState;
 
-    class Key {
-
-        class State {
-
-            class Action {
-                int                 gesture;
-                String              text;
-                String              cmd;
-                int                 code;
-
-                public Action(XmlResourceParser parser) throws XmlPullParserException, IOException {
-                    String s;
-                    int resId;
-
-                    // parse and skip opening tag
-                    if ((parser.getEventType() != XmlResourceParser.START_TAG) || !parser.getName().contentEquals("Action"))
-                        throw new XmlPullParserException("Expected <Action>", parser, null);
-
-                    resId = parser.getAttributeResourceValue(null, "gesture", -1);
-                    if (resId >= 0) {
-                        gesture = res.getInteger(resId);
-                    }
-                    else {
-                        gesture = parser.getAttributeIntValue(null, "gesture", -1);
-                        if (gesture < 0) 
-                            gesture = res.getInteger(R.integer.tap);
-                    }
-                    text = parser.getAttributeValue(null, "text");
-                    cmd = parser.getAttributeValue(null, "cmd");
-                    code = parser.getAttributeIntValue(null, "code", -1);
-
-                    parser.nextTag();
-
-                    // check and skip closing tag
-                    if (!parser.getName().contentEquals("Action"))
-                        throw new XmlPullParserException("Expected </Action>", parser, null);
-                    parser.nextTag();
-                }
-
-                public int getGesture() {
-                    return gesture;
-                }
-
-                public int getCode() {
-                    return code;
-                }
-
-                public String getText() {
-                    return text;
-                }
-
-                public String getCmd() {
-                    return cmd;
-                }
-
-            }
-
-            int                 id;
-            SparseArray<Action> actions = new SparseArray<Action>(12);
-
-            public State(XmlResourceParser parser) throws XmlPullParserException, IOException {
-                String s;
-
-                // parse and skip opening tag
-                if ((parser.getEventType() != XmlResourceParser.START_TAG) || !parser.getName().contentEquals("State"))
-                    throw new XmlPullParserException("Expected <State>", parser, null);
-
-                id = res.getInteger(parser.getAttributeResourceValue(null, "id", R.integer.all));
-
-                parser.nextTag();
-
-                // parse contents
-                while (parser.getEventType() != XmlResourceParser.END_TAG) {
-                    Action action = new Action(parser);
-                    actions.put(action.getGesture(), action);
-                }
-
-                // check and skip closing tag
-                if (!parser.getName().contentEquals("State"))
-                    throw new XmlPullParserException("Expected </State>", parser, null);
-                parser.nextTag();
-            }
-
-            public int getId() {
-                return id;
-            }
-
-            public Action getAction(int gesture) {
-                return actions.get(gesture);
-            }
-        }
-
-        int                 id;
-        State[]             states = new State[res.getInteger(R.integer.shift_state_max)];
-
-        public Key(XmlResourceParser parser) throws XmlPullParserException, IOException {
-            String s;
-
-            // parse and skip opening tag
-            if ((parser.getEventType() != XmlResourceParser.START_TAG) || !parser.getName().contentEquals("Key"))
-                throw new XmlPullParserException("Expected <Key>", parser, null);
-
-            {
-                int n = parser.getAttributeCount();
-                for (int i = 0; i < n; ++i) {
-                    Log.d(TAG, "<Key> attribute[" + i + "] = { ns='" + parser.getAttributeNamespace(i) + "', name='" + parser.getAttributeName(i) + "', value='" + parser.getAttributeValue(i) + "' }");
-                }
-            }
-
-            /*s = parser.getAttributeValue(NS_ANDROID, "id");
-            if (s == null)
-                throw new XmlPullParserException("<Key> must have 'id' attribute", parser, null);
-            id = Integer.parseInt(s);*/
-            id = parser.getAttributeResourceValue(NS_ANDROID, "id", -1);
-            Log.d(TAG, "<Key> id=" + id);
-
-            parser.nextTag();
-
-            // parse contents
-            while (parser.getEventType() != XmlResourceParser.END_TAG) {
-                State state = new State(parser);
-                states[state.getId()] = state;
-            }
-
-            // check and skip closing tag
-            if (!parser.getName().contentEquals("Key"))
-                throw new XmlPullParserException("Expected </Key>", parser, null);
-            parser.nextTag();
-        }
-
-        public int getId() {
-            return id;
-        }
-
-        public State getState(int state) {
-            return states[state];
-        }
-
+    public static String nullSafe(String s) {
+        return (s == null) ? "<null>" : s;
     }
-
-
-
 
     // send an auto-revoked notification with a title and a message
     /*void sendNotification(String title, String msg) {
@@ -218,35 +79,210 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
     }*/
 
 
-    void parseKeycodes(int resId) throws XmlPullParserException, java.io.IOException {
-        String s;
-        keys.clear();
-        
-        XmlResourceParser parser = getResources().getXml(resId);
-        while (parser.getEventType() == XmlResourceParser.START_DOCUMENT)
-            parser.next();
+    class XmlStructure {
+        String tagName;
 
-        // parse and skip opening tag
-        if ((parser.getEventType() != XmlResourceParser.START_TAG) || !parser.getName().contentEquals("GRKeyboard"))
-            throw new XmlPullParserException("Expected <GRKeyboard>", parser, null);
-
-        s = parser.getAttributeValue(null, "name");
-        if (s != null)
-            Log.i(TAG, "Loading keyboard '" + s + "'");
-
-        parser.nextTag();
-
-        // parse contents
-        while (parser.getEventType() != XmlResourceParser.END_TAG) {
-            Key k = new Key(parser);
-            keys.put(k.getId(), k);
+        public int skipUntilTag(XmlResourceParser parser) throws XmlPullParserException, IOException {
+            int type;
+            do {
+                type = parser.next();
+            } while ((type != XmlResourceParser.START_TAG) && (type != XmlResourceParser.END_TAG) && (type != XmlResourceParser.END_DOCUMENT));
+            return type;
         }
 
-        // check and skip closing tag
-        if (!parser.getName().contentEquals("GRKeyboard"))
-            throw new XmlPullParserException("Expected </GRKeyboard>", parser, null);
-        //parser.nextTag();
-        parser.next();
+        public XmlStructure() {
+        }
+
+        public void parse(XmlResourceParser parser) throws XmlPullParserException, IOException {
+            // parse and skip opening tag
+            if (parser.getEventType() != XmlResourceParser.START_TAG)
+                throw new XmlPullParserException("Expected tag start", parser, null);
+            tagName = parser.getName();
+            parseAttributes(parser);
+            skipUntilTag(parser);
+
+            // parse contents
+            while (parser.getEventType() == XmlResourceParser.START_TAG) {
+                parseContent(parser);
+                skipUntilTag(parser);
+            }
+
+            // check closing tag and stay on the closing tag
+            if (!parser.getName().contentEquals(tagName))
+                throw new XmlPullParserException("Mismatched closing tag; found='" + parser.getName() + "', expected='" + tagName + "'", parser, null);
+        }
+
+        // Parse the attributes, but do not modify (eg. step ahead) the parser
+        protected void parseAttributes(XmlResourceParser parser) throws XmlPullParserException, IOException {
+            int n = parser.getAttributeCount();
+            for (int i = 0; i < n; ++i) {
+                Log.d(TAG, "<" + tagName + "> attribute[" + i + "] = { ns='" + parser.getAttributeNamespace(i) + "', name='" + parser.getAttributeName(i) + "', value='" + parser.getAttributeValue(i) + "' }");
+            }
+
+        }
+
+        // Parse a content tag, and leave the parser at the closing of this tag
+        protected void parseContent(XmlResourceParser parser) throws XmlPullParserException, IOException {
+            throw new XmlPullParserException("This tag may not have nested content; name='" + tagName + "'", parser, null);
+        }
+    }
+
+    class Action extends XmlStructure {
+        int                 gesture;
+        String              text;
+        String              cmd;
+        int                 code;
+
+        public Action() {
+        }
+
+        protected void parseAttributes(XmlResourceParser parser) throws XmlPullParserException, IOException {
+            super.parseAttributes(parser);
+            String s;
+            int resId;
+
+            resId = parser.getAttributeResourceValue(null, "gesture", -1);
+            if (resId >= 0) {
+                gesture = res.getInteger(resId);
+            }
+            else {
+                gesture = parser.getAttributeIntValue(null, "gesture", -1);
+                if (gesture < 0) 
+                    gesture = res.getInteger(R.integer.tap);
+            }
+            text = parser.getAttributeValue(null, "text");
+            cmd = parser.getAttributeValue(null, "cmd");
+            code = parser.getAttributeIntValue(null, "code", -1);
+            Log.d(TAG, "Action.parseAttributes; this=" + this + ", gesture=" + gesture + ", code=" + code + ", text='" + nullSafe(text) + "', cmd='" + nullSafe(cmd) +"'");
+        }
+
+        public int getGesture() {
+            return gesture;
+        }
+
+        public int getCode() {
+            return code;
+        }
+
+        public String getText() {
+            return text;
+        }
+
+        public String getCmd() {
+            return cmd;
+        }
+
+    }
+
+    class State extends Action {
+        int                 mod;
+        SparseArray<Action> actions = new SparseArray<Action>(12);
+
+        public State() {
+        }
+
+        protected void parseAttributes(XmlResourceParser parser) throws XmlPullParserException, IOException {
+            super.parseAttributes(parser);
+            mod = res.getInteger(parser.getAttributeResourceValue(null, "mod", R.integer.normal));
+            Log.d(TAG, "State.parseAttributes; this=" + this + ", mod=" + mod);
+        }
+
+        protected void parseContent(XmlResourceParser parser) throws XmlPullParserException, IOException {
+            if (parser.getName().equals("Action")) {
+                Action action = new Action();
+                Log.d(TAG, "State.parseContent; this=" + this + ", action=" + action);
+                action.parse(parser);
+                actions.put(action.getGesture(), action);
+            }
+            else {
+                super.parseContent(parser);
+            }
+        }
+
+        public int getMod() {
+            return mod;
+        }
+
+        public Action getAction(int gesture) {
+            Action action = actions.get(gesture);
+            Log.d(TAG, "State; lookup gesture=" + gesture + ", action=" + action);
+            return (action != null) ? action : this;
+        }
+    }
+
+    class Key extends State {
+        int                 id;
+        State[]             states = new State[res.getInteger(R.integer.shift_state_max)];
+
+        public Key() {
+        }
+
+        protected void parseAttributes(XmlResourceParser parser) throws XmlPullParserException, IOException {
+            super.parseAttributes(parser);
+            id = parser.getAttributeResourceValue(null, "id", -1);
+            Log.d(TAG, "Key.parseAttributes; this=" + this + ", id=" + id);
+        }
+
+        protected void parseContent(XmlResourceParser parser) throws XmlPullParserException, IOException {
+            if (parser.getName().equals("State")) {
+                State state = new State();
+                Log.d(TAG, "Key.parseContent; this=" + this + ", state=" + state);
+                state.parse(parser);
+                states[state.getMod()] = state;
+            }
+            else {
+                super.parseContent(parser);
+            }
+        }
+
+        public int getId() {
+            return id;
+        }
+
+        public State getState(int mod) {
+            State state = states[mod];
+            Log.d(TAG, "Key; lookup mod=" + mod + ", state=" + state);
+            return (state != null) ? state : this;
+        }
+
+    }
+
+    class KeyMap extends Key {
+        SparseArray<Key>    keys = new SparseArray<Key>(64);
+        
+        public KeyMap() {
+        }
+
+        public void parse(XmlResourceParser parser) throws XmlPullParserException, IOException {
+            super.parse(parser);
+            if (!tagName.contentEquals("KeyMap"))
+                throw new XmlPullParserException("Expected <KeyMap>", parser, null);
+        }
+
+        protected void parseAttributes(XmlResourceParser parser) throws XmlPullParserException, IOException {
+            super.parseAttributes(parser);
+            String s = parser.getAttributeValue(null, "name");
+            Log.d(TAG, "KeyMap.parseAttributes; this=" + this + ", name='" + nullSafe(s) + "'");
+        }
+
+        protected void parseContent(XmlResourceParser parser) throws XmlPullParserException, IOException {
+            if (parser.getName().equals("Key")) {
+                Key key = new Key();
+                Log.d(TAG, "KeyMap.parseContent; this=" + this + ", key=" + key);
+                key.parse(parser);
+                keys.put(key.getId(), key);
+            }
+            else {
+                super.parseContent(parser);
+            }
+
+        }
+
+        public Key getKey(int id) {
+            Key key = keys.get(id);
+            Log.d(TAG, "KeyMap; lookup id=" + id + ", key=" + key);
+            return (key != null) ? key : this;
+        }
     }
 
     @Override public void onCreate() {
@@ -264,7 +300,11 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
         currentState = res.getInteger(R.integer.normal);
 
         try {
-            parseKeycodes(R.xml.default_latin);
+            XmlResourceParser parser = getResources().getXml(R.xml.default_latin);
+            while (parser.getEventType() == XmlResourceParser.START_DOCUMENT)
+                parser.next();
+            keyMap = new KeyMap();
+            keyMap.parse(parser);
         }
 		catch (XmlPullParserException e)	{ err = e.getMessage(); }
 		catch (java.io.IOException e)		{ err = e.getMessage(); }
@@ -275,9 +315,7 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
 
     @Override public AbstractInputMethodService.AbstractInputMethodImpl onCreateInputMethodInterface() {
         Log.d(TAG, "onCreateInputMethodInterface;");
-
         etreq.hintMaxChars = etreq.hintMaxLines = 0;
-
         return super.onCreateInputMethodInterface();
     }
 
@@ -475,37 +513,15 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
     public void keyClicked(View keyview, int gestureCode) {
         if (keyview instanceof TextView) {
             TextView tv = (TextView)keyview;
-            Log.d(TAG, "keyClicked('" + tv.getText().toString() + "'), code=" + gestureCode);
+            Log.d(TAG, "keyClicked('" + tv.getText().toString() + "'), id=" + tv.getId() + ", state=" + currentState + ", gesture=" + gestureCode);
 
-            // find the key in the key-to-code table
-            Key k = keys.get(tv.getId());
-            if (k == null) {
-                Log.d(TAG, "No conversion rule for this key;");
-                return;
-            }
+            // find the most appropriate action and process it
+            //Action a = keyMap.getKey(tv.getId()).getState(currentState).getAction(gestureCode);
 
-            // find the current and the default states for that key
-            Key.State currentSt = k.getState(currentState);
-            Key.State defaultSt = k.getState(res.getInteger(R.integer.all));
-            Key.State.Action a = null;
-
-            // find the most appropriate action
-            if (currentSt != null)
-                a = currentSt.getAction(gestureCode);
-
-            if ((a == null) && (defaultSt != null))
-                a = defaultSt.getAction(gestureCode);
-
-            if ((a == null) && (currentSt != null))
-                a = currentSt.getAction(res.getInteger(R.integer.tap));
-
-            if ((a == null) && (defaultSt != null))
-                a = defaultSt.getAction(res.getInteger(R.integer.tap));
-
-            if (a == null) {
-                Log.d(TAG, "No action for this key;");
-                return;
-            }
+            Key k = keyMap.getKey(tv.getId());
+            State st = k.getState(currentState);
+            Action a = st.getAction(gestureCode);
+            Log.d(TAG, "keyClicked; k=" + k + ", st=" + st + ", a=" + a);
 
             if (a.getCode() >= 0)
                 onKey(a.getCode());

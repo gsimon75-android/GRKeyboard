@@ -2,12 +2,11 @@
 <resources>
 
 	<!-- shift states -->
-	<integer name="all">0</integer>
-	<integer name="normal">1</integer>
-	<integer name="shift">2</integer>
-	<integer name="ctrl">3</integer>
-	<integer name="ctrl_shift">4</integer>
-	<integer name="shift_state_max">5</integer>
+	<integer name="normal">0</integer>
+	<integer name="shift">1</integer>
+	<integer name="ctrl">2</integer>
+	<integer name="ctrl_shift">3</integer>
+	<integer name="shift_state_max">4</integer>
 
 	<!-- accent gestures -->
 	<integer name="acute">9</integer>
