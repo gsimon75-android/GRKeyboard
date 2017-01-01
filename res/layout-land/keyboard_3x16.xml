@@ -21,7 +21,7 @@
 		
 		<org.dyndns.fules.grkey.GRKey a:id="@+id/key_Backspace" a:layout_width="0px" a:layout_height="wrap_content" a:layout_weight="1" a:text="↚"/>
 		<org.dyndns.fules.grkey.GRKey a:id="@+id/key_Dollar" a:layout_width="0px" a:layout_height="wrap_content" a:layout_weight="1" a:text="$"/>
-		<org.dyndns.fules.grkey.GRKey a:id="@+id/key_At" a:layout_width="0px" a:layout_height="wrap_content" a:layout_weight="1" a:text="\@"/>
+		<org.dyndns.fules.grkey.GRKey a:id="@+id/key_Quote" a:layout_width="0px" a:layout_height="wrap_content" a:layout_weight="1" a:text="&quot;"/>
 		
 		<org.dyndns.fules.grkey.GRKey a:id="@+id/key_7" a:layout_width="0px" a:layout_height="wrap_content" a:layout_weight="1" a:text="7"/>
 		<org.dyndns.fules.grkey.GRKey a:id="@+id/key_8" a:layout_width="0px" a:layout_height="wrap_content" a:layout_weight="1" a:text="8"/>
@@ -55,6 +55,7 @@
 		a:layout_width="fill_parent" a:layout_height="wrap_content"
 		a:paddingLeft="4mm" a:paddingRight="4mm" a:paddingBottom="4mm">
 		<org.dyndns.fules.grkey.GRKey a:id="@+id/key_Shift" a:layout_width="0px" a:layout_height="wrap_content" a:layout_weight="1" a:text="⇫"/>
+		<org.dyndns.fules.grkey.GRKey a:id="@+id/key_At" a:layout_width="0px" a:layout_height="wrap_content" a:layout_weight="1" a:text="\@"/>
 		<org.dyndns.fules.grkey.GRKey a:id="@+id/key_Z" a:layout_width="0px" a:layout_height="wrap_content" a:layout_weight="1" a:text="Z"/>
 		<org.dyndns.fules.grkey.GRKey a:id="@+id/key_X" a:layout_width="0px" a:layout_height="wrap_content" a:layout_weight="1" a:text="X"/>
 		<org.dyndns.fules.grkey.GRKey a:id="@+id/key_C" a:layout_width="0px" a:layout_height="wrap_content" a:layout_weight="1" a:text="C"/>
@@ -63,7 +64,7 @@
 		<org.dyndns.fules.grkey.GRKey a:id="@+id/key_N" a:layout_width="0px" a:layout_height="wrap_content" a:layout_weight="1" a:text="N"/>
 		<org.dyndns.fules.grkey.GRKey a:id="@+id/key_M" a:layout_width="0px" a:layout_height="wrap_content" a:layout_weight="1" a:text="M"/>
 
-		<org.dyndns.fules.grkey.GRKey a:id="@+id/key_Space" a:layout_width="0px" a:layout_height="wrap_content" a:layout_weight="2" a:text="█"/>
+		<org.dyndns.fules.grkey.GRKey a:id="@+id/key_Space" a:layout_width="0px" a:layout_height="wrap_content" a:layout_weight="1" a:text="█"/>
 		<org.dyndns.fules.grkey.GRKey a:id="@+id/key_Left" a:layout_width="0px" a:layout_height="wrap_content" a:layout_weight="1" a:text="⇠"/>
 		<org.dyndns.fules.grkey.GRKey a:id="@+id/key_Down" a:layout_width="0px" a:layout_height="wrap_content" a:layout_weight="1" a:text="⇣"/>
 		<org.dyndns.fules.grkey.GRKey a:id="@+id/key_Right" a:layout_width="0px" a:layout_height="wrap_content" a:layout_weight="1" a:text="⇢"/>
