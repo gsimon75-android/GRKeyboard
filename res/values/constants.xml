@@ -11,18 +11,19 @@
 
 	<!-- accent gestures -->
 	<integer name="acute">9</integer>
-	<integer name="dblacute">292</integer>
-	<integer name="grave">7</integer>
-	<integer name="caron">39</integer>
+	<integer name="bar">1</integer>
+	<integer name="caret">93</integer>
 	<integer name="cedilla">34</integer>
-	<integer name="circumflex">93</integer>
-	<integer name="umlaut">4</integer>
+	<integer name="dblacute">292</integer>
 	<integer name="dot">3</integer>
+	<integer name="grave">7</integer>
+	<integer name="hacek">39</integer>
 	<integer name="macron">6</integer>
 	<integer name="ogonek">16</integer>
 	<integer name="ring">8</integer>
-	<integer name="bar">1</integer>
 	<integer name="tilde">929</integer>
+	<integer name="umlaut">4</integer>
+	<integer name="spec">2</integer>
 
 	<!-- other gestures -->
 	<integer name="tap">0</integer>

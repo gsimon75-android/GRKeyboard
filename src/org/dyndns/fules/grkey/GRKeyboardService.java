@@ -242,8 +242,6 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
             keys.put(k.getId(), k);
         }
 
-        Log.d(TAG, "Finished parsing keys; parser=" + parser);
-        Log.d(TAG, "Finished parsing keys; tagName='" + parser.getName() + "'");
         // check and skip closing tag
         if (!parser.getName().contentEquals("GRKeyboard"))
             throw new XmlPullParserException("Expected </GRKeyboard>", parser, null);

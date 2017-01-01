@@ -3,11 +3,153 @@
 <GRKeyboard name="Latin"
     xmlns:a="http://schemas.android.com/apk/res/android">
 
-    <Key a:id="@id/key_1">
+    <!-- Template for keys
+
+    <Key a:id="@id/key_">
         <State>
-            <Action text="1"/>
+            <Action                             text=""/>
+            <Action gesture="@integer/acute"    text=""/>
+            <Action gesture="@integer/bar"      text=""/>
+            <Action gesture="@integer/caret"    text=""/>
+            <Action gesture="@integer/cedilla"  text=""/>
+            <Action gesture="@integer/dblacute" text=""/>
+            <Action gesture="@integer/dot"      text=""/>
+            <Action gesture="@integer/grave"    text=""/>
+            <Action gesture="@integer/hacek"    text=""/>
+            <Action gesture="@integer/macron"   text=""/>
+            <Action gesture="@integer/ogonek"   text=""/>
+            <Action gesture="@integer/ring"     text=""/>
+            <Action gesture="@integer/tilde"    text=""/>
+            <Action gesture="@integer/umlaut"   text=""/>
+            <Action gesture="@integer/spec"     text=""/>
+        </State>
+        <State a:id="@integer/shift">
         </State>
     </Key>
+
+    -->
+    <!-- Numeric keys -->
+    <Key a:id="@id/key_0"> <State> <Action text="0"/> </State> </Key>
+    <Key a:id="@id/key_1"> <State> <Action text="1"/> </State> </Key>
+    <Key a:id="@id/key_2"> <State> <Action text="2"/> </State> </Key>
+    <Key a:id="@id/key_3"> <State> <Action text="3"/> </State> </Key>
+    <Key a:id="@id/key_4"> <State> <Action text="4"/> </State> </Key>
+    <Key a:id="@id/key_5"> <State> <Action text="5"/> </State> </Key>
+    <Key a:id="@id/key_6"> <State> <Action text="6"/> </State> </Key>
+    <Key a:id="@id/key_7"> <State> <Action text="7"/> </State> </Key>
+    <Key a:id="@id/key_8"> <State> <Action text="8"/> </State> </Key>
+    <Key a:id="@id/key_9"> <State> <Action text="9"/> </State> </Key>
+
+    <!-- QWER row -->
+
+    <Key a:id="@id/key_Q">
+        <State>
+            <Action                             text="q"/>
+        </State>
+        <State a:id="@integer/shift">
+            <Action                             text="Q"/>
+        </State>
+    </Key>
+
+    <Key a:id="@id/key_W">
+        <State>
+            <Action                             text="w"/>
+        </State>
+        <State a:id="@integer/shift">
+            <Action                             text="W"/>
+        </State>
+    </Key>
+
+    <Key a:id="@id/key_E">
+        <State>
+            <Action                             text="e"/>
+            <Action gesture="@integer/acute"    text="é"/>
+            <Action gesture="@integer/bar"      text="ɇ"/>
+            <Action gesture="@integer/caret"    text="ê"/>
+            <Action gesture="@integer/dblacute" text="€"/>
+            <Action gesture="@integer/dot"      text="ė"/>
+            <Action gesture="@integer/grave"    text="è"/>
+            <Action gesture="@integer/hacek"    text="ě"/>
+            <Action gesture="@integer/macron"   text="ē"/>
+            <Action gesture="@integer/ogonek"   text="ę"/>
+            <Action gesture="@integer/tilde"    text="ẽ"/>
+            <Action gesture="@integer/umlaut"   text="ë"/>
+            <Action gesture="@integer/spec"     text="ə"/>
+        </State>
+        <State a:id="@integer/shift">
+            <Action                             text="E"/>
+            <Action gesture="@integer/acute"    text="É"/>
+            <Action gesture="@integer/bar"      text="Ɇ"/>
+            <Action gesture="@integer/caret"    text="Ê"/>
+            <Action gesture="@integer/dblacute" text="€"/>
+            <Action gesture="@integer/dot"      text="Ė"/>
+            <Action gesture="@integer/grave"    text="È"/>
+            <Action gesture="@integer/hacek"    text="Ě"/>
+            <Action gesture="@integer/macron"   text="Ē"/>
+            <Action gesture="@integer/ogonek"   text="Ę"/>
+            <Action gesture="@integer/tilde"    text="Ẽ"/>
+            <Action gesture="@integer/umlaut"   text="Ë"/>
+            <Action gesture="@integer/spec"     text="Ə"/>
+        </State>
+    </Key>
+
+    <!-- ASDF row -->
+
+    <Key a:id="@id/key_A">
+        <State>
+            <Action                             text="a"/>
+            <Action gesture="@integer/acute"    text="á"/>
+            <Action gesture="@integer/bar"      text="ⱥ"/>
+            <Action gesture="@integer/caret"    text="â"/>
+            <Action gesture="@integer/dot"      text="ạ"/>
+            <Action gesture="@integer/grave"    text="à"/>
+            <Action gesture="@integer/hacek"    text="ǎ"/>
+            <Action gesture="@integer/macron"   text="ā"/>
+            <Action gesture="@integer/ogonek"   text="ȧ"/>
+            <Action gesture="@integer/ring"     text="å"/>
+            <Action gesture="@integer/tilde"    text="ã"/>
+            <Action gesture="@integer/umlaut"   text="ä"/>
+            <Action gesture="@integer/spec"     text="æ"/>
+        </State>
+        <State a:id="@integer/shift">
+            <Action                             text="A"/>
+            <Action gesture="@integer/acute"    text="Á"/>
+            <Action gesture="@integer/bar"      text="Ⱥ"/>
+            <Action gesture="@integer/caret"    text="Â"/>
+            <Action gesture="@integer/dot"      text="Ạ"/>
+            <Action gesture="@integer/grave"    text="À"/>
+            <Action gesture="@integer/hacek"    text="Ǎ"/>
+            <Action gesture="@integer/macron"   text="Ā"/>
+            <Action gesture="@integer/ogonek"   text="Ȧ"/>
+            <Action gesture="@integer/ring"     text="Å"/>
+            <Action gesture="@integer/tilde"    text="Ã"/>
+            <Action gesture="@integer/umlaut"   text="Ä"/>
+            <Action gesture="@integer/spec"     text="Æ"/>
+        </State>
+    </Key>
+
+
+    <Key a:id="@id/key_A">
+        <State>
+            <Action                             text="a"/>
+            <Action gesture="@integer/acute"    text="á"/>
+            <Action gesture="@integer/bar"      text="ⱥ"/>
+            <Action gesture="@integer/caret"    text="â"/>
+            <Action gesture="@integer/cedilla"  text=""/>
+            <Action gesture="@integer/dblacute" text=""/>
+            <Action gesture="@integer/dot"      text="ạ"/>
+            <Action gesture="@integer/grave"    text="à"/>
+            <Action gesture="@integer/hacek"    text="ǎ"/>
+            <Action gesture="@integer/macron"   text="ā"/>
+            <Action gesture="@integer/ogonek"   text="ȧ"/>
+            <Action gesture="@integer/ring"     text="å"/>
+            <Action gesture="@integer/tilde"    text="ã"/>
+            <Action gesture="@integer/umlaut"   text="ä"/>
+        </State>
+        <State a:id="@integer/shift">
+        </State>
+    </Key>
+
 
     <Key a:id="@id/key_O">
         <State a:id="@integer/normal">
