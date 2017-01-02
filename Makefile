@@ -86,6 +86,7 @@ bin/classes/$(PACKAGE_PATH)/R.class:	gen/$(PACKAGE_PATH)/R.java bin/classes
 bin/R.class.last:	bin/classes/$(PACKAGE_PATH)/R.class
 	cmp -s $< $@ || cp $< $@
 
+.SECONDARY:  bin/classes/$(PACKAGE_PATH)/BuildConfig.class
 bin/classes/$(PACKAGE_PATH)/BuildConfig.class:	gen/$(PACKAGE_PATH)/BuildConfig.java bin/classes
 	$(JAVAC) $(JAVA_FLAGS) $<
 
