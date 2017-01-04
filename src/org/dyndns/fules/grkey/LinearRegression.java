@@ -7,15 +7,16 @@ import java.util.Iterator;
 public class LinearRegression {
 	Vector<PointF>	input = new Vector<PointF>();
 
-	float		qualityThreshold;
+	float		qualityThreshold, minimalRequiredLength;
 	PointF		center = new PointF();
 	PointF		sum = new PointF();
 	float		angle = 0;
 	float		quality = 0;
 	PointF		deviation = new PointF();
 
-	public LinearRegression(float qualityThreshold) {
+	public LinearRegression(float qualityThreshold, float minimalRequiredLength) {
 		this.qualityThreshold = qualityThreshold;
+		this.minimalRequiredLength = minimalRequiredLength;
 		clear();
 	}
 
@@ -89,18 +90,6 @@ public class LinearRegression {
 		else
 			quality = d / (xx + yy);
 
-		if (quality < qualityThreshold) {
-			// quality would drop too much, return without touching the data
-			return false;
-		}
-
-		// quality stays ok, so add the new item to the input series
-		input.addElement(p);
-		sum.x += p.x;
-		sum.y += p.y;
-		center.x = cx;
-		center.y = cy;
-
 		// calculate the angle of the series
 		if (xx != yy) {
 			angle = -(float)Math.atan(2*xy / (yy - xx)) / 2;
@@ -132,6 +121,21 @@ public class LinearRegression {
 		// calculate the squared deviation (x means trend-wise span, y is perpendicular to it)
 		deviation.x = (float)Math.sqrt((xx + yy + d) / 2);
 		deviation.y = (float)Math.sqrt((xx + yy - d) / 2);
+
+		if (deviation.x >= minimalRequiredLength) {
+			// the series is long enough (trendwise)
+			if (quality < qualityThreshold) {
+				// quality would drop too much, return without touching the data
+				return false;
+			}
+		}
+
+		// quality stays ok, so add the new item to the input series
+		input.addElement(p);
+		sum.x += p.x;
+		sum.y += p.y;
+		center.x = cx;
+		center.y = cy;
 
 		return true;
 	}
