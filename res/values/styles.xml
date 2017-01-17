@@ -10,7 +10,7 @@
 		<item name="android:minHeight">0px</item>
 		<item name="android:padding">0px</item>
 		<item name="android:layout_margin">0px</item>
-		<item name="android:textColor">@android:color/primary_text_light</item>
+		<!--item name="android:textColor">@android:color/primary_text_light</item-->
 	</style>
 
 	<!-- THEMES -->

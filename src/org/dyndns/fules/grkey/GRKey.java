@@ -37,7 +37,7 @@ public class GRKey extends Button {
 	private int[] statePressed		= { android.R.attr.state_enabled, android.R.attr.state_window_focused, android.R.attr.state_multiline, android.R.attr.state_pressed };
 
 	JitterFilter		jitterFilter = new JitterFilter(0.6f);
-	LinearRegression	strokeFinder = new LinearRegression(0.8f, 80f);
+	LinearRegression	strokeFinder = new LinearRegression(0.8f, 40f);
 	int			gestureCode;
 
 	public GRKey(Context context) {
@@ -70,7 +70,6 @@ public class GRKey extends Button {
 		float angle = strokeFinder.getAngle();
 		PointF deviation = strokeFinder.getDeviation();
 		float quality = strokeFinder.getQuality();
-		Log.d(TAG, "Gesture part finished; angle=" + (angle * 180.0f / Math.PI) + "', deviation='" + deviation + "', quality='" + quality + "'");
 
 		// codify the angle to a 1-digit number, as on the numeric keypad
 		// eg. 8=North, 3=South-East, etc., reserve 5 for long-tap
@@ -115,6 +114,7 @@ public class GRKey extends Button {
 					gestureDigit = 3; // South-East
 			}
 		}
+		Log.d(TAG, "Gesture part finished; angle=" + (angle * 180.0f / Math.PI) + "', deviation='" + deviation + "', quality='" + quality + "', code='" + gestureDigit + "'");
 
 		gestureCode = 10*gestureCode + gestureDigit;
 	}
@@ -162,6 +162,7 @@ public class GRKey extends Button {
 				if (bg.setState(stateNormal))
 					bg.invalidateSelf();
 
+				Log.d(TAG, "Stopping gesture;");
 				PointF p = new PointF(event.getX(), event.getY());
 
 				if (!jitterFilter.add(p))
@@ -172,10 +173,12 @@ public class GRKey extends Button {
 					// backward or diverging move: evaluate the gesture drawn so far
 					gesturePartFinished();
 					strokeFinder.clearButLast();
-					strokeFinder.add(pp);
 				}
-				gesturePartFinished();
-				//Log.d(TAG, "Stop gesture;");
+                else {
+                    if (strokeFinder.isLongEnough())
+                        gesturePartFinished();
+                }
+				Log.d(TAG, "Stopped gesture;");
 				if (svc != null)
 					svc.keyClicked(this, gestureCode);
 			}

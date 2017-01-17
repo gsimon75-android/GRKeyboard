@@ -5,6 +5,7 @@ import java.util.Vector;
 import java.util.Iterator;
 
 public class LinearRegression {
+	private static final String		TAG = "GRKeyboard";
 	Vector<PointF>	input = new Vector<PointF>();
 
 	float		qualityThreshold, minimalRequiredLength;
@@ -42,20 +43,6 @@ public class LinearRegression {
 	}
 	public boolean add(PointF p) {
 		int n = input.size();
-
-		// check if we try to 'go backwards'
-		// FIXME: this does not belong here
-		if (n >= 2) {
-			PointF pN1 = input.get(n - 1);
-			PointF pN2 = input.get(n - 2);
-
-			// 'Backwards' means that the proposed new vector (p-pN1) forms
-			// an acute angle with the (back-pointing) last vector (pN2-pN1),
-			// that is, the cosine of this angle is positive, which means
-			// the scalar product is positive.
-			if (((p.x - pN1.x)*(pN2.x - pN1.x) + (p.y - pN1.y)*(pN2.y - pN1.y)) > 0)
-				return false;
-		}
 
 		// NOTE: we do not yet add the item to the input series, but calculate 
 		// the momenta as if it were added
@@ -122,13 +109,32 @@ public class LinearRegression {
 		deviation.x = (float)Math.sqrt((xx + yy + d) / 2);
 		deviation.y = (float)Math.sqrt((xx + yy - d) / 2);
 
-		if (deviation.x >= minimalRequiredLength) {
-			// the series is long enough (trendwise)
-			if (quality < qualityThreshold) {
-				// quality would drop too much, return without touching the data
-				return false;
-			}
-		}
+        Log.d(TAG, "LinearRegression.add" + p + "; angle=" + (angle * 180.0f / Math.PI) + "', deviation='" + deviation + "', quality='" + quality + "'");
+        if (isLongEnough()) {
+            // the series is long enough (trendwise)
+
+            // check if we try to 'go backwards'
+            // FIXME: this does not belong here
+            if (n >= 2) {
+                PointF pN1 = input.get(n - 1);
+                PointF pN2 = input.get(n - 2);
+
+                // 'Backwards' means that the proposed new vector (p-pN1) forms
+                // an acute angle with the (back-pointing) last vector (pN2-pN1),
+                // that is, the cosine of this angle is positive, which means
+                // the scalar product is positive.
+                if (((p.x - pN1.x)*(pN2.x - pN1.x) + (p.y - pN1.y)*(pN2.y - pN1.y)) > 0) {
+                    Log.d(TAG, "LinearRegression.add backwards");
+                    return false;
+                }
+            }
+
+            if (!isGoodEnough()) {
+                // quality would drop too much, return without touching the data
+                Log.d(TAG, "LinearRegression.add quality drop");
+                return false;
+            }
+        }
 
 		// quality stays ok, so add the new item to the input series
 		input.addElement(p);
@@ -139,6 +145,14 @@ public class LinearRegression {
 
 		return true;
 	}
+    
+    public boolean isLongEnough() {
+        return deviation.x >= minimalRequiredLength;
+    }
+
+    public boolean isGoodEnough() {
+        return quality >= qualityThreshold;
+    }
 
 	public float getAngle() { // NOTE: returns [-PI .. PI)
 		return angle;
