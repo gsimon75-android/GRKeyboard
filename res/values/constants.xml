@@ -4,9 +4,10 @@
 	<!-- shift states -->
 	<integer name="normal">0</integer>
 	<integer name="shift">1</integer>
-	<integer name="ctrl">2</integer>
-	<integer name="ctrl_shift">3</integer>
-	<integer name="shift_state_max">4</integer>
+	<integer name="arabic">2</integer>
+	<integer name="ctrl">4</integer>
+	<integer name="ctrl_shift">5</integer>
+	<integer name="shift_state_max">6</integer>
 
 	<!-- accent gestures -->
 	<integer name="acute">9</integer>

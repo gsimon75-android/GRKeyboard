@@ -56,7 +56,7 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
 
     KeyMap                      keyMap;
 
-    int                         currentState;
+    int                         currentShiftState;
 
     public static String nullSafe(String s) {
         return (s == null) ? "<null>" : s;
@@ -293,7 +293,7 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
 
         super.onCreate();
 
-        currentState = res.getInteger(R.integer.normal);
+        currentShiftState = res.getInteger(R.integer.normal);
 
         try {
             XmlResourceParser parser = getResources().getXml(R.xml.default_latin);
@@ -412,13 +412,25 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
         else if (cmd.equals("hide"))
             requestHideSelf(0);
         else if (cmd.equals("normal"))
-            currentState = res.getInteger(R.integer.normal);
+            setShiftState(res.getInteger(R.integer.normal));
         else if (cmd.equals("shift"))
-            currentState |= res.getInteger(R.integer.shift);
+            setShiftState(currentShiftState | res.getInteger(R.integer.shift));
+        else if (cmd.equals("arabic"))
+            setShiftState(res.getInteger(R.integer.arabic));
         else if (cmd.equals("ctrl"))
-            currentState |= res.getInteger(R.integer.ctrl);
+            setShiftState(currentShiftState | res.getInteger(R.integer.ctrl));
         else
             Log.w(TAG, "Unknown cmd '" + cmd + "'");
+    }
+
+    public int getShiftState() {
+        return currentShiftState;
+    }
+
+    private void setShiftState(int newState) {
+        currentShiftState = newState;
+        if (kv != null)
+            kv.invalidate();
     }
 
     public void pickDefaultCandidate() {
@@ -515,13 +527,13 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
     public void keyClicked(View keyview, int gestureCode) {
         if (keyview instanceof TextView) {
             TextView tv = (TextView)keyview;
-            Log.d(TAG, "keyClicked('" + tv.getText().toString() + "'), id=" + tv.getId() + ", state=" + currentState + ", gesture=" + gestureCode);
+            Log.d(TAG, "keyClicked('" + tv.getText().toString() + "'), id=" + tv.getId() + ", state=" + currentShiftState + ", gesture=" + gestureCode);
 
             // find the most appropriate action and process it
-            Action a = keyMap.getKey(tv.getId()).getState(currentState).getAction(gestureCode);
+            Action a = keyMap.getKey(tv.getId()).getState(currentShiftState).getAction(gestureCode);
 
             /*Key k = keyMap.getKey(tv.getId());
-            State st = k.getState(currentState);
+            State st = k.getState(currentShiftState);
             Action a = st.getAction(gestureCode);
             Log.d(TAG, "keyClicked; k=" + k + ", st=" + st + ", a=" + a);*/
 

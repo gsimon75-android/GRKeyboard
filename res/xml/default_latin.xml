@@ -242,6 +242,7 @@
             <Action gesture="@integer/umlaut"   text="Ä"/>
             <Action gesture="@integer/spec"     text="Æ"/>
         </State>
+        <State mod="@integer/arabic"        text="ا"/>
     </Key>
 
     <Key id="@id/key_S" text="s">
@@ -424,6 +425,7 @@
             <Action gesture="@integer/dot"      text="Ḃ"/>
             <Action gesture="@integer/macron"   text="Ḇ"/>
         </State>
+        <State mod="@integer/arabic"        text="ب"/>
     </Key>
 
     <Key id="@id/key_N" text="n">
@@ -456,6 +458,8 @@
         <Action gesture="@integer/dirN"     cmd="caps"/>
         <Action gesture="@integer/dirS"     cmd="hide"/>
         <Action gesture="@integer/dirE"     cmd="ctrl"/>
+        <State mod="@integer/ctrl"          cmd="normal"/>
+        <State mod="@integer/ctrl_shift"    cmd="normal"/>
         <Action gesture="@integer/dirW"     code="111"/> <!-- esc -->
         <Action gesture="13"                cmd="copy"/>
         <Action gesture="@integer/right_x"  cmd="cut"/>
@@ -471,6 +475,8 @@
             <Action gesture="93"                cmd="selectAll"/>
             <Action gesture="31"                cmd="paste"/>
         </State>
+        <Action gesture="@integer/dirNE"     cmd="arabic"/>
+        <State mod="@integer/arabic"         cmd="normal"/>
     </Key>
 
     <Key id="@id/key_Space" text=" ">
@@ -563,6 +569,7 @@
         <Action gesture="@integer/spec"     text=""/>
         <State mod="@integer/shift" text="">
         </State>
+        <State mod="@integer/arabic" text=""/>
     </Key>
 
 -->

@@ -2,7 +2,7 @@
 <resources>
 
 	<declare-styleable name="GRKey">
-		<attr name="ingyom" format="boolean"/>
+		<attr name="label" format="string"/>
 	</declare-styleable>
 	
 </resources>
