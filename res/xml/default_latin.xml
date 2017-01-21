@@ -506,6 +506,7 @@
         <Action gesture="@integer/dirE"     text="-"/>
         <Action gesture="@integer/dirW"     text="+"/>
         <Action gesture="@integer/dirN"     text="^"/>
+        <Action gesture="93"                text="^"/>
         <Action gesture="@integer/dirS"     text="&#37;"/> <!-- % -->
         <Action gesture="616"               text="="/>
         <Action gesture="64"                text="="/>
@@ -533,6 +534,7 @@
         <Action gesture="838"               text="~"/>
         <Action gesture="@integer/dirS"     text="|"/>
         <Action gesture="82"                text="&amp;"/>
+        <Action gesture="46"                text="&amp;"/>
         <Action gesture="183"               text="&amp;"/>
         <Action gesture="64"                text="\#"/>
         <Action gesture="616"               text="\#"/>

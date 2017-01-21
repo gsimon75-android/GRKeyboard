@@ -37,7 +37,7 @@ public class GRKey extends Button {
 	private int[] statePressed		= { android.R.attr.state_enabled, android.R.attr.state_window_focused, android.R.attr.state_multiline, android.R.attr.state_pressed };
 
 	JitterFilter		jitterFilter = new JitterFilter(0.6f);
-	LinearRegression	strokeFinder = new LinearRegression(0.8f, 40f);
+	LinearRegression	strokeFinder = new LinearRegression(0.8f, 20f);
 	int			gestureCode;
 
 	public GRKey(Context context) {

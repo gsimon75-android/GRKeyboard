@@ -116,7 +116,7 @@ bin/$(PROJECT).unsigned.apk:	bin/classes.dex $(foreach png,$(PNG_FILES),bin/$(pn
 # Stage #2: Signing the .apk
 bin/$(PROJECT).unaligned.apk:	bin/$(PROJECT).unsigned.apk
 	$(JARSIGNER) \
-	-keystore ~/.android/debug.keystore -storepass android \
+	-keystore debug.keystore -storepass android \
 	-digestalg SHA1 -sigalg MD5withRSA -sigfile CERT \
 	-signedjar $@ $^ androiddebugkey
 
