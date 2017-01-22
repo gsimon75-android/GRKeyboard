@@ -31,6 +31,15 @@
 	<integer name="umlaut">4</integer>
 	<integer name="spec">3</integer>
 
+	<!-- arabic gestures -->
+	<!-- on consonants -->
+	<integer name="shaddah">8</integer>
+	<integer name="alt">2</integer>
+	<integer name="alt_shaddah">28</integer>
+	<!-- on alif, waw, ya -->
+	<integer name="maddah">2</integer>
+	<integer name="hamza">28</integer>
+
 	<!-- other gestures -->
 	<integer name="tap">0</integer>
 	<integer name="dirNW">7</integer>

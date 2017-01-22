@@ -4,16 +4,56 @@
     a:id="@+id/default_latin_keymap" name="Latin">
 
     <!-- Numeric keys -->
-    <Key id="@id/key_0" text="0"/>
-    <Key id="@id/key_1" text="1"/>
-    <Key id="@id/key_2" text="2"/>
-    <Key id="@id/key_3" text="3"/>
-    <Key id="@id/key_4" text="4"/>
-    <Key id="@id/key_5" text="5"/>
-    <Key id="@id/key_6" text="6"/>
-    <Key id="@id/key_7" text="7"/>
-    <Key id="@id/key_8" text="8"/>
-    <Key id="@id/key_9" text="9"/>
+    <Key id="@id/key_0" text="0">
+        <Script id="@integer/arabic" text="0">
+            <Action gesture="@integer/dirS" text="٠"/>
+        </Script>
+    </Key>
+    <Key id="@id/key_1" text="1">
+        <Script id="@integer/arabic" text="1">
+            <Action gesture="@integer/dirS" text="١"/>
+        </Script>
+    </Key>
+    <Key id="@id/key_2" text="2">
+        <Script id="@integer/arabic" text="2">
+            <Action gesture="@integer/dirS" text="٢"/>
+        </Script>
+    </Key>
+    <Key id="@id/key_3" text="3">
+        <Script id="@integer/arabic" text="3">
+            <Action gesture="@integer/dirS" text="٣"/>
+        </Script>
+    </Key>
+    <Key id="@id/key_4" text="4">
+        <Script id="@integer/arabic" text="4">
+            <Action gesture="@integer/dirS" text="٤"/>
+        </Script>
+    </Key>
+    <Key id="@id/key_5" text="5">
+        <Script id="@integer/arabic" text="5">
+            <Action gesture="@integer/dirS" text="٥"/>
+        </Script>
+    </Key>
+    <Key id="@id/key_6" text="6">
+        <Script id="@integer/arabic" text="6">
+            <Action gesture="@integer/dirS" text="٦"/>
+        </Script>
+    </Key>
+    <Key id="@id/key_7" text="7">
+        <Script id="@integer/arabic" text="7">
+            <Action gesture="@integer/dirS" text="٧"/>
+        </Script>
+    </Key>
+    <Key id="@id/key_8" text="8">
+        <Script id="@integer/arabic" text="8">
+            <Action gesture="@integer/dirS" text="٨"/>
+        </Script>
+    </Key>
+    <Key id="@id/key_9" text="9">
+        <Script id="@integer/arabic" text="9">
+            <Action gesture="@integer/dirS" text="٩"/>
+        </Script>
+    </Key>
 
     <!-- QWER row -->
 
@@ -26,7 +66,11 @@
                 <Action gesture="@integer/tilde"    text="Q̃"/>
             </State>
         </Script>
-        <Script id="@integer/arabic" text="ق"/>
+        <Script id="@integer/arabic" text="ق">
+            <Action gesture="@integer/shaddah"     text="قّ"/>
+            <!--Action gesture="@integer/alt"         text=""/-->
+            <!--Action gesture="@integer/alt_shaddah" text=""/-->
+        </Script>
     </Key>
 
     <Key id="@id/key_W">
@@ -44,7 +88,11 @@
                 <Action gesture="@integer/umlaut"   text="Ẅ"/>
             </State>
         </Script>
-        <Script id="@integer/arabic" text="و"/>
+        <Script id="@integer/arabic" text="و">
+            <Action gesture="@integer/shaddah"     text="وّ"/>
+            <Action gesture="@integer/maddah"      text="وٓ"/>
+            <Action gesture="@integer/hamza"       text="ؤ"/>
+        </Script>
     </Key>
 
     <Key id="@id/key_E">
@@ -75,7 +123,10 @@
                 <Action gesture="@integer/umlaut"   text="Ë"/>
             </State>
         </Script>
-        <Script id="@integer/arabic" text=""/>
+        <Script id="@integer/arabic" text="ٰ"> <!-- " -->
+            <Action gesture="@integer/alt"         text="ـ"/>
+            <Action gesture="@integer/alt_shaddah" text="ـٰ"/>
+        </Script>
     </Key>
 
     <Key id="@id/key_R">
@@ -93,7 +144,11 @@
                 <Action gesture="@integer/hacek"    text="Ř"/>
             </State>
         </Script>
-        <Script id="@integer/arabic" text="ر"/>
+        <Script id="@integer/arabic" text="ر">
+            <Action gesture="@integer/shaddah"     text="رّ"/>
+            <!--Action gesture="@integer/alt"         text=""/-->
+            <!--Action gesture="@integer/alt_shaddah" text=""/-->
+        </Script>
     </Key>
 
     <Key id="@id/key_T">
@@ -109,7 +164,11 @@
                 <Action gesture="@integer/spec"     text="Þ"/>
             </State>
         </Script>
-        <Script id="@integer/arabic" text="ت"/>
+        <Script id="@integer/arabic" text="ت">
+            <Action gesture="@integer/shaddah"     text="تّ"/>
+            <Action gesture="@integer/alt"         text="ث"/>
+            <Action gesture="@integer/alt_shaddah" text="ثّ"/>
+        </Script>
     </Key>
 
     <Key id="@id/key_Y">
@@ -132,7 +191,11 @@
                 <Action gesture="@integer/umlaut"   text="Ÿ"/>
             </State>
         </Script>
-        <Script id="@integer/arabic" text="ي"/>
+        <Script id="@integer/arabic" text="ي">
+            <Action gesture="@integer/shaddah"     text="يّ"/>
+            <Action gesture="@integer/maddah"      text="يٓ"/>
+            <Action gesture="@integer/hamza"       text="ئ"/>
+        </Script>
     </Key>
 
     <Key id="@id/key_U">
@@ -160,7 +223,9 @@
                 <Action gesture="@integer/umlaut"   text="Ü"/>
             </State>
         </Script>
-        <Script id="@integer/arabic" text=""/>
+        <Script id="@integer/arabic" text="ُ"> <!-- " -->
+            <Action gesture="@integer/alt"         text="ٌ"/> <!-- " -->
+        </Script>
     </Key>
 
     <Key id="@id/key_I">
@@ -190,7 +255,9 @@
                 <Action gesture="@integer/spec"     text="I"/>
             </State>
         </Script>
-        <Script id="@integer/arabic" text=""/>
+        <Script id="@integer/arabic" text="ِ"> <!-- " -->
+            <Action gesture="@integer/alt"         text="ٍ"/> <!-- " -->
+        </Script>
     </Key>
 
     <Key id="@id/key_O">
@@ -224,7 +291,9 @@
                 <Action gesture="@integer/spec"     text="Œ"/>
             </State>
         </Script>
-        <Script id="@integer/arabic" text=""/>
+        <Script id="@integer/arabic" text="َ"> <!-- " -->
+            <Action gesture="@integer/alt"         text="ً"/> <!-- " -->
+        </Script>
     </Key>
 
     <Key id="@id/key_P">
@@ -240,7 +309,11 @@
                 <Action gesture="@integer/spec"     text="Π"/>
             </State>
         </Script>
-        <Script id="@integer/arabic" text="ع"/>
+        <Script id="@integer/arabic" text="ع">
+            <Action gesture="@integer/shaddah"     text="عّ"/>
+            <Action gesture="@integer/alt"         text="غ"/>
+            <Action gesture="@integer/alt_shaddah" text="غّ"/>
+        </Script>
     </Key>
 
     <!-- ASDF row -->
@@ -274,7 +347,13 @@
                 <Action gesture="@integer/spec"     text="Æ"/>
             </State>
         </Script>
-        <Script id="@integer/arabic"        text="ا"/>
+        <Script id="@integer/arabic"        text="ا">
+            <Action gesture="@integer/shaddah"     text="ٱ"/>
+            <Action gesture="@integer/maddah"      text="آ"/>
+            <Action gesture="@integer/hamza"       text="أ"/>
+            <Action gesture="@integer/dirSW"       text="إ"/>
+            <Action gesture="@integer/dirSE"       text="ى"/>
+        </Script>
     </Key>
 
     <Key id="@id/key_S">
@@ -298,7 +377,11 @@
                 <Action gesture="@integer/spec"     text="ß"/>
             </State>
         </Script>
-        <Script id="@integer/arabic" text="س"/>
+        <Script id="@integer/arabic" text="س">
+            <Action gesture="@integer/shaddah"     text="سّ"/>
+            <Action gesture="@integer/alt"         text="ش"/>
+            <Action gesture="@integer/alt_shaddah" text="شّ"/>
+        </Script>
     </Key>
 
     <Key id="@id/key_D">
@@ -316,7 +399,11 @@
                 <Action gesture="@integer/spec"     text="Ð"/>
             </State>
         </Script>
-        <Script id="@integer/arabic" text="د"/>
+        <Script id="@integer/arabic" text="د">
+            <Action gesture="@integer/shaddah"     text="دّ"/>
+            <Action gesture="@integer/alt"         text="ذ"/>
+            <Action gesture="@integer/alt_shaddah" text="ذّ"/>
+        </Script>
     </Key>
 
     <Key id="@id/key_F">
@@ -327,7 +414,11 @@
                 <Action gesture="@integer/dot"      text="Ḟ"/>
             </State>
         </Script>
-        <Script id="@integer/arabic" text="ف"/>
+        <Script id="@integer/arabic" text="ف">
+            <Action gesture="@integer/shaddah"     text="فّ"/>
+            <Action gesture="@integer/alt"         text="ڤ"/>
+            <Action gesture="@integer/alt_shaddah" text="ڤّ"/>
+        </Script>
     </Key>
 
     <Key id="@id/key_G">
@@ -345,7 +436,11 @@
                 <Action gesture="@integer/hacek"    text="Ğ"/>
             </State>
         </Script>
-        <Script id="@integer/arabic" text="ح"/>
+        <Script id="@integer/arabic" text="ح">
+            <Action gesture="@integer/shaddah"     text="حّ"/>
+            <!--Action gesture="@integer/alt"         text=""/-->
+            <!--Action gesture="@integer/alt_shaddah" text=""/-->
+        </Script>
     </Key>
 
     <Key id="@id/key_H">
@@ -363,7 +458,11 @@
                 <Action gesture="@integer/macron"   text="ẖ"/>
             </State>
         </Script>
-        <Script id="@integer/arabic" text="ه"/>
+        <Script id="@integer/arabic" text="ه">
+            <Action gesture="@integer/shaddah"     text="هّ"/>
+            <Action gesture="@integer/alt"         text="ة"/>
+            <Action gesture="@integer/alt_shaddah" text="ةّ"/>
+        </Script>
     </Key>
 
     <Key id="@id/key_J">
@@ -377,7 +476,11 @@
                 <Action gesture="@integer/dot"      text="ȷ"/>
             </State>
         </Script>
-        <Script id="@integer/arabic" text="ج"/>
+        <Script id="@integer/arabic" text="ج">
+            <Action gesture="@integer/shaddah"     text="جّ"/>
+            <!--Action gesture="@integer/alt"         text=""/-->
+            <!--Action gesture="@integer/alt_shaddah" text=""/-->
+        </Script>
     </Key>
 
     <Key id="@id/key_K">
@@ -393,7 +496,11 @@
                 <Action gesture="@integer/macron"   text="Ḵ"/>
             </State>
         </Script>
-        <Script id="@integer/arabic" text="ك"/>
+        <Script id="@integer/arabic" text="ك">
+            <Action gesture="@integer/shaddah"     text="كّ"/>
+            <Action gesture="@integer/alt"         text="خ"/>
+            <Action gesture="@integer/alt_shaddah" text="خّ"/>
+        </Script>
     </Key>
 
     <Key id="@id/key_L">
@@ -411,7 +518,11 @@
                 <Action gesture="@integer/spec"     text="£"/>
             </State>
         </Script>
-        <Script id="@integer/arabic" text="ل"/>
+        <Script id="@integer/arabic" text="ل">
+            <Action gesture="@integer/shaddah"     text="لّ"/>
+            <Action gesture="@integer/alt"         text="لا"/>
+            <Action gesture="@integer/alt_shaddah" text="لاّ"/>
+        </Script>
     </Key>
 
     <!-- ZXCV row -->
@@ -433,7 +544,11 @@
                 <Action gesture="@integer/macron"   text="Ẕ"/>
             </State>
         </Script>
-        <Script id="@integer/arabic" text="ز"/>
+        <Script id="@integer/arabic" text="ز">
+            <Action gesture="@integer/shaddah"     text="زّ"/>
+            <!--Action gesture="@integer/alt"         text=""/-->
+            <!--Action gesture="@integer/alt_shaddah" text=""/-->
+        </Script>
     </Key>
 
     <Key id="@id/key_X">
@@ -445,7 +560,11 @@
                 <Action gesture="@integer/umlaut"   text="Ẍ"/>
             </State>
         </Script>
-        <Script id="@integer/arabic" text="ط"/>
+        <Script id="@integer/arabic" text="ط">
+            <Action gesture="@integer/shaddah"     text="طّ"/>
+            <Action gesture="@integer/alt"         text="ظ"/>
+            <Action gesture="@integer/alt_shaddah" text="ظّ"/>
+        </Script>
     </Key>
 
     <Key id="@id/key_C">
@@ -468,7 +587,11 @@
                 <Action gesture="@integer/spec"     text="©"/>
             </State>
         </Script>
-        <Script id="@integer/arabic" text="ص"/>
+        <Script id="@integer/arabic" text="ص">
+            <Action gesture="@integer/shaddah"     text="صّ"/>
+            <Action gesture="@integer/alt"         text="ض"/>
+            <Action gesture="@integer/alt_shaddah" text="ضّ"/>
+        </Script>
     </Key>
 
     <Key id="@id/key_V">
@@ -480,7 +603,9 @@
                 <Action gesture="@integer/tilde"    text="Ṽ"/>
             </State>
         </Script>
-        <Script id="@integer/arabic" text="ڤ"/>
+        <Script id="@integer/arabic" text="ْ"> <!-- " -->
+            <Action gesture="@integer/alt"         text="ء"/> <!-- " -->
+        </Script>
     </Key>
 
     <Key id="@id/key_B">
@@ -495,7 +620,11 @@
                 <Action gesture="@integer/macron"   text="Ḇ"/>
             </State>
         </Script>
-        <Script id="@integer/arabic"        text="ب"/>
+        <Script id="@integer/arabic"        text="ب">
+            <Action gesture="@integer/shaddah"     text="بّ"/>
+            <Action gesture="@integer/alt"         text="پ"/>
+            <Action gesture="@integer/alt_shaddah" text="پّ"/>
+        </Script>
     </Key>
 
     <Key id="@id/key_N">
@@ -513,7 +642,11 @@
                 <Action gesture="@integer/tilde"    text="Ñ"/>
             </State>
         </Script>
-        <Script id="@integer/arabic" text="ن"/>
+        <Script id="@integer/arabic" text="ن">
+            <Action gesture="@integer/shaddah"     text="نّ"/>
+            <!--Action gesture="@integer/alt"         text=""/-->
+            <!--Action gesture="@integer/alt_shaddah" text=""/-->
+        </Script>
     </Key>
 
     <Key id="@id/key_M">
@@ -525,7 +658,11 @@
                 <Action gesture="@integer/dot"      text="Ṁ"/>
             </State>
         </Script>
-        <Script id="@integer/arabic" text="م"/>
+        <Script id="@integer/arabic" text="م">
+            <Action gesture="@integer/shaddah"     text="مّ"/>
+            <!--Action gesture="@integer/alt"         text=""/-->
+            <!--Action gesture="@integer/alt_shaddah" text=""/-->
+        </Script>
     </Key>
 
     <!-- Shift, Space, Enter, Backspace, Arrow keys -->
