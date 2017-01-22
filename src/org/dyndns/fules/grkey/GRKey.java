@@ -36,7 +36,6 @@ public class GRKey extends Button {
 	private GRKeyboardService		svc;
 	private int[] stateNormal		= { android.R.attr.state_enabled, android.R.attr.state_window_focused, android.R.attr.state_multiline };
 	private int[] statePressed		= { android.R.attr.state_enabled, android.R.attr.state_window_focused, android.R.attr.state_multiline, android.R.attr.state_pressed };
-	private String				label;
 	private int				lastShiftState = -1;
 
 	JitterFilter		jitterFilter = new JitterFilter(0.6f);
@@ -54,8 +53,8 @@ public class GRKey extends Button {
 	public GRKey(Context context, AttributeSet attributes, int defStyleAttr) {
 		super(context, attributes, defStyleAttr);
 
-		TypedArray a = context.obtainStyledAttributes(attributes, R.styleable.GRKey);
-		label = a.getString(R.styleable.GRKey_label);
+		//TypedArray a = context.obtainStyledAttributes(attributes, R.styleable.GRKey);
+		//label = a.getString(R.styleable.GRKey_label);
 
 		//Log.d(TAG, "GRKey(" + context + ", " + attributes + ", " + defStyleAttr + ")");
 		//dumpAttributeSet(attributes);
@@ -69,14 +68,11 @@ public class GRKey extends Button {
 	}
 
 	public void updateShiftState() {
-		if ((svc != null) && (label != null)) {
-			int idx = svc.getShiftState();
-			if (idx >= label.length())
-				idx = 0;
-			if (lastShiftState != idx) {
-				Log.d(TAG, "GRKey.updateShiftState; label='" + label + "', idx=" + idx + ", st='" + label.subSequence(idx, idx + 1) + "'");
-				setText(label.subSequence(idx, idx + 1));
-				lastShiftState = idx;
+		if (svc != null) {
+			int shiftState = svc.getShiftState();
+			if (lastShiftState != shiftState) {
+				setText(svc.getLabelForKey(getId()));
+				lastShiftState = shiftState;
 			}
 		}
 	}

@@ -324,7 +324,7 @@
         <Action gesture="@integer/cedilla"  text="ḩ"/>
         <Action gesture="@integer/dot"      text="ḣ"/>
         <Action gesture="@integer/macron"   text="ẖ"/>
-        <State mod="@integer/shift" text="h">
+        <State mod="@integer/shift" text="H">
             <Action gesture="@integer/bar"      text="Ħ"/>
             <Action gesture="@integer/caret"    text="Ĥ"/>
             <Action gesture="@integer/cedilla"  text="Ḩ"/>
@@ -351,7 +351,7 @@
         <Action gesture="@integer/bar"      text="ꝁ"/>
         <Action gesture="@integer/hacek"    text="ǩ"/>
         <Action gesture="@integer/macron"   text="ḵ"/>
-        <State mod="@integer/shift" text="k">
+        <State mod="@integer/shift" text="K">
             <Action gesture="@integer/acute"    text="Ḱ"/>
             <Action gesture="@integer/bar"      text="Ꝁ"/>
             <Action gesture="@integer/hacek"    text="Ǩ"/>
@@ -478,7 +478,7 @@
 
     <!-- Shift, Space, Enter, Backspace, Arrow keys -->
 
-    <Key id="@id/key_Shift" cmd="shift">
+    <Key id="@id/key_Shift" cmd="shift" label="⇫">
         <Action gesture="@integer/dirN"     cmd="caps"/>
         <Action gesture="@integer/dirS"     cmd="hide"/>
         <Action gesture="@integer/dirE"     cmd="ctrl"/>
@@ -507,12 +507,12 @@
         <Action gesture="@integer/dirE"     cmd="tab"/>
     </Key>
 
-    <Key id="@id/key_Enter" code="66"/>
-    <Key id="@id/key_Backspace" code="67"/>
-    <Key id="@id/key_Up" code="19"/>
-    <Key id="@id/key_Down" code="20"/>
-    <Key id="@id/key_Left" code="21"/>
-    <Key id="@id/key_Right" code="22"/>
+    <Key id="@id/key_Enter" code="66" label="↵"/>
+    <Key id="@id/key_Backspace" code="67" label="↚"/>
+    <Key id="@id/key_Up" code="19" label="⇡"/>
+    <Key id="@id/key_Down" code="20" label="⇣"/>
+    <Key id="@id/key_Left" code="21" label="⇠"/>
+    <Key id="@id/key_Right" code="22" label="⇢"/>
 
     <!-- Special keys: At, Dollar, Dot, Quote -->
 
