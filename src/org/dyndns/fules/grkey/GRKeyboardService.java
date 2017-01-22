@@ -117,6 +117,16 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
 
         // Parse a content tag, and leave the parser at the closing of this tag
         protected boolean parseContent(XmlResourceParser parser) throws XmlPullParserException, IOException {
+            if (parser.getName().equals("include")) {
+                int resId = parser.getAttributeResourceValue(null, "id", -1);
+                if (resId >= 0) {
+                    XmlResourceParser np = getResources().getXml(resId);
+                    while (np.getEventType() == XmlResourceParser.START_DOCUMENT)
+                        np.next();
+                    parse(np);
+                    return true;
+                }
+            }
             return false;
         }
     }

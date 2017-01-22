@@ -24,6 +24,7 @@
             <Action gesture="@integer/bar"      text="Ꝙ"/>
             <Action gesture="@integer/tilde"    text="Q̃"/>
         </State>
+        <State mod="@integer/arabic" text="ق"/>
     </Key>
 
     <Key id="@id/key_W" text="w">
@@ -39,6 +40,7 @@
             <Action gesture="@integer/grave"    text="Ẁ"/>
             <Action gesture="@integer/umlaut"   text="Ẅ"/>
         </State>
+        <State mod="@integer/arabic" text="و"/>
     </Key>
 
     <Key id="@id/key_E" text="e">
@@ -67,6 +69,7 @@
             <Action gesture="@integer/tilde"    text="Ẽ"/>
             <Action gesture="@integer/umlaut"   text="Ë"/>
         </State>
+        <State mod="@integer/arabic" text=""/>
     </Key>
 
     <Key id="@id/key_R" text="r">
@@ -82,6 +85,7 @@
             <Action gesture="@integer/dot"      text="Ṙ"/>
             <Action gesture="@integer/hacek"    text="Ř"/>
         </State>
+        <State mod="@integer/arabic" text="ر"/>
     </Key>
 
     <Key id="@id/key_T" text="t">
@@ -95,6 +99,7 @@
             <Action gesture="@integer/hacek"    text="Ť"/>
             <Action gesture="@integer/spec"     text="Þ"/>
         </State>
+        <State mod="@integer/arabic" text="ت"/>
     </Key>
 
     <Key id="@id/key_Y" text="y">
@@ -115,6 +120,7 @@
             <Action gesture="@integer/tilde"    text="Ỹ"/>
             <Action gesture="@integer/umlaut"   text="Ÿ"/>
         </State>
+        <State mod="@integer/arabic" text="ي"/>
     </Key>
 
     <Key id="@id/key_U" text="u">
@@ -140,6 +146,7 @@
             <Action gesture="@integer/tilde"    text="Ũ"/>
             <Action gesture="@integer/umlaut"   text="Ü"/>
         </State>
+        <State mod="@integer/arabic" text=""/>
     </Key>
 
     <Key id="@id/key_I" text="i">
@@ -167,6 +174,7 @@
             <Action gesture="@integer/umlaut"   text="Ï"/>
             <Action gesture="@integer/spec"     text="I"/>
         </State>
+        <State mod="@integer/arabic" text=""/>
     </Key>
 
     <Key id="@id/key_O" text="o">
@@ -198,6 +206,7 @@
             <Action gesture="@integer/umlaut"   text="Ö"/>
             <Action gesture="@integer/spec"     text="Œ"/>
         </State>
+        <State mod="@integer/arabic" text=""/>
     </Key>
 
     <Key id="@id/key_P" text="p">
@@ -211,6 +220,7 @@
             <Action gesture="@integer/dot"      text="Ṗ"/>
             <Action gesture="@integer/spec"     text="Π"/>
         </State>
+        <State mod="@integer/arabic" text="ع"/>
     </Key>
 
     <!-- ASDF row -->
@@ -264,6 +274,7 @@
             <Action gesture="@integer/umlaut"   text="S̈"/>
             <Action gesture="@integer/spec"     text="ß"/>
         </State>
+        <State mod="@integer/arabic" text="س"/>
     </Key>
 
     <Key id="@id/key_D" text="d">
@@ -279,6 +290,7 @@
             <Action gesture="@integer/hacek"    text="Ď"/>
             <Action gesture="@integer/spec"     text="Ð"/>
         </State>
+        <State mod="@integer/arabic" text="د"/>
     </Key>
 
     <Key id="@id/key_F" text="f">
@@ -287,6 +299,7 @@
         <State mod="@integer/shift" text="F">
             <Action gesture="@integer/dot"      text="Ḟ"/>
         </State>
+        <State mod="@integer/arabic" text="ف"/>
     </Key>
 
     <Key id="@id/key_G" text="g">
@@ -302,6 +315,7 @@
             <Action gesture="@integer/dot"      text="Ġ"/>
             <Action gesture="@integer/hacek"    text="Ğ"/>
         </State>
+        <State mod="@integer/arabic" text="ح"/>
     </Key>
 
     <Key id="@id/key_H" text="h">
@@ -317,6 +331,7 @@
             <Action gesture="@integer/dot"      text="Ḣ"/>
             <Action gesture="@integer/macron"   text="ẖ"/>
         </State>
+        <State mod="@integer/arabic" text="ه"/>
     </Key>
 
     <Key id="@id/key_J" text="j">
@@ -328,6 +343,7 @@
             <Action gesture="@integer/caret"    text="Ĵ"/>
             <Action gesture="@integer/dot"      text="ȷ"/>
         </State>
+        <State mod="@integer/arabic" text="ج"/>
     </Key>
 
     <Key id="@id/key_K" text="k">
@@ -341,6 +357,7 @@
             <Action gesture="@integer/hacek"    text="Ǩ"/>
             <Action gesture="@integer/macron"   text="Ḵ"/>
         </State>
+        <State mod="@integer/arabic" text="ك"/>
     </Key>
 
     <Key id="@id/key_L" text="l">
@@ -356,6 +373,7 @@
             <Action gesture="@integer/hacek"    text="Ľ"/>
             <Action gesture="@integer/spec"     text="£"/>
         </State>
+        <State mod="@integer/arabic" text="ل"/>
     </Key>
 
     <!-- ZXCV row -->
@@ -375,6 +393,7 @@
             <Action gesture="@integer/hacek"    text="Ž"/>
             <Action gesture="@integer/macron"   text="Ẕ"/>
         </State>
+        <State mod="@integer/arabic" text="ز"/>
     </Key>
 
     <Key id="@id/key_X" text="x">
@@ -384,6 +403,7 @@
             <Action gesture="@integer/dot"      text="Ẋ"/>
             <Action gesture="@integer/umlaut"   text="Ẍ"/>
         </State>
+        <State mod="@integer/arabic" text="ط"/>
     </Key>
 
     <Key id="@id/key_C" text="c">
@@ -404,6 +424,7 @@
             <Action gesture="@integer/umlaut"   text="C̈"/>
             <Action gesture="@integer/spec"     text="©"/>
         </State>
+        <State mod="@integer/arabic" text="ص"/>
     </Key>
 
     <Key id="@id/key_V" text="v">
@@ -413,6 +434,7 @@
             <Action gesture="@integer/bar"      text="Ꝟ"/>
             <Action gesture="@integer/tilde"    text="Ṽ"/>
         </State>
+        <State mod="@integer/arabic" text="ڤ"/>
     </Key>
 
     <Key id="@id/key_B" text="b">
@@ -441,6 +463,7 @@
             <Action gesture="@integer/hacek"    text="Ň"/>
             <Action gesture="@integer/tilde"    text="Ñ"/>
         </State>
+        <State mod="@integer/arabic" text="ن"/>
     </Key>
 
     <Key id="@id/key_M" text="m">
@@ -450,6 +473,7 @@
             <Action gesture="@integer/acute"    text="Ḿ"/>
             <Action gesture="@integer/dot"      text="Ṁ"/>
         </State>
+        <State mod="@integer/arabic" text="م"/>
     </Key>
 
     <!-- Shift, Space, Enter, Backspace, Arrow keys -->
