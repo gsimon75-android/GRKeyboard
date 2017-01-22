@@ -58,3 +58,32 @@ alif	sin	dal	fa	h.a	ha	jim	kaf	lam
 	zayn	t.a	s.ad	sukun	ba	nun	mim
 		z.a	d.ad	hamza	peh
 
+Cyrillic not assigned yet
+=========================
+
+<Action code="ц"/>
+<Action code="ч"/>
+<Action code="ћ"/> <!-- tshe -->
+
+<Action code="ш"/>
+<Action code="һ"/> <!-- shha -->
+
+<Action code="щ"/>
+<Action code="ъ"/>
+<Action code="ь"/>
+
+<Action code="ү"/> <!-- straight u -->
+<Action code="ў"/> <!-- short u -->
+
+<Action code="ӂ"/> <!-- zhe + hacek -->
+<Action code="ұ"/> <!-- u + bar -->
+<Action code="ӣ"/> <!-- i + macron -->
+<Action code="ӯ"/> <!-- u + macron -->
+
+<Action code="ґ"/> <!-- ghe + upturn -->
+
+<Action code="қ"/> <!-- ka + descender -->
+<Action code="җ"/> <!-- zhe + descender -->
+<Action code="ң"/> <!-- en + descender -->
+<Action code="ҳ"/> <!-- ha + descender -->
+<Action code="ҷ"/> <!-- che + descender -->

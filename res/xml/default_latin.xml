@@ -71,6 +71,10 @@
             <!--Action gesture="@integer/alt"         text=""/-->
             <!--Action gesture="@integer/alt_shaddah" text=""/-->
         </Script>
+        <Script id="@integer/cyrillic" text="">
+            <State mod="@integer/shift" text="">
+            </State>
+        </Script>
     </Key>
 
     <Key id="@id/key_W">
@@ -92,6 +96,10 @@
             <Action gesture="@integer/shaddah"     text="وّ"/>
             <Action gesture="@integer/maddah"      text="وٓ"/>
             <Action gesture="@integer/hamza"       text="ؤ"/>
+        </Script>
+        <Script id="@integer/cyrillic" text="ы">
+            <State mod="@integer/shift" text="Ы">
+            </State>
         </Script>
     </Key>
 
@@ -127,6 +135,14 @@
             <Action gesture="@integer/alt"         text="ـ"/>
             <Action gesture="@integer/alt_shaddah" text="ـٰ"/>
         </Script>
+        <Script id="@integer/cyrillic" text="э">
+            <Action gesture="@integer/soft"        text="е"/>
+            <Action gesture="@integer/soft_variant" text="ј"/>
+            <State mod="@integer/shift" text="Э">
+                <Action gesture="@integer/soft"        text="Е"/>
+                <Action gesture="@integer/soft_variant" text="Ј"/>
+            </State>
+        </Script>
     </Key>
 
     <Key id="@id/key_R">
@@ -149,6 +165,10 @@
             <!--Action gesture="@integer/alt"         text=""/-->
             <!--Action gesture="@integer/alt_shaddah" text=""/-->
         </Script>
+        <Script id="@integer/cyrillic" text="р">
+            <State mod="@integer/shift" text="Р">
+            </State>
+        </Script>
     </Key>
 
     <Key id="@id/key_T">
@@ -168,6 +188,10 @@
             <Action gesture="@integer/shaddah"     text="تّ"/>
             <Action gesture="@integer/alt"         text="ث"/>
             <Action gesture="@integer/alt_shaddah" text="ثّ"/>
+        </Script>
+        <Script id="@integer/cyrillic" text="т">
+            <State mod="@integer/shift" text="Т">
+            </State>
         </Script>
     </Key>
 
@@ -195,6 +219,10 @@
             <Action gesture="@integer/shaddah"     text="يّ"/>
             <Action gesture="@integer/maddah"      text="يٓ"/>
             <Action gesture="@integer/hamza"       text="ئ"/>
+        </Script>
+        <Script id="@integer/cyrillic" text="">
+            <State mod="@integer/shift" text="">
+            </State>
         </Script>
     </Key>
 
@@ -225,6 +253,12 @@
         </Script>
         <Script id="@integer/arabic" text="ُ"> <!-- " -->
             <Action gesture="@integer/alt"         text="ٌ"/> <!-- " -->
+        </Script>
+        <Script id="@integer/cyrillic" text="у">
+            <Action gesture="@integer/soft"        text="ю"/>
+            <State mod="@integer/shift" text="У">
+                <Action gesture="@integer/soft"        text="Ю"/>
+            </State>
         </Script>
     </Key>
 
@@ -257,6 +291,16 @@
         </Script>
         <Script id="@integer/arabic" text="ِ"> <!-- " -->
             <Action gesture="@integer/alt"         text="ٍ"/> <!-- " -->
+        </Script>
+        <Script id="@integer/cyrillic" text="и">
+            <Action gesture="@integer/soft"        text="й"/>
+            <Action gesture="@integer/variant"     text="і"/>
+            <Action gesture="@integer/soft_variant" text="ї"/>
+            <State mod="@integer/shift" text="И">
+                <Action gesture="@integer/soft"        text="Й"/>
+                <Action gesture="@integer/variant"     text="І"/>
+                <Action gesture="@integer/soft_variant" text="Ї"/>
+            </State>
         </Script>
     </Key>
 
@@ -294,6 +338,12 @@
         <Script id="@integer/arabic" text="َ"> <!-- " -->
             <Action gesture="@integer/alt"         text="ً"/> <!-- " -->
         </Script>
+        <Script id="@integer/cyrillic" text="о">
+            <Action gesture="@integer/soft"        text="ё"/>
+            <State mod="@integer/shift" text="О">
+                <Action gesture="@integer/soft"        text="Ё"/>
+            </State>
+        </Script>
     </Key>
 
     <Key id="@id/key_P">
@@ -313,6 +363,10 @@
             <Action gesture="@integer/shaddah"     text="عّ"/>
             <Action gesture="@integer/alt"         text="غ"/>
             <Action gesture="@integer/alt_shaddah" text="غّ"/>
+        </Script>
+        <Script id="@integer/cyrillic" text="п">
+            <State mod="@integer/shift" text="П">
+            </State>
         </Script>
     </Key>
 
@@ -354,6 +408,12 @@
             <Action gesture="@integer/dirSW"       text="إ"/>
             <Action gesture="@integer/dirSE"       text="ى"/>
         </Script>
+        <Script id="@integer/cyrillic" text="а">
+            <Action gesture="@integer/soft"        text="я"/>
+            <State mod="@integer/shift" text="А">
+                <Action gesture="@integer/soft"        text="Я"/>
+            </State>
+        </Script>
     </Key>
 
     <Key id="@id/key_S">
@@ -382,6 +442,10 @@
             <Action gesture="@integer/alt"         text="ش"/>
             <Action gesture="@integer/alt_shaddah" text="شّ"/>
         </Script>
+        <Script id="@integer/cyrillic" text="с">
+            <State mod="@integer/shift" text="С">
+            </State>
+        </Script>
     </Key>
 
     <Key id="@id/key_D">
@@ -404,6 +468,12 @@
             <Action gesture="@integer/alt"         text="ذ"/>
             <Action gesture="@integer/alt_shaddah" text="ذّ"/>
         </Script>
+        <Script id="@integer/cyrillic" text="д">
+            <Action gesture="@integer/soft"        text="ђ"/>
+            <State mod="@integer/shift" text="Д">
+                <Action gesture="@integer/soft"        text="Ђ"/>
+            </State>
+        </Script>
     </Key>
 
     <Key id="@id/key_F">
@@ -418,6 +488,10 @@
             <Action gesture="@integer/shaddah"     text="فّ"/>
             <Action gesture="@integer/alt"         text="ڤ"/>
             <Action gesture="@integer/alt_shaddah" text="ڤّ"/>
+        </Script>
+        <Script id="@integer/cyrillic" text="ф">
+            <State mod="@integer/shift" text="Ф">
+            </State>
         </Script>
     </Key>
 
@@ -441,6 +515,12 @@
             <!--Action gesture="@integer/alt"         text=""/-->
             <!--Action gesture="@integer/alt_shaddah" text=""/-->
         </Script>
+        <Script id="@integer/cyrillic" text="г">
+            <Action gesture="@integer/soft"        text="ѓ"/>
+            <State mod="@integer/shift" text="Г">
+                <Action gesture="@integer/soft"        text="Ѓ"/>
+            </State>
+        </Script>
     </Key>
 
     <Key id="@id/key_H">
@@ -463,6 +543,10 @@
             <Action gesture="@integer/alt"         text="ة"/>
             <Action gesture="@integer/alt_shaddah" text="ةّ"/>
         </Script>
+        <Script id="@integer/cyrillic" text="х">
+            <State mod="@integer/shift" text="Х">
+            </State>
+        </Script>
     </Key>
 
     <Key id="@id/key_J">
@@ -480,6 +564,12 @@
             <Action gesture="@integer/shaddah"     text="جّ"/>
             <!--Action gesture="@integer/alt"         text=""/-->
             <!--Action gesture="@integer/alt_shaddah" text=""/-->
+        </Script>
+        <Script id="@integer/cyrillic" text="ж">
+            <Action gesture="@integer/soft"        text="џ"/>
+            <State mod="@integer/shift" text="Ж">
+                <Action gesture="@integer/soft"        text="Џ"/>
+            </State>
         </Script>
     </Key>
 
@@ -500,6 +590,12 @@
             <Action gesture="@integer/shaddah"     text="كّ"/>
             <Action gesture="@integer/alt"         text="خ"/>
             <Action gesture="@integer/alt_shaddah" text="خّ"/>
+        </Script>
+        <Script id="@integer/cyrillic" text="к">
+            <Action gesture="@integer/soft"        text="ќ"/>
+            <State mod="@integer/shift" text="К">
+                <Action gesture="@integer/soft"        text="Ќ"/>
+            </State>
         </Script>
     </Key>
 
@@ -522,6 +618,12 @@
             <Action gesture="@integer/shaddah"     text="لّ"/>
             <Action gesture="@integer/alt"         text="لا"/>
             <Action gesture="@integer/alt_shaddah" text="لاّ"/>
+        </Script>
+        <Script id="@integer/cyrillic" text="л">
+            <Action gesture="@integer/soft"        text="љ"/>
+            <State mod="@integer/shift" text="Л">
+                <Action gesture="@integer/soft"        text="Љ"/>
+            </State>
         </Script>
     </Key>
 
@@ -549,6 +651,12 @@
             <!--Action gesture="@integer/alt"         text=""/-->
             <!--Action gesture="@integer/alt_shaddah" text=""/-->
         </Script>
+        <Script id="@integer/cyrillic" text="з">
+            <Action gesture="@integer/soft"        text="ѕ"/>
+            <State mod="@integer/shift" text="З">
+                <Action gesture="@integer/soft"        text="Ѕ"/>
+            </State>
+        </Script>
     </Key>
 
     <Key id="@id/key_X">
@@ -564,6 +672,10 @@
             <Action gesture="@integer/shaddah"     text="طّ"/>
             <Action gesture="@integer/alt"         text="ظ"/>
             <Action gesture="@integer/alt_shaddah" text="ظّ"/>
+        </Script>
+        <Script id="@integer/cyrillic" text="">
+            <State mod="@integer/shift" text="">
+            </State>
         </Script>
     </Key>
 
@@ -592,6 +704,10 @@
             <Action gesture="@integer/alt"         text="ض"/>
             <Action gesture="@integer/alt_shaddah" text="ضّ"/>
         </Script>
+        <Script id="@integer/cyrillic" text="">
+            <State mod="@integer/shift" text="">
+            </State>
+        </Script>
     </Key>
 
     <Key id="@id/key_V">
@@ -605,6 +721,9 @@
         </Script>
         <Script id="@integer/arabic" text="ْ"> <!-- " -->
             <Action gesture="@integer/alt"         text="ء"/> <!-- " -->
+        </Script>
+        <Script id="@integer/cyrillic" text="в">
+            <State mod="@integer/shift" text="В"/>
         </Script>
     </Key>
 
@@ -624,6 +743,9 @@
             <Action gesture="@integer/shaddah"     text="بّ"/>
             <Action gesture="@integer/alt"         text="پ"/>
             <Action gesture="@integer/alt_shaddah" text="پّ"/>
+        </Script>
+        <Script id="@integer/cyrillic" text="б">
+            <State mod="@integer/shift" text="Б"/>
         </Script>
     </Key>
 
@@ -647,6 +769,12 @@
             <!--Action gesture="@integer/alt"         text=""/-->
             <!--Action gesture="@integer/alt_shaddah" text=""/-->
         </Script>
+        <Script id="@integer/cyrillic" text="н">
+            <Action gesture="@integer/soft"        text="њ"/>
+            <State mod="@integer/shift" text="Н">
+                <Action gesture="@integer/soft"        text="њ"/>
+            </State>
+        </Script>
     </Key>
 
     <Key id="@id/key_M">
@@ -662,6 +790,10 @@
             <Action gesture="@integer/shaddah"     text="مّ"/>
             <!--Action gesture="@integer/alt"         text=""/-->
             <!--Action gesture="@integer/alt_shaddah" text=""/-->
+        </Script>
+        <Script id="@integer/cyrillic" text="м">
+            <State mod="@integer/shift" text="М">
+            </State>
         </Script>
     </Key>
 
@@ -787,6 +919,10 @@
             </State>
         </Script>
         <Script id="@integer/arabic" text=""/>
+        <Script id="@integer/cyrillic" text="">
+            <State mod="@integer/shift" text="">
+            </State>
+        </Script>
     </Key>
 
 -->
