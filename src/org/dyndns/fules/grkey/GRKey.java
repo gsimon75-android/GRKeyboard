@@ -38,6 +38,7 @@ public class GRKey extends Button {
 	private GRKeyboardService		svc;
 	private int[] stateNormal		= { android.R.attr.state_enabled, android.R.attr.state_window_focused, android.R.attr.state_multiline };
 	private int[] statePressed		= { android.R.attr.state_enabled, android.R.attr.state_window_focused, android.R.attr.state_multiline, android.R.attr.state_pressed };
+	private int				lastScript = -1;
 	private int				lastShiftState = -1;
 	private LongTap                         onLongTap;
 
@@ -81,9 +82,11 @@ public class GRKey extends Button {
 
 	public void updateShiftState() {
 		if (svc != null) {
+			int script = svc.getScript();
 			int shiftState = svc.getShiftState();
-			if (lastShiftState != shiftState) {
+			if ((lastScript != script) || (lastShiftState != shiftState)) {
 				setText(svc.getLabelForKey(getId()));
+				lastScript = script;
 				lastShiftState = shiftState;
 			}
 		}

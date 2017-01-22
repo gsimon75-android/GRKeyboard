@@ -17,463 +17,515 @@
 
     <!-- QWER row -->
 
-    <Key id="@id/key_Q" text="q">
-        <Action gesture="@integer/bar"      text="ꝙ"/>
-        <Action gesture="@integer/tilde"    text="q̃"/>
-        <State mod="@integer/shift" text="Q">
-            <Action gesture="@integer/bar"      text="Ꝙ"/>
-            <Action gesture="@integer/tilde"    text="Q̃"/>
-        </State>
-        <State mod="@integer/arabic" text="ق"/>
+    <Key id="@id/key_Q">
+        <Script id="@integer/latin" text="q">
+            <Action gesture="@integer/bar"      text="ꝙ"/>
+            <Action gesture="@integer/tilde"    text="q̃"/>
+            <State mod="@integer/shift" text="Q">
+                <Action gesture="@integer/bar"      text="Ꝙ"/>
+                <Action gesture="@integer/tilde"    text="Q̃"/>
+            </State>
+        </Script>
+        <Script id="@integer/arabic" text="ق"/>
     </Key>
 
-    <Key id="@id/key_W" text="w">
-        <Action gesture="@integer/acute"    text="ẃ"/>
-        <Action gesture="@integer/dot"      text="ẇ"/>
-        <Action gesture="@integer/caret"    text="ŵ"/>
-        <Action gesture="@integer/grave"    text="ẁ"/>
-        <Action gesture="@integer/umlaut"   text="ẅ"/>
-        <State mod="@integer/shift" text="W">
-            <Action gesture="@integer/acute"    text="Ẃ"/>
-            <Action gesture="@integer/dot"      text="Ẇ"/>
-            <Action gesture="@integer/caret"    text="Ŵ"/>
-            <Action gesture="@integer/grave"    text="Ẁ"/>
-            <Action gesture="@integer/umlaut"   text="Ẅ"/>
-        </State>
-        <State mod="@integer/arabic" text="و"/>
+    <Key id="@id/key_W">
+        <Script id="@integer/latin" text="w">
+            <Action gesture="@integer/acute"    text="ẃ"/>
+            <Action gesture="@integer/dot"      text="ẇ"/>
+            <Action gesture="@integer/caret"    text="ŵ"/>
+            <Action gesture="@integer/grave"    text="ẁ"/>
+            <Action gesture="@integer/umlaut"   text="ẅ"/>
+            <State mod="@integer/shift" text="W">
+                <Action gesture="@integer/acute"    text="Ẃ"/>
+                <Action gesture="@integer/dot"      text="Ẇ"/>
+                <Action gesture="@integer/caret"    text="Ŵ"/>
+                <Action gesture="@integer/grave"    text="Ẁ"/>
+                <Action gesture="@integer/umlaut"   text="Ẅ"/>
+            </State>
+        </Script>
+        <Script id="@integer/arabic" text="و"/>
     </Key>
 
-    <Key id="@id/key_E" text="e">
-        <Action gesture="@integer/acute"    text="é"/>
-        <Action gesture="@integer/bar"      text="ɇ"/>
-        <Action gesture="@integer/caret"    text="ê"/>
-        <Action gesture="@integer/dblacute" text="ə"/>
-        <Action gesture="@integer/dot"      text="ė"/>
-        <Action gesture="@integer/grave"    text="è"/>
-        <Action gesture="@integer/hacek"    text="ě"/>
-        <Action gesture="@integer/macron"   text="ē"/>
-        <Action gesture="@integer/ogonek"   text="ę"/>
-        <Action gesture="@integer/tilde"    text="ẽ"/>
-        <Action gesture="@integer/umlaut"   text="ë"/>
-        <Action gesture="@integer/spec"     text="€"/>
-        <State mod="@integer/shift" text="E">
-            <Action gesture="@integer/acute"    text="É"/>
-            <Action gesture="@integer/bar"      text="Ɇ"/>
-            <Action gesture="@integer/caret"    text="Ê"/>
-            <Action gesture="@integer/dblacute" text="Ə"/>
-            <Action gesture="@integer/dot"      text="Ė"/>
-            <Action gesture="@integer/grave"    text="È"/>
-            <Action gesture="@integer/hacek"    text="Ě"/>
-            <Action gesture="@integer/macron"   text="Ē"/>
-            <Action gesture="@integer/ogonek"   text="Ę"/>
-            <Action gesture="@integer/tilde"    text="Ẽ"/>
-            <Action gesture="@integer/umlaut"   text="Ë"/>
-        </State>
-        <State mod="@integer/arabic" text=""/>
+    <Key id="@id/key_E">
+        <Script id="@integer/latin" text="e">
+            <Action gesture="@integer/acute"    text="é"/>
+            <Action gesture="@integer/bar"      text="ɇ"/>
+            <Action gesture="@integer/caret"    text="ê"/>
+            <Action gesture="@integer/dblacute" text="ə"/>
+            <Action gesture="@integer/dot"      text="ė"/>
+            <Action gesture="@integer/grave"    text="è"/>
+            <Action gesture="@integer/hacek"    text="ě"/>
+            <Action gesture="@integer/macron"   text="ē"/>
+            <Action gesture="@integer/ogonek"   text="ę"/>
+            <Action gesture="@integer/tilde"    text="ẽ"/>
+            <Action gesture="@integer/umlaut"   text="ë"/>
+            <Action gesture="@integer/spec"     text="€"/>
+            <State mod="@integer/shift" text="E">
+                <Action gesture="@integer/acute"    text="É"/>
+                <Action gesture="@integer/bar"      text="Ɇ"/>
+                <Action gesture="@integer/caret"    text="Ê"/>
+                <Action gesture="@integer/dblacute" text="Ə"/>
+                <Action gesture="@integer/dot"      text="Ė"/>
+                <Action gesture="@integer/grave"    text="È"/>
+                <Action gesture="@integer/hacek"    text="Ě"/>
+                <Action gesture="@integer/macron"   text="Ē"/>
+                <Action gesture="@integer/ogonek"   text="Ę"/>
+                <Action gesture="@integer/tilde"    text="Ẽ"/>
+                <Action gesture="@integer/umlaut"   text="Ë"/>
+            </State>
+        </Script>
+        <Script id="@integer/arabic" text=""/>
     </Key>
 
-    <Key id="@id/key_R" text="r">
-        <Action gesture="@integer/acute"    text="ŕ"/>
-        <Action gesture="@integer/bar"      text="ɍ"/>
-        <Action gesture="@integer/caret"    text="ȓ"/>
-        <Action gesture="@integer/dot"      text="ṙ"/>
-        <Action gesture="@integer/hacek"    text="ř"/>
-        <State mod="@integer/shift" text="R">
-            <Action gesture="@integer/acute"    text="Ŕ"/>
-            <Action gesture="@integer/bar"      text="Ɍ"/>
-            <Action gesture="@integer/caret"    text="Ȓ"/>
-            <Action gesture="@integer/dot"      text="Ṙ"/>
-            <Action gesture="@integer/hacek"    text="Ř"/>
-        </State>
-        <State mod="@integer/arabic" text="ر"/>
+    <Key id="@id/key_R">
+        <Script id="@integer/latin" text="r">
+            <Action gesture="@integer/acute"    text="ŕ"/>
+            <Action gesture="@integer/bar"      text="ɍ"/>
+            <Action gesture="@integer/caret"    text="ȓ"/>
+            <Action gesture="@integer/dot"      text="ṙ"/>
+            <Action gesture="@integer/hacek"    text="ř"/>
+            <State mod="@integer/shift" text="R">
+                <Action gesture="@integer/acute"    text="Ŕ"/>
+                <Action gesture="@integer/bar"      text="Ɍ"/>
+                <Action gesture="@integer/caret"    text="Ȓ"/>
+                <Action gesture="@integer/dot"      text="Ṙ"/>
+                <Action gesture="@integer/hacek"    text="Ř"/>
+            </State>
+        </Script>
+        <Script id="@integer/arabic" text="ر"/>
     </Key>
 
-    <Key id="@id/key_T" text="t">
-        <Action gesture="@integer/cedilla"  text="ţ"/>
-        <Action gesture="@integer/dot"      text="ṫ"/>
-        <Action gesture="@integer/hacek"    text="ť"/>
-        <Action gesture="@integer/spec"     text="þ"/>
-        <State mod="@integer/shift" text="T">
-            <Action gesture="@integer/cedilla"  text="Ţ"/>
-            <Action gesture="@integer/dot"      text="Ṫ"/>
-            <Action gesture="@integer/hacek"    text="Ť"/>
-            <Action gesture="@integer/spec"     text="Þ"/>
-        </State>
-        <State mod="@integer/arabic" text="ت"/>
+    <Key id="@id/key_T">
+        <Script id="@integer/latin" text="t">
+            <Action gesture="@integer/cedilla"  text="ţ"/>
+            <Action gesture="@integer/dot"      text="ṫ"/>
+            <Action gesture="@integer/hacek"    text="ť"/>
+            <Action gesture="@integer/spec"     text="þ"/>
+            <State mod="@integer/shift" text="T">
+                <Action gesture="@integer/cedilla"  text="Ţ"/>
+                <Action gesture="@integer/dot"      text="Ṫ"/>
+                <Action gesture="@integer/hacek"    text="Ť"/>
+                <Action gesture="@integer/spec"     text="Þ"/>
+            </State>
+        </Script>
+        <Script id="@integer/arabic" text="ت"/>
     </Key>
 
-    <Key id="@id/key_Y" text="y">
-        <Action gesture="@integer/acute"    text="ý"/>
-        <Action gesture="@integer/bar"      text="ɏ"/>
-        <Action gesture="@integer/caret"    text="ŷ"/>
-        <Action gesture="@integer/dot"      text="ẏ"/>
-        <Action gesture="@integer/grave"    text="ỳ"/>
-        <Action gesture="@integer/tilde"    text="ỹ"/>
-        <Action gesture="@integer/umlaut"   text="ÿ"/>
-        <Action gesture="@integer/spec"     text="¥"/>
-        <State mod="@integer/shift" text="Y">
-            <Action gesture="@integer/acute"    text="Ý"/>
-            <Action gesture="@integer/bar"      text="Ɏ"/>
-            <Action gesture="@integer/caret"    text="Ŷ"/>
-            <Action gesture="@integer/dot"      text="Ẏ"/>
-            <Action gesture="@integer/grave"    text="Ỳ"/>
-            <Action gesture="@integer/tilde"    text="Ỹ"/>
-            <Action gesture="@integer/umlaut"   text="Ÿ"/>
-        </State>
-        <State mod="@integer/arabic" text="ي"/>
+    <Key id="@id/key_Y">
+        <Script id="@integer/latin" text="y">
+            <Action gesture="@integer/acute"    text="ý"/>
+            <Action gesture="@integer/bar"      text="ɏ"/>
+            <Action gesture="@integer/caret"    text="ŷ"/>
+            <Action gesture="@integer/dot"      text="ẏ"/>
+            <Action gesture="@integer/grave"    text="ỳ"/>
+            <Action gesture="@integer/tilde"    text="ỹ"/>
+            <Action gesture="@integer/umlaut"   text="ÿ"/>
+            <Action gesture="@integer/spec"     text="¥"/>
+            <State mod="@integer/shift" text="Y">
+                <Action gesture="@integer/acute"    text="Ý"/>
+                <Action gesture="@integer/bar"      text="Ɏ"/>
+                <Action gesture="@integer/caret"    text="Ŷ"/>
+                <Action gesture="@integer/dot"      text="Ẏ"/>
+                <Action gesture="@integer/grave"    text="Ỳ"/>
+                <Action gesture="@integer/tilde"    text="Ỹ"/>
+                <Action gesture="@integer/umlaut"   text="Ÿ"/>
+            </State>
+        </Script>
+        <Script id="@integer/arabic" text="ي"/>
     </Key>
 
-    <Key id="@id/key_U" text="u">
-        <Action gesture="@integer/acute"    text="ú"/>
-        <Action gesture="@integer/bar"      text="ʉ"/>
-        <Action gesture="@integer/caret"    text="û"/>
-        <Action gesture="@integer/dblacute" text="ű"/>
-        <Action gesture="@integer/grave"    text="ù"/>
-        <Action gesture="@integer/hacek"    text="ǔ"/>
-        <Action gesture="@integer/macron"   text="ū"/>
-        <Action gesture="@integer/ogonek"   text="ų"/>
-        <Action gesture="@integer/tilde"    text="ũ"/>
-        <Action gesture="@integer/umlaut"   text="ü"/>
-        <State mod="@integer/shift" text="U">
-            <Action gesture="@integer/acute"    text="Ú"/>
-            <Action gesture="@integer/bar"      text="Ʉ"/>
-            <Action gesture="@integer/caret"    text="Û"/>
-            <Action gesture="@integer/dblacute" text="Ű"/>
-            <Action gesture="@integer/grave"    text="Ù"/>
-            <Action gesture="@integer/hacek"    text="Ǔ"/>
-            <Action gesture="@integer/macron"   text="Ū"/>
-            <Action gesture="@integer/ogonek"   text="Ų"/>
-            <Action gesture="@integer/tilde"    text="Ũ"/>
-            <Action gesture="@integer/umlaut"   text="Ü"/>
-        </State>
-        <State mod="@integer/arabic" text=""/>
+    <Key id="@id/key_U">
+        <Script id="@integer/latin" text="u">
+            <Action gesture="@integer/acute"    text="ú"/>
+            <Action gesture="@integer/bar"      text="ʉ"/>
+            <Action gesture="@integer/caret"    text="û"/>
+            <Action gesture="@integer/dblacute" text="ű"/>
+            <Action gesture="@integer/grave"    text="ù"/>
+            <Action gesture="@integer/hacek"    text="ǔ"/>
+            <Action gesture="@integer/macron"   text="ū"/>
+            <Action gesture="@integer/ogonek"   text="ų"/>
+            <Action gesture="@integer/tilde"    text="ũ"/>
+            <Action gesture="@integer/umlaut"   text="ü"/>
+            <State mod="@integer/shift" text="U">
+                <Action gesture="@integer/acute"    text="Ú"/>
+                <Action gesture="@integer/bar"      text="Ʉ"/>
+                <Action gesture="@integer/caret"    text="Û"/>
+                <Action gesture="@integer/dblacute" text="Ű"/>
+                <Action gesture="@integer/grave"    text="Ù"/>
+                <Action gesture="@integer/hacek"    text="Ǔ"/>
+                <Action gesture="@integer/macron"   text="Ū"/>
+                <Action gesture="@integer/ogonek"   text="Ų"/>
+                <Action gesture="@integer/tilde"    text="Ũ"/>
+                <Action gesture="@integer/umlaut"   text="Ü"/>
+            </State>
+        </Script>
+        <Script id="@integer/arabic" text=""/>
     </Key>
 
-    <Key id="@id/key_I" text="i">
-        <Action gesture="@integer/acute"    text="í"/>
-        <Action gesture="@integer/bar"      text="ɨ"/>
-        <Action gesture="@integer/caret"    text="î"/>
-        <Action gesture="@integer/dot"      text="i"/>
-        <Action gesture="@integer/grave"    text="ì"/>
-        <Action gesture="@integer/hacek"    text="ǐ"/>
-        <Action gesture="@integer/macron"   text="ī"/>
-        <Action gesture="@integer/ogonek"   text="į"/>
-        <Action gesture="@integer/tilde"    text="ĩ"/>
-        <Action gesture="@integer/umlaut"   text="ï"/>
-        <Action gesture="@integer/spec"     text="ı"/>
-        <State mod="@integer/shift" text="I">
-            <Action gesture="@integer/acute"    text="Í"/>
-            <Action gesture="@integer/bar"      text="Ɨ"/>
-            <Action gesture="@integer/caret"    text="Î"/>
-            <Action gesture="@integer/dot"      text="İ"/>
-            <Action gesture="@integer/grave"    text="Ì"/>
-            <Action gesture="@integer/hacek"    text="Ǐ"/>
-            <Action gesture="@integer/macron"   text="Ī"/>
-            <Action gesture="@integer/ogonek"   text="Į"/>
-            <Action gesture="@integer/tilde"    text="Ĩ"/>
-            <Action gesture="@integer/umlaut"   text="Ï"/>
-            <Action gesture="@integer/spec"     text="I"/>
-        </State>
-        <State mod="@integer/arabic" text=""/>
+    <Key id="@id/key_I">
+        <Script id="@integer/latin" text="i">
+            <Action gesture="@integer/acute"    text="í"/>
+            <Action gesture="@integer/bar"      text="ɨ"/>
+            <Action gesture="@integer/caret"    text="î"/>
+            <Action gesture="@integer/dot"      text="i"/>
+            <Action gesture="@integer/grave"    text="ì"/>
+            <Action gesture="@integer/hacek"    text="ǐ"/>
+            <Action gesture="@integer/macron"   text="ī"/>
+            <Action gesture="@integer/ogonek"   text="į"/>
+            <Action gesture="@integer/tilde"    text="ĩ"/>
+            <Action gesture="@integer/umlaut"   text="ï"/>
+            <Action gesture="@integer/spec"     text="ı"/>
+            <State mod="@integer/shift" text="I">
+                <Action gesture="@integer/acute"    text="Í"/>
+                <Action gesture="@integer/bar"      text="Ɨ"/>
+                <Action gesture="@integer/caret"    text="Î"/>
+                <Action gesture="@integer/dot"      text="İ"/>
+                <Action gesture="@integer/grave"    text="Ì"/>
+                <Action gesture="@integer/hacek"    text="Ǐ"/>
+                <Action gesture="@integer/macron"   text="Ī"/>
+                <Action gesture="@integer/ogonek"   text="Į"/>
+                <Action gesture="@integer/tilde"    text="Ĩ"/>
+                <Action gesture="@integer/umlaut"   text="Ï"/>
+                <Action gesture="@integer/spec"     text="I"/>
+            </State>
+        </Script>
+        <Script id="@integer/arabic" text=""/>
     </Key>
 
-    <Key id="@id/key_O" text="o">
-        <Action gesture="@integer/acute"    text="ó"/>
-        <Action gesture="@integer/bar"      text="ɵ"/>
-        <Action gesture="@integer/caret"    text="ô"/>
-        <Action gesture="@integer/dblacute" text="ő"/>
-        <Action gesture="@integer/dot"      text="ȯ"/>
-        <Action gesture="@integer/grave"    text="ò"/>
-        <Action gesture="@integer/hacek"    text="ǒ"/>
-        <Action gesture="@integer/macron"   text="ō"/>
-        <Action gesture="@integer/ogonek"   text="ǫ"/>
-        <Action gesture="@integer/ring"     text="ø"/>
-        <Action gesture="@integer/tilde"    text="õ"/>
-        <Action gesture="@integer/umlaut"   text="ö"/>
-        <Action gesture="@integer/spec"     text="œ"/>
-        <State mod="@integer/shift" text="O">
-            <Action gesture="@integer/acute"    text="Ó"/>
-            <Action gesture="@integer/bar"      text="Ɵ"/>
-            <Action gesture="@integer/caret"    text="Ô"/>
-            <Action gesture="@integer/dblacute" text="Ő"/>
-            <Action gesture="@integer/dot"      text="Ȯ"/>
-            <Action gesture="@integer/grave"    text="Ò"/>
-            <Action gesture="@integer/hacek"    text="Ǒ"/>
-            <Action gesture="@integer/macron"   text="Ō"/>
-            <Action gesture="@integer/ogonek"   text="Ǫ"/>
-            <Action gesture="@integer/ring"     text="Ø"/>
-            <Action gesture="@integer/tilde"    text="Õ"/>
-            <Action gesture="@integer/umlaut"   text="Ö"/>
-            <Action gesture="@integer/spec"     text="Œ"/>
-        </State>
-        <State mod="@integer/arabic" text=""/>
+    <Key id="@id/key_O">
+        <Script id="@integer/latin" text="o">
+            <Action gesture="@integer/acute"    text="ó"/>
+            <Action gesture="@integer/bar"      text="ɵ"/>
+            <Action gesture="@integer/caret"    text="ô"/>
+            <Action gesture="@integer/dblacute" text="ő"/>
+            <Action gesture="@integer/dot"      text="ȯ"/>
+            <Action gesture="@integer/grave"    text="ò"/>
+            <Action gesture="@integer/hacek"    text="ǒ"/>
+            <Action gesture="@integer/macron"   text="ō"/>
+            <Action gesture="@integer/ogonek"   text="ǫ"/>
+            <Action gesture="@integer/ring"     text="ø"/>
+            <Action gesture="@integer/tilde"    text="õ"/>
+            <Action gesture="@integer/umlaut"   text="ö"/>
+            <Action gesture="@integer/spec"     text="œ"/>
+            <State mod="@integer/shift" text="O">
+                <Action gesture="@integer/acute"    text="Ó"/>
+                <Action gesture="@integer/bar"      text="Ɵ"/>
+                <Action gesture="@integer/caret"    text="Ô"/>
+                <Action gesture="@integer/dblacute" text="Ő"/>
+                <Action gesture="@integer/dot"      text="Ȯ"/>
+                <Action gesture="@integer/grave"    text="Ò"/>
+                <Action gesture="@integer/hacek"    text="Ǒ"/>
+                <Action gesture="@integer/macron"   text="Ō"/>
+                <Action gesture="@integer/ogonek"   text="Ǫ"/>
+                <Action gesture="@integer/ring"     text="Ø"/>
+                <Action gesture="@integer/tilde"    text="Õ"/>
+                <Action gesture="@integer/umlaut"   text="Ö"/>
+                <Action gesture="@integer/spec"     text="Œ"/>
+            </State>
+        </Script>
+        <Script id="@integer/arabic" text=""/>
     </Key>
 
-    <Key id="@id/key_P" text="p">
-        <Action gesture="@integer/acute"    text="ṕ"/>
-        <Action gesture="@integer/bar"      text="ᵽ"/>
-        <Action gesture="@integer/dot"      text="ṗ"/>
-        <Action gesture="@integer/spec"     text="π"/>
-        <State mod="@integer/shift" text="P">
-            <Action gesture="@integer/acute"    text="Ṕ"/>
-            <Action gesture="@integer/bar"      text="Ᵽ"/>
-            <Action gesture="@integer/dot"      text="Ṗ"/>
-            <Action gesture="@integer/spec"     text="Π"/>
-        </State>
-        <State mod="@integer/arabic" text="ع"/>
+    <Key id="@id/key_P">
+        <Script id="@integer/latin" text="p">
+            <Action gesture="@integer/acute"    text="ṕ"/>
+            <Action gesture="@integer/bar"      text="ᵽ"/>
+            <Action gesture="@integer/dot"      text="ṗ"/>
+            <Action gesture="@integer/spec"     text="π"/>
+            <State mod="@integer/shift" text="P">
+                <Action gesture="@integer/acute"    text="Ṕ"/>
+                <Action gesture="@integer/bar"      text="Ᵽ"/>
+                <Action gesture="@integer/dot"      text="Ṗ"/>
+                <Action gesture="@integer/spec"     text="Π"/>
+            </State>
+        </Script>
+        <Script id="@integer/arabic" text="ع"/>
     </Key>
 
     <!-- ASDF row -->
 
-    <Key id="@id/key_A" text="a">
-        <Action gesture="@integer/acute"    text="á"/>
-        <Action gesture="@integer/bar"      text="ⱥ"/>
-        <Action gesture="@integer/caret"    text="â"/>
-        <Action gesture="@integer/dot"      text="ạ"/>
-        <Action gesture="@integer/grave"    text="à"/>
-        <Action gesture="@integer/hacek"    text="ǎ"/>
-        <Action gesture="@integer/macron"   text="ā"/>
-        <Action gesture="@integer/ogonek"   text="ȧ"/>
-        <Action gesture="@integer/ring"     text="å"/>
-        <Action gesture="@integer/tilde"    text="ã"/>
-        <Action gesture="@integer/umlaut"   text="ä"/>
-        <Action gesture="@integer/spec"     text="æ"/>
-        <State mod="@integer/shift" text="A">
-            <Action gesture="@integer/acute"    text="Á"/>
-            <Action gesture="@integer/bar"      text="Ⱥ"/>
-            <Action gesture="@integer/caret"    text="Â"/>
-            <Action gesture="@integer/dot"      text="Ạ"/>
-            <Action gesture="@integer/grave"    text="À"/>
-            <Action gesture="@integer/hacek"    text="Ǎ"/>
-            <Action gesture="@integer/macron"   text="Ā"/>
-            <Action gesture="@integer/ogonek"   text="Ȧ"/>
-            <Action gesture="@integer/ring"     text="Å"/>
-            <Action gesture="@integer/tilde"    text="Ã"/>
-            <Action gesture="@integer/umlaut"   text="Ä"/>
-            <Action gesture="@integer/spec"     text="Æ"/>
-        </State>
-        <State mod="@integer/arabic"        text="ا"/>
+    <Key id="@id/key_A">
+        <Script id="@integer/latin" text="a">
+            <Action gesture="@integer/acute"    text="á"/>
+            <Action gesture="@integer/bar"      text="ⱥ"/>
+            <Action gesture="@integer/caret"    text="â"/>
+            <Action gesture="@integer/dot"      text="ạ"/>
+            <Action gesture="@integer/grave"    text="à"/>
+            <Action gesture="@integer/hacek"    text="ǎ"/>
+            <Action gesture="@integer/macron"   text="ā"/>
+            <Action gesture="@integer/ogonek"   text="ȧ"/>
+            <Action gesture="@integer/ring"     text="å"/>
+            <Action gesture="@integer/tilde"    text="ã"/>
+            <Action gesture="@integer/umlaut"   text="ä"/>
+            <Action gesture="@integer/spec"     text="æ"/>
+            <State mod="@integer/shift" text="A">
+                <Action gesture="@integer/acute"    text="Á"/>
+                <Action gesture="@integer/bar"      text="Ⱥ"/>
+                <Action gesture="@integer/caret"    text="Â"/>
+                <Action gesture="@integer/dot"      text="Ạ"/>
+                <Action gesture="@integer/grave"    text="À"/>
+                <Action gesture="@integer/hacek"    text="Ǎ"/>
+                <Action gesture="@integer/macron"   text="Ā"/>
+                <Action gesture="@integer/ogonek"   text="Ȧ"/>
+                <Action gesture="@integer/ring"     text="Å"/>
+                <Action gesture="@integer/tilde"    text="Ã"/>
+                <Action gesture="@integer/umlaut"   text="Ä"/>
+                <Action gesture="@integer/spec"     text="Æ"/>
+            </State>
+        </Script>
+        <Script id="@integer/arabic"        text="ا"/>
     </Key>
 
-    <Key id="@id/key_S" text="s">
-        <Action gesture="@integer/acute"    text="ś"/>
-        <Action gesture="@integer/bar"      text="ꞩ"/>
-        <Action gesture="@integer/caret"    text="ŝ"/>
-        <Action gesture="@integer/cedilla"  text="ş"/>
-        <Action gesture="@integer/dot"      text="ṡ"/>
-        <Action gesture="@integer/hacek"    text="š"/>
-        <Action gesture="@integer/umlaut"   text="s̈"/>
-        <Action gesture="@integer/spec"     text="ß"/>
-        <State mod="@integer/shift" text="S">
-            <Action gesture="@integer/acute"    text="Ś"/>
+    <Key id="@id/key_S">
+        <Script id="@integer/latin" text="s">
+            <Action gesture="@integer/acute"    text="ś"/>
             <Action gesture="@integer/bar"      text="ꞩ"/>
-            <Action gesture="@integer/caret"    text="Ŝ"/>
-            <Action gesture="@integer/cedilla"  text="Ş"/>
-            <Action gesture="@integer/dot"      text="Ṡ"/>
-            <Action gesture="@integer/hacek"    text="Š"/>
-            <Action gesture="@integer/umlaut"   text="S̈"/>
+            <Action gesture="@integer/caret"    text="ŝ"/>
+            <Action gesture="@integer/cedilla"  text="ş"/>
+            <Action gesture="@integer/dot"      text="ṡ"/>
+            <Action gesture="@integer/hacek"    text="š"/>
+            <Action gesture="@integer/umlaut"   text="s̈"/>
             <Action gesture="@integer/spec"     text="ß"/>
-        </State>
-        <State mod="@integer/arabic" text="س"/>
+            <State mod="@integer/shift" text="S">
+                <Action gesture="@integer/acute"    text="Ś"/>
+                <Action gesture="@integer/bar"      text="ꞩ"/>
+                <Action gesture="@integer/caret"    text="Ŝ"/>
+                <Action gesture="@integer/cedilla"  text="Ş"/>
+                <Action gesture="@integer/dot"      text="Ṡ"/>
+                <Action gesture="@integer/hacek"    text="Š"/>
+                <Action gesture="@integer/umlaut"   text="S̈"/>
+                <Action gesture="@integer/spec"     text="ß"/>
+            </State>
+        </Script>
+        <Script id="@integer/arabic" text="س"/>
     </Key>
 
-    <Key id="@id/key_D" text="d">
-        <Action gesture="@integer/bar"      text="đ"/>
-        <Action gesture="@integer/cedilla"  text="ḑ"/>
-        <Action gesture="@integer/dot"      text="ḋ"/>
-        <Action gesture="@integer/hacek"    text="ď"/>
-        <Action gesture="@integer/spec"     text="ð"/>
-        <State mod="@integer/shift" text="D">
-            <Action gesture="@integer/bar"      text="Đ"/>
-            <Action gesture="@integer/cedilla"  text="Ḑ"/>
-            <Action gesture="@integer/dot"      text="Ḋ"/>
-            <Action gesture="@integer/hacek"    text="Ď"/>
-            <Action gesture="@integer/spec"     text="Ð"/>
-        </State>
-        <State mod="@integer/arabic" text="د"/>
+    <Key id="@id/key_D">
+        <Script id="@integer/latin" text="d">
+            <Action gesture="@integer/bar"      text="đ"/>
+            <Action gesture="@integer/cedilla"  text="ḑ"/>
+            <Action gesture="@integer/dot"      text="ḋ"/>
+            <Action gesture="@integer/hacek"    text="ď"/>
+            <Action gesture="@integer/spec"     text="ð"/>
+            <State mod="@integer/shift" text="D">
+                <Action gesture="@integer/bar"      text="Đ"/>
+                <Action gesture="@integer/cedilla"  text="Ḑ"/>
+                <Action gesture="@integer/dot"      text="Ḋ"/>
+                <Action gesture="@integer/hacek"    text="Ď"/>
+                <Action gesture="@integer/spec"     text="Ð"/>
+            </State>
+        </Script>
+        <Script id="@integer/arabic" text="د"/>
     </Key>
 
-    <Key id="@id/key_F" text="f">
-        <Action gesture="@integer/dot"      text="ḟ"/>
-        <Action gesture="@integer/ring"     text="℉"/>
-        <State mod="@integer/shift" text="F">
-            <Action gesture="@integer/dot"      text="Ḟ"/>
-        </State>
-        <State mod="@integer/arabic" text="ف"/>
+    <Key id="@id/key_F">
+        <Script id="@integer/latin" text="f">
+            <Action gesture="@integer/dot"      text="ḟ"/>
+            <Action gesture="@integer/ring"     text="℉"/>
+            <State mod="@integer/shift" text="F">
+                <Action gesture="@integer/dot"      text="Ḟ"/>
+            </State>
+        </Script>
+        <Script id="@integer/arabic" text="ف"/>
     </Key>
 
-    <Key id="@id/key_G" text="g">
-        <Action gesture="@integer/bar"      text="ǥ"/>
-        <Action gesture="@integer/caret"    text="ĝ"/>
-        <Action gesture="@integer/cedilla"  text="ģ"/>
-        <Action gesture="@integer/dot"      text="ġ"/>
-        <Action gesture="@integer/hacek"    text="ğ"/>
-        <State mod="@integer/shift" text="G">
-            <Action gesture="@integer/bar"      text="Ǥ"/>
-            <Action gesture="@integer/caret"    text="Ĝ"/>
-            <Action gesture="@integer/cedilla"  text="Ģ"/>
-            <Action gesture="@integer/dot"      text="Ġ"/>
-            <Action gesture="@integer/hacek"    text="Ğ"/>
-        </State>
-        <State mod="@integer/arabic" text="ح"/>
+    <Key id="@id/key_G">
+        <Script id="@integer/latin" text="g">
+            <Action gesture="@integer/bar"      text="ǥ"/>
+            <Action gesture="@integer/caret"    text="ĝ"/>
+            <Action gesture="@integer/cedilla"  text="ģ"/>
+            <Action gesture="@integer/dot"      text="ġ"/>
+            <Action gesture="@integer/hacek"    text="ğ"/>
+            <State mod="@integer/shift" text="G">
+                <Action gesture="@integer/bar"      text="Ǥ"/>
+                <Action gesture="@integer/caret"    text="Ĝ"/>
+                <Action gesture="@integer/cedilla"  text="Ģ"/>
+                <Action gesture="@integer/dot"      text="Ġ"/>
+                <Action gesture="@integer/hacek"    text="Ğ"/>
+            </State>
+        </Script>
+        <Script id="@integer/arabic" text="ح"/>
     </Key>
 
-    <Key id="@id/key_H" text="h">
-        <Action gesture="@integer/bar"      text="ħ"/>
-        <Action gesture="@integer/caret"    text="ĥ"/>
-        <Action gesture="@integer/cedilla"  text="ḩ"/>
-        <Action gesture="@integer/dot"      text="ḣ"/>
-        <Action gesture="@integer/macron"   text="ẖ"/>
-        <State mod="@integer/shift" text="H">
-            <Action gesture="@integer/bar"      text="Ħ"/>
-            <Action gesture="@integer/caret"    text="Ĥ"/>
-            <Action gesture="@integer/cedilla"  text="Ḩ"/>
-            <Action gesture="@integer/dot"      text="Ḣ"/>
+    <Key id="@id/key_H">
+        <Script id="@integer/latin" text="h">
+            <Action gesture="@integer/bar"      text="ħ"/>
+            <Action gesture="@integer/caret"    text="ĥ"/>
+            <Action gesture="@integer/cedilla"  text="ḩ"/>
+            <Action gesture="@integer/dot"      text="ḣ"/>
             <Action gesture="@integer/macron"   text="ẖ"/>
-        </State>
-        <State mod="@integer/arabic" text="ه"/>
+            <State mod="@integer/shift" text="H">
+                <Action gesture="@integer/bar"      text="Ħ"/>
+                <Action gesture="@integer/caret"    text="Ĥ"/>
+                <Action gesture="@integer/cedilla"  text="Ḩ"/>
+                <Action gesture="@integer/dot"      text="Ḣ"/>
+                <Action gesture="@integer/macron"   text="ẖ"/>
+            </State>
+        </Script>
+        <Script id="@integer/arabic" text="ه"/>
     </Key>
 
-    <Key id="@id/key_J" text="j">
-        <Action gesture="@integer/bar"      text="ɉ"/>
-        <Action gesture="@integer/caret"    text="ĵ"/>
-        <Action gesture="@integer/dot"      text="ȷ"/>
-        <State mod="@integer/shift" text="J">
-            <Action gesture="@integer/bar"      text="Ɉ"/>
-            <Action gesture="@integer/caret"    text="Ĵ"/>
+    <Key id="@id/key_J">
+        <Script id="@integer/latin" text="j">
+            <Action gesture="@integer/bar"      text="ɉ"/>
+            <Action gesture="@integer/caret"    text="ĵ"/>
             <Action gesture="@integer/dot"      text="ȷ"/>
-        </State>
-        <State mod="@integer/arabic" text="ج"/>
+            <State mod="@integer/shift" text="J">
+                <Action gesture="@integer/bar"      text="Ɉ"/>
+                <Action gesture="@integer/caret"    text="Ĵ"/>
+                <Action gesture="@integer/dot"      text="ȷ"/>
+            </State>
+        </Script>
+        <Script id="@integer/arabic" text="ج"/>
     </Key>
 
-    <Key id="@id/key_K" text="k">
-        <Action gesture="@integer/acute"    text="ḱ"/>
-        <Action gesture="@integer/bar"      text="ꝁ"/>
-        <Action gesture="@integer/hacek"    text="ǩ"/>
-        <Action gesture="@integer/macron"   text="ḵ"/>
-        <State mod="@integer/shift" text="K">
-            <Action gesture="@integer/acute"    text="Ḱ"/>
-            <Action gesture="@integer/bar"      text="Ꝁ"/>
-            <Action gesture="@integer/hacek"    text="Ǩ"/>
-            <Action gesture="@integer/macron"   text="Ḵ"/>
-        </State>
-        <State mod="@integer/arabic" text="ك"/>
+    <Key id="@id/key_K">
+        <Script id="@integer/latin" text="k">
+            <Action gesture="@integer/acute"    text="ḱ"/>
+            <Action gesture="@integer/bar"      text="ꝁ"/>
+            <Action gesture="@integer/hacek"    text="ǩ"/>
+            <Action gesture="@integer/macron"   text="ḵ"/>
+            <State mod="@integer/shift" text="K">
+                <Action gesture="@integer/acute"    text="Ḱ"/>
+                <Action gesture="@integer/bar"      text="Ꝁ"/>
+                <Action gesture="@integer/hacek"    text="Ǩ"/>
+                <Action gesture="@integer/macron"   text="Ḵ"/>
+            </State>
+        </Script>
+        <Script id="@integer/arabic" text="ك"/>
     </Key>
 
-    <Key id="@id/key_L" text="l">
-        <Action gesture="@integer/acute"    text="ł"/>
-        <Action gesture="@integer/bar"      text="ƚ"/>
-        <Action gesture="@integer/dot"      text="ŀ"/>
-        <Action gesture="@integer/hacek"    text="ľ"/>
-        <Action gesture="@integer/spec"     text="£"/>
-        <State mod="@integer/shift" text="L">
-            <Action gesture="@integer/acute"    text="Ł"/>
-            <Action gesture="@integer/bar"      text="Ƚ"/>
-            <Action gesture="@integer/dot"      text="Ŀ"/>
-            <Action gesture="@integer/hacek"    text="Ľ"/>
+    <Key id="@id/key_L">
+        <Script id="@integer/latin" text="l">
+            <Action gesture="@integer/acute"    text="ł"/>
+            <Action gesture="@integer/bar"      text="ƚ"/>
+            <Action gesture="@integer/dot"      text="ŀ"/>
+            <Action gesture="@integer/hacek"    text="ľ"/>
             <Action gesture="@integer/spec"     text="£"/>
-        </State>
-        <State mod="@integer/arabic" text="ل"/>
+            <State mod="@integer/shift" text="L">
+                <Action gesture="@integer/acute"    text="Ł"/>
+                <Action gesture="@integer/bar"      text="Ƚ"/>
+                <Action gesture="@integer/dot"      text="Ŀ"/>
+                <Action gesture="@integer/hacek"    text="Ľ"/>
+                <Action gesture="@integer/spec"     text="£"/>
+            </State>
+        </Script>
+        <Script id="@integer/arabic" text="ل"/>
     </Key>
 
     <!-- ZXCV row -->
 
-    <Key id="@id/key_Z" text="z">
-        <Action gesture="@integer/acute"    text="ź"/>
-        <Action gesture="@integer/bar"      text="ƶ"/>
-        <Action gesture="@integer/caret"    text="ẑ"/>
-        <Action gesture="@integer/dot"      text="ż"/>
-        <Action gesture="@integer/hacek"    text="ž"/>
-        <Action gesture="@integer/macron"   text="ẕ"/>
-        <State mod="@integer/shift" text="Z">
-            <Action gesture="@integer/acute"    text="Ź"/>
-            <Action gesture="@integer/bar"      text="Ƶ"/>
-            <Action gesture="@integer/caret"    text="Ẑ"/>
-            <Action gesture="@integer/dot"      text="Ż"/>
-            <Action gesture="@integer/hacek"    text="Ž"/>
-            <Action gesture="@integer/macron"   text="Ẕ"/>
-        </State>
-        <State mod="@integer/arabic" text="ز"/>
+    <Key id="@id/key_Z">
+        <Script id="@integer/latin" text="z">
+            <Action gesture="@integer/acute"    text="ź"/>
+            <Action gesture="@integer/bar"      text="ƶ"/>
+            <Action gesture="@integer/caret"    text="ẑ"/>
+            <Action gesture="@integer/dot"      text="ż"/>
+            <Action gesture="@integer/hacek"    text="ž"/>
+            <Action gesture="@integer/macron"   text="ẕ"/>
+            <State mod="@integer/shift" text="Z">
+                <Action gesture="@integer/acute"    text="Ź"/>
+                <Action gesture="@integer/bar"      text="Ƶ"/>
+                <Action gesture="@integer/caret"    text="Ẑ"/>
+                <Action gesture="@integer/dot"      text="Ż"/>
+                <Action gesture="@integer/hacek"    text="Ž"/>
+                <Action gesture="@integer/macron"   text="Ẕ"/>
+            </State>
+        </Script>
+        <Script id="@integer/arabic" text="ز"/>
     </Key>
 
-    <Key id="@id/key_X" text="x">
-        <Action gesture="@integer/dot"      text="ẋ"/>
-        <Action gesture="@integer/umlaut"   text="ẍ"/>
-        <State mod="@integer/shift" text="X">
-            <Action gesture="@integer/dot"      text="Ẋ"/>
-            <Action gesture="@integer/umlaut"   text="Ẍ"/>
-        </State>
-        <State mod="@integer/arabic" text="ط"/>
+    <Key id="@id/key_X">
+        <Script id="@integer/latin" text="x">
+            <Action gesture="@integer/dot"      text="ẋ"/>
+            <Action gesture="@integer/umlaut"   text="ẍ"/>
+            <State mod="@integer/shift" text="X">
+                <Action gesture="@integer/dot"      text="Ẋ"/>
+                <Action gesture="@integer/umlaut"   text="Ẍ"/>
+            </State>
+        </Script>
+        <Script id="@integer/arabic" text="ط"/>
     </Key>
 
-    <Key id="@id/key_C" text="c">
-        <Action gesture="@integer/acute"    text="ć"/>
-        <Action gesture="@integer/caret"    text="ĉ"/>
-        <Action gesture="@integer/cedilla"  text="ç"/>
-        <Action gesture="@integer/dot"      text="ċ"/>
-        <Action gesture="@integer/hacek"    text="č"/>
-        <Action gesture="@integer/ring"     text="℃"/>
-        <Action gesture="@integer/umlaut"   text="c̈"/>
-        <Action gesture="@integer/spec"     text="¢"/>
-        <State mod="@integer/shift" text="C">
-            <Action gesture="@integer/acute"    text="Ć"/>
-            <Action gesture="@integer/caret"    text="Ĉ"/>
-            <Action gesture="@integer/cedilla"  text="Ç"/>
-            <Action gesture="@integer/dot"      text="Ċ"/>
-            <Action gesture="@integer/hacek"    text="Č"/>
-            <Action gesture="@integer/umlaut"   text="C̈"/>
-            <Action gesture="@integer/spec"     text="©"/>
-        </State>
-        <State mod="@integer/arabic" text="ص"/>
+    <Key id="@id/key_C">
+        <Script id="@integer/latin" text="c">
+            <Action gesture="@integer/acute"    text="ć"/>
+            <Action gesture="@integer/caret"    text="ĉ"/>
+            <Action gesture="@integer/cedilla"  text="ç"/>
+            <Action gesture="@integer/dot"      text="ċ"/>
+            <Action gesture="@integer/hacek"    text="č"/>
+            <Action gesture="@integer/ring"     text="℃"/>
+            <Action gesture="@integer/umlaut"   text="c̈"/>
+            <Action gesture="@integer/spec"     text="¢"/>
+            <State mod="@integer/shift" text="C">
+                <Action gesture="@integer/acute"    text="Ć"/>
+                <Action gesture="@integer/caret"    text="Ĉ"/>
+                <Action gesture="@integer/cedilla"  text="Ç"/>
+                <Action gesture="@integer/dot"      text="Ċ"/>
+                <Action gesture="@integer/hacek"    text="Č"/>
+                <Action gesture="@integer/umlaut"   text="C̈"/>
+                <Action gesture="@integer/spec"     text="©"/>
+            </State>
+        </Script>
+        <Script id="@integer/arabic" text="ص"/>
     </Key>
 
-    <Key id="@id/key_V" text="v">
-        <Action gesture="@integer/bar"      text="ꝟ"/>
-        <Action gesture="@integer/tilde"    text="ṽ"/>
-        <State mod="@integer/shift" text="V">
-            <Action gesture="@integer/bar"      text="Ꝟ"/>
-            <Action gesture="@integer/tilde"    text="Ṽ"/>
-        </State>
-        <State mod="@integer/arabic" text="ڤ"/>
+    <Key id="@id/key_V">
+        <Script id="@integer/latin" text="v">
+            <Action gesture="@integer/bar"      text="ꝟ"/>
+            <Action gesture="@integer/tilde"    text="ṽ"/>
+            <State mod="@integer/shift" text="V">
+                <Action gesture="@integer/bar"      text="Ꝟ"/>
+                <Action gesture="@integer/tilde"    text="Ṽ"/>
+            </State>
+        </Script>
+        <Script id="@integer/arabic" text="ڤ"/>
     </Key>
 
-    <Key id="@id/key_B" text="b">
-        <Action gesture="@integer/bar"      text="ƀ"/>
-        <Action gesture="@integer/dot"      text="ḃ"/>
-        <Action gesture="@integer/macron"   text="ḇ"/>
-        <Action gesture="@integer/spec"     text="♭"/>
-        <State mod="@integer/shift" text="B">
-            <Action gesture="@integer/bar"      text="Ƀ"/>
-            <Action gesture="@integer/dot"      text="Ḃ"/>
-            <Action gesture="@integer/macron"   text="Ḇ"/>
-        </State>
-        <State mod="@integer/arabic"        text="ب"/>
+    <Key id="@id/key_B">
+        <Script id="@integer/latin" text="b">
+            <Action gesture="@integer/bar"      text="ƀ"/>
+            <Action gesture="@integer/dot"      text="ḃ"/>
+            <Action gesture="@integer/macron"   text="ḇ"/>
+            <Action gesture="@integer/spec"     text="♭"/>
+            <State mod="@integer/shift" text="B">
+                <Action gesture="@integer/bar"      text="Ƀ"/>
+                <Action gesture="@integer/dot"      text="Ḃ"/>
+                <Action gesture="@integer/macron"   text="Ḇ"/>
+            </State>
+        </Script>
+        <Script id="@integer/arabic"        text="ب"/>
     </Key>
 
-    <Key id="@id/key_N" text="n">
-        <Action gesture="@integer/acute"    text="ń"/>
-        <Action gesture="@integer/dot"      text="ṅ"/>
-        <Action gesture="@integer/grave"    text="ǹ"/>
-        <Action gesture="@integer/hacek"    text="ň"/>
-        <Action gesture="@integer/tilde"    text="ñ"/>
-        <State mod="@integer/shift" text="N">
-            <Action gesture="@integer/acute"    text="Ń"/>
-            <Action gesture="@integer/dot"      text="Ṅ"/>
-            <Action gesture="@integer/grave"    text="Ǹ"/>
-            <Action gesture="@integer/hacek"    text="Ň"/>
-            <Action gesture="@integer/tilde"    text="Ñ"/>
-        </State>
-        <State mod="@integer/arabic" text="ن"/>
+    <Key id="@id/key_N">
+        <Script id="@integer/latin" text="n">
+            <Action gesture="@integer/acute"    text="ń"/>
+            <Action gesture="@integer/dot"      text="ṅ"/>
+            <Action gesture="@integer/grave"    text="ǹ"/>
+            <Action gesture="@integer/hacek"    text="ň"/>
+            <Action gesture="@integer/tilde"    text="ñ"/>
+            <State mod="@integer/shift" text="N">
+                <Action gesture="@integer/acute"    text="Ń"/>
+                <Action gesture="@integer/dot"      text="Ṅ"/>
+                <Action gesture="@integer/grave"    text="Ǹ"/>
+                <Action gesture="@integer/hacek"    text="Ň"/>
+                <Action gesture="@integer/tilde"    text="Ñ"/>
+            </State>
+        </Script>
+        <Script id="@integer/arabic" text="ن"/>
     </Key>
 
-    <Key id="@id/key_M" text="m">
-        <Action gesture="@integer/acute"    text="ḿ"/>
-        <Action gesture="@integer/dot"      text="ṁ"/>
-        <State mod="@integer/shift" text="M">
-            <Action gesture="@integer/acute"    text="Ḿ"/>
-            <Action gesture="@integer/dot"      text="Ṁ"/>
-        </State>
-        <State mod="@integer/arabic" text="م"/>
+    <Key id="@id/key_M">
+        <Script id="@integer/latin" text="m">
+            <Action gesture="@integer/acute"    text="ḿ"/>
+            <Action gesture="@integer/dot"      text="ṁ"/>
+            <State mod="@integer/shift" text="M">
+                <Action gesture="@integer/acute"    text="Ḿ"/>
+                <Action gesture="@integer/dot"      text="Ṁ"/>
+            </State>
+        </Script>
+        <Script id="@integer/arabic" text="م"/>
     </Key>
 
     <!-- Shift, Space, Enter, Backspace, Arrow keys -->
@@ -499,12 +551,14 @@
             <Action gesture="93"                cmd="selectAll"/>
             <Action gesture="31"                cmd="paste"/>
         </State>
-        <Action gesture="@integer/dirNE"     cmd="arabic"/>
-        <State mod="@integer/arabic"         cmd="normal"/>
     </Key>
 
     <Key id="@id/key_Space" text=" ">
         <Action gesture="@integer/dirE"     cmd="tab"/>
+        <Action gesture="@integer/dirNE"    cmd="cyrillic"/>
+        <Action gesture="@integer/dirN"     cmd="greek"/>
+        <Action gesture="@integer/dirNW"    cmd="latin"/>
+        <Action gesture="@integer/dirW"     cmd="arabic"/>
     </Key>
 
     <Key id="@id/key_Enter" code="66" label="↵"/>
@@ -576,24 +630,26 @@
 
 <!-- Template for keys
 
-    <Key id="@id/key_" text="">
-        <Action gesture="@integer/acute"    text=""/>
-        <Action gesture="@integer/bar"      text=""/>
-        <Action gesture="@integer/caret"    text=""/>
-        <Action gesture="@integer/cedilla"  text=""/>
-        <Action gesture="@integer/dblacute" text=""/>
-        <Action gesture="@integer/dot"      text=""/>
-        <Action gesture="@integer/grave"    text=""/>
-        <Action gesture="@integer/hacek"    text=""/>
-        <Action gesture="@integer/macron"   text=""/>
-        <Action gesture="@integer/ogonek"   text=""/>
-        <Action gesture="@integer/ring"     text=""/>
-        <Action gesture="@integer/tilde"    text=""/>
-        <Action gesture="@integer/umlaut"   text=""/>
-        <Action gesture="@integer/spec"     text=""/>
-        <State mod="@integer/shift" text="">
-        </State>
-        <State mod="@integer/arabic" text=""/>
+    <Key id="@id/key_">
+        <Script id="@integer/latin" text="">
+            <Action gesture="@integer/acute"    text=""/>
+            <Action gesture="@integer/bar"      text=""/>
+            <Action gesture="@integer/caret"    text=""/>
+            <Action gesture="@integer/cedilla"  text=""/>
+            <Action gesture="@integer/dblacute" text=""/>
+            <Action gesture="@integer/dot"      text=""/>
+            <Action gesture="@integer/grave"    text=""/>
+            <Action gesture="@integer/hacek"    text=""/>
+            <Action gesture="@integer/macron"   text=""/>
+            <Action gesture="@integer/ogonek"   text=""/>
+            <Action gesture="@integer/ring"     text=""/>
+            <Action gesture="@integer/tilde"    text=""/>
+            <Action gesture="@integer/umlaut"   text=""/>
+            <Action gesture="@integer/spec"     text=""/>
+            <State mod="@integer/shift" text="">
+            </State>
+        </Script>
+        <Script id="@integer/arabic" text=""/>
     </Key>
 
 -->

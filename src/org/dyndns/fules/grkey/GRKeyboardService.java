@@ -55,8 +55,8 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
     int                         selectionStart = -1, selectionEnd = -1;
 
     KeyMap                      keyMap;
-
-    int                         currentShiftState;
+    int                         currentScript = 0;
+    int                         currentShiftState = 0;
 
     public static String nullSafe(String s) {
         return (s == null) ? "<null>" : s;
@@ -221,17 +221,17 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
         }
     }
 
-    class Key extends State {
+    class Script extends State {
         int                 id;
         State[]             states = new State[res.getInteger(R.integer.shift_state_max)];
 
-        public Key() {
+        public Script() {
         }
 
         protected void parseAttributes(XmlResourceParser parser) throws XmlPullParserException, IOException {
             super.parseAttributes(parser);
-            id = parser.getAttributeResourceValue(null, "id", -1);
-            //Log.d(TAG, "Key.parseAttributes; this=" + this + ", id=" + id);
+            id = res.getInteger(parser.getAttributeResourceValue(null, "id", R.integer.latin));
+            //Log.d(TAG, "Script.parseAttributes; this=" + this + ", mod=" + mod);
         }
 
         protected boolean parseContent(XmlResourceParser parser) throws XmlPullParserException, IOException {
@@ -239,7 +239,7 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
                 return true;
             if (parser.getName().equals("State")) {
                 State state = new State();
-                //Log.d(TAG, "Key.parseContent; this=" + this + ", state=" + state);
+                //Log.d(TAG, "Script.parseContent; this=" + this + ", state=" + state);
                 state.parse(parser);
                 states[state.getMod()] = state;
                 return true;
@@ -255,6 +255,44 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
             State state = states[mod];
             //Log.d(TAG, "Key; lookup mod=" + mod + ", state=" + state);
             return (state != null) ? state : this;
+        }
+
+    }
+
+    class Key extends Script {
+        int                 id;
+        Script[]            scripts = new Script[res.getInteger(R.integer.script_max)];
+
+        public Key() {
+        }
+
+        protected void parseAttributes(XmlResourceParser parser) throws XmlPullParserException, IOException {
+            super.parseAttributes(parser);
+            id = parser.getAttributeResourceValue(null, "id", -1);
+            //Log.d(TAG, "Key.parseAttributes; this=" + this + ", id=" + id);
+        }
+
+        protected boolean parseContent(XmlResourceParser parser) throws XmlPullParserException, IOException {
+            if (super.parseContent(parser))
+                return true;
+            if (parser.getName().equals("Script")) {
+                Script script = new Script();
+                //Log.d(TAG, "Key.parseContent; this=" + this + ", state=" + state);
+                script.parse(parser);
+                scripts[script.getId()] = script;
+                return true;
+            }
+            return false;
+        }
+
+        public int getId() {
+            return id;
+        }
+
+        public Script getScript(int id) {
+            Script script = scripts[id];
+            //Log.d(TAG, "Key; lookup id=" + id + ", script=" + script);
+            return (script != null) ? script : this;
         }
 
     }
@@ -401,7 +439,12 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
         Log.d(TAG, "execCmd('" + cmd + "')");
         InputConnection ic = getCurrentInputConnection();
 
-        if (cmd.equals("selectStart")) {
+        if (cmd.equals("hide"))
+            requestHideSelf(0);
+        else if (cmd.equals("switchIM"))
+            ic.performContextMenuAction(android.R.id.switchInputMethod);
+        // ---- selection commands
+        else if (cmd.equals("selectStart")) {
             selectionStart = ic.getExtractedText(etreq, 0).selectionStart;
             if ((selectionStart >= 0) && (selectionEnd >= 0)) {
                 ic.setSelection(selectionStart, selectionEnd);
@@ -423,18 +466,23 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
             ic.performContextMenuAction(android.R.id.cut);
         else if (cmd.equals("paste"))
             ic.performContextMenuAction(android.R.id.paste);
-        else if (cmd.equals("switchIM"))
-            ic.performContextMenuAction(android.R.id.switchInputMethod);
-        else if (cmd.equals("hide"))
-            requestHideSelf(0);
+        // ---- shift commands
         else if (cmd.equals("normal"))
             setShiftState(res.getInteger(R.integer.normal));
         else if (cmd.equals("shift"))
             setShiftState(currentShiftState | res.getInteger(R.integer.shift));
-        else if (cmd.equals("arabic"))
-            setShiftState(res.getInteger(R.integer.arabic));
         else if (cmd.equals("ctrl"))
             setShiftState(currentShiftState | res.getInteger(R.integer.ctrl));
+        // ---- script change commands
+        else if (cmd.equals("latin"))
+            setScript(res.getInteger(R.integer.latin));
+        else if (cmd.equals("cyrillic"))
+            setScript(res.getInteger(R.integer.cyrillic));
+        else if (cmd.equals("greek"))
+            setScript(res.getInteger(R.integer.greek));
+        else if (cmd.equals("arabic"))
+            setScript(res.getInteger(R.integer.arabic));
+        // ----
         else
             Log.w(TAG, "Unknown cmd '" + cmd + "'");
     }
@@ -445,6 +493,16 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
 
     private void setShiftState(int newState) {
         currentShiftState = newState;
+        if (kv != null)
+            kv.invalidate();
+    }
+
+    public int getScript() {
+        return currentScript;
+    }
+
+    private void setScript(int newScript) {
+        currentScript = newScript;
         if (kv != null)
             kv.invalidate();
     }
@@ -540,28 +598,42 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
         }*/
     }
 
-    public Action getActionForKey(int keyId, int shiftState, int gestureCode) {
-        return keyMap.getKey(keyId).getState(shiftState).getAction(gestureCode);
+    public Action getActionForKey(int keyId, int script, int shiftState, int gestureCode) {
+        return keyMap.getKey(keyId).getScript(script).getState(shiftState).getAction(gestureCode);
     }
 
     public String getLabelForKey(int keyId) {
         Action a;
         String s;
 
-        a = getActionForKey(keyId, currentShiftState, 0);
+        a = getActionForKey(keyId, currentScript, currentShiftState, 0);
         s = a.getText();
         if (s != null)
             return s;
-
         s = a.getLabel();
         if (s != null)
             return s;
 
-        a = getActionForKey(keyId, 0, 0);
+        a = getActionForKey(keyId, currentScript, 0, 0);
         s = a.getText();
         if (s != null)
             return s;
+        s = a.getLabel();
+        if (s != null)
+            return s;
 
+        a = getActionForKey(keyId, 0, currentShiftState, 0);
+        s = a.getText();
+        if (s != null)
+            return s;
+        s = a.getLabel();
+        if (s != null)
+            return s;
+
+        a = getActionForKey(keyId, 0, 0, 0);
+        s = a.getText();
+        if (s != null)
+            return s;
         s = a.getLabel();
         if (s != null)
             return s;
@@ -574,7 +646,7 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
             TextView tv = (TextView)keyview;
             Log.d(TAG, "keyClicked('" + tv.getText().toString() + "'), id=" + tv.getId() + ", state=" + currentShiftState + ", gesture=" + gestureCode);
 
-            Action a = getActionForKey(tv.getId(), currentShiftState, gestureCode);
+            Action a = getActionForKey(tv.getId(), currentScript, currentShiftState, gestureCode);
 
             if (a.getCode() >= 0)
                 onKey(a.getCode());
