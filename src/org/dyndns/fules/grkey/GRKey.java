@@ -33,14 +33,25 @@ import java.util.Iterator;
 public class GRKey extends Button {
 	// Constants
 	private static final String		TAG = "GRKeyboard";
+	private static final int                LONG_TAP_TIMEOUT = 1200;
+
 	private GRKeyboardService		svc;
 	private int[] stateNormal		= { android.R.attr.state_enabled, android.R.attr.state_window_focused, android.R.attr.state_multiline };
 	private int[] statePressed		= { android.R.attr.state_enabled, android.R.attr.state_window_focused, android.R.attr.state_multiline, android.R.attr.state_pressed };
 	private int				lastShiftState = -1;
+	private LongTap                         onLongTap;
 
 	JitterFilter		jitterFilter = new JitterFilter(0.6f);
 	LinearRegression	strokeFinder = new LinearRegression(0.8f, 20f);
 	int			gestureCode;
+
+	private final class LongTap implements Runnable {
+		public void run() {
+			gestureCode = 5; // long tap
+			if (svc != null)
+				svc.keyClicked(GRKey.this, gestureCode);
+		}
+	}
 
 	public GRKey(Context context) {
 		this(context, null);
@@ -65,6 +76,7 @@ public class GRKey extends Button {
 			Log.d(TAG, "Context of key is not a GRKeyboardService");
 		}
 		updateShiftState();
+		onLongTap = new LongTap();
 	}
 
 	public void updateShiftState() {
@@ -168,6 +180,8 @@ public class GRKey extends Button {
 				jitterFilter.clear();
 				strokeFinder.clear();
 				processGestureMove(event.getX(), event.getY());
+				postDelayed(onLongTap, LONG_TAP_TIMEOUT);
+
 			}
 			break;
 
@@ -184,7 +198,13 @@ public class GRKey extends Button {
 				if (bg.setState(stateNormal))
 					bg.invalidateSelf();
 
-				Log.d(TAG, "Stopping gesture;");
+				if (gestureCode == 5) { // long tap is already reported
+					gestureCode = 0;
+					break;
+				}
+				removeCallbacks(onLongTap);
+
+				//Log.d(TAG, "Stopping gesture;");
 				PointF p = new PointF(event.getX(), event.getY());
 
 				if (!jitterFilter.add(p))
@@ -196,11 +216,11 @@ public class GRKey extends Button {
 					gesturePartFinished();
 					strokeFinder.clearButLast();
 				}
-                else {
-                    if (strokeFinder.isLongEnough())
-                        gesturePartFinished();
-                }
-				Log.d(TAG, "Stopped gesture;");
+				else {
+					if (strokeFinder.isLongEnough())
+						gesturePartFinished();
+				}
+				//Log.d(TAG, "Stopped gesture;");
 				if (svc != null)
 					svc.keyClicked(this, gestureCode);
 			}

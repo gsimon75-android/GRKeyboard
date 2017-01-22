@@ -109,7 +109,7 @@ public class LinearRegression {
 		deviation.x = (float)Math.sqrt((xx + yy + d) / 2);
 		deviation.y = (float)Math.sqrt((xx + yy - d) / 2);
 
-        Log.d(TAG, "LinearRegression.add" + p + "; angle=" + (angle * 180.0f / Math.PI) + "', deviation='" + deviation + "', quality='" + quality + "'");
+        //Log.d(TAG, "LinearRegression.add" + p + "; angle=" + (angle * 180.0f / Math.PI) + "', deviation='" + deviation + "', quality='" + quality + "'");
         if (isLongEnough()) {
             // the series is long enough (trendwise)
 
@@ -124,14 +124,14 @@ public class LinearRegression {
                 // that is, the cosine of this angle is positive, which means
                 // the scalar product is positive.
                 if (((p.x - pN1.x)*(pN2.x - pN1.x) + (p.y - pN1.y)*(pN2.y - pN1.y)) > 0) {
-                    Log.d(TAG, "LinearRegression.add backwards");
+                    //Log.d(TAG, "LinearRegression.add backwards");
                     return false;
                 }
             }
 
             if (!isGoodEnough()) {
                 // quality would drop too much, return without touching the data
-                Log.d(TAG, "LinearRegression.add quality drop");
+                //Log.d(TAG, "LinearRegression.add quality drop");
                 return false;
             }
         }
