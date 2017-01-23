@@ -81,9 +81,3 @@ Cyrillic not assigned yet
 
 diacritics: upturn, stroke, descender, macron, hacek
 
-Greek not assigned yet
-======================
-<Action code="θ"/> theta
-<Action code="ο"/> omicron
-<Action code="ψ"/> psi
-<Action code="ω"/> omega

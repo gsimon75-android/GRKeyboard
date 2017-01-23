@@ -105,8 +105,8 @@
         <Script id="@integer/cyrillic" text="ы">
             <State mod="@integer/shift" text="Ы"/>
         </Script>
-        <Script id="@integer/greek" text="">
-            <State mod="@integer/shift" text=""/>
+        <Script id="@integer/greek" text="ω">
+            <State mod="@integer/shift" text="Ω"/>
         </Script>
     </Key>
 
@@ -370,8 +370,8 @@
                 <Action gesture="@integer/soft"        text="Ё"/>
             </State>
         </Script>
-        <Script id="@integer/greek" text="">
-            <State mod="@integer/shift" text=""/>
+        <Script id="@integer/greek" text="ο">
+            <State mod="@integer/shift" text="Ο"/>
         </Script>
     </Key>
 
@@ -620,8 +620,8 @@
                 <Action gesture="@integer/soft"        text="Џ"/>
             </State>
         </Script>
-        <Script id="@integer/greek" text="">
-            <State mod="@integer/shift" text=""/>
+        <Script id="@integer/greek" text="θ"> <!-- NOTE: where else? -->
+            <State mod="@integer/shift" text="Θ"/>
         </Script>
     </Key>
 
@@ -798,8 +798,8 @@
         <Script id="@integer/cyrillic" text="в">
             <State mod="@integer/shift" text="В"/>
         </Script>
-        <Script id="@integer/greek" text="">
-            <State mod="@integer/shift" text=""/>
+        <Script id="@integer/greek" text="ψ"> <!-- NOTE: where else? -->
+            <State mod="@integer/shift" text="Ψ"/>
         </Script>
     </Key>
 
