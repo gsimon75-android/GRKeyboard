@@ -77,6 +77,9 @@
                 <Action gesture="@integer/soft"        text="Ь"/>
             </State>
         </Script>
+        <Script id="@integer/greek" text="χ">
+            <State mod="@integer/shift" text="Χ"/>
+        </Script>
     </Key>
 
     <Key id="@id/key_W">
@@ -100,8 +103,10 @@
             <Action gesture="@integer/hamza"       text="ؤ"/>
         </Script>
         <Script id="@integer/cyrillic" text="ы">
-            <State mod="@integer/shift" text="Ы">
-            </State>
+            <State mod="@integer/shift" text="Ы"/>
+        </Script>
+        <Script id="@integer/greek" text="">
+            <State mod="@integer/shift" text=""/>
         </Script>
     </Key>
 
@@ -145,6 +150,9 @@
                 <Action gesture="@integer/soft_variant" text="Ј"/>
             </State>
         </Script>
+        <Script id="@integer/greek" text="ε">
+            <State mod="@integer/shift" text="Ε"/>
+        </Script>
     </Key>
 
     <Key id="@id/key_R">
@@ -168,8 +176,10 @@
             <!--Action gesture="@integer/alt_shaddah" text=""/-->
         </Script>
         <Script id="@integer/cyrillic" text="р">
-            <State mod="@integer/shift" text="Р">
-            </State>
+            <State mod="@integer/shift" text="Р"/>
+        </Script>
+        <Script id="@integer/greek" text="ρ">
+            <State mod="@integer/shift" text="Ρ"/>
         </Script>
     </Key>
 
@@ -192,8 +202,10 @@
             <Action gesture="@integer/alt_shaddah" text="ثّ"/>
         </Script>
         <Script id="@integer/cyrillic" text="т">
-            <State mod="@integer/shift" text="Т">
-            </State>
+            <State mod="@integer/shift" text="Т"/>
+        </Script>
+        <Script id="@integer/greek" text="τ">
+            <State mod="@integer/shift" text="Τ"/>
         </Script>
     </Key>
 
@@ -228,6 +240,9 @@
                 <Action gesture="@integer/soft"        text=""/>
                 <Action gesture="@integer/variant"     text="Ї"/>
             </State>
+        </Script>
+        <Script id="@integer/greek" text="υ">
+            <State mod="@integer/shift" text="Υ"/>
         </Script>
     </Key>
 
@@ -264,6 +279,9 @@
             <State mod="@integer/shift" text="У">
                 <Action gesture="@integer/soft"        text="Ю"/>
             </State>
+        </Script>
+        <Script id="@integer/greek" text="">
+            <State mod="@integer/shift" text=""/>
         </Script>
     </Key>
 
@@ -307,6 +325,9 @@
                 <Action gesture="@integer/soft_variant" text="Ї"/>
             </State>
         </Script>
+        <Script id="@integer/greek" text="ι">
+            <State mod="@integer/shift" text="Ι"/>
+        </Script>
     </Key>
 
     <Key id="@id/key_O">
@@ -349,6 +370,9 @@
                 <Action gesture="@integer/soft"        text="Ё"/>
             </State>
         </Script>
+        <Script id="@integer/greek" text="">
+            <State mod="@integer/shift" text=""/>
+        </Script>
     </Key>
 
     <Key id="@id/key_P">
@@ -370,8 +394,10 @@
             <Action gesture="@integer/alt_shaddah" text="غّ"/>
         </Script>
         <Script id="@integer/cyrillic" text="п">
-            <State mod="@integer/shift" text="П">
-            </State>
+            <State mod="@integer/shift" text="П"/>
+        </Script>
+        <Script id="@integer/greek" text="π">
+            <State mod="@integer/shift" text="Π"/>
         </Script>
     </Key>
 
@@ -419,6 +445,9 @@
                 <Action gesture="@integer/soft"        text="Я"/>
             </State>
         </Script>
+        <Script id="@integer/greek" text="α">
+            <State mod="@integer/shift" text="Α"/>
+        </Script>
     </Key>
 
     <Key id="@id/key_S">
@@ -448,7 +477,12 @@
             <Action gesture="@integer/alt_shaddah" text="شّ"/>
         </Script>
         <Script id="@integer/cyrillic" text="с">
-            <State mod="@integer/shift" text="С">
+            <State mod="@integer/shift" text="С"/>
+        </Script>
+        <Script id="@integer/greek" text="σ">
+            <Action gesture="@integer/spec"        text="ς"/>
+            <State mod="@integer/shift" text="Σ">
+                <Action gesture="@integer/spec"        text="Σ"/>
             </State>
         </Script>
     </Key>
@@ -479,6 +513,9 @@
                 <Action gesture="@integer/soft"        text="Ђ"/>
             </State>
         </Script>
+        <Script id="@integer/greek" text="δ">
+            <State mod="@integer/shift" text="Δ"/>
+        </Script>
     </Key>
 
     <Key id="@id/key_F">
@@ -495,8 +532,10 @@
             <Action gesture="@integer/alt_shaddah" text="ڤّ"/>
         </Script>
         <Script id="@integer/cyrillic" text="ф">
-            <State mod="@integer/shift" text="Ф">
-            </State>
+            <State mod="@integer/shift" text="Ф"/>
+        </Script>
+        <Script id="@integer/greek" text="φ">
+            <State mod="@integer/shift" text="Φ"/>
         </Script>
     </Key>
 
@@ -526,6 +565,9 @@
                 <Action gesture="@integer/soft"        text="Ѓ"/>
             </State>
         </Script>
+        <Script id="@integer/greek" text="γ">
+            <State mod="@integer/shift" text="Γ"/>
+        </Script>
     </Key>
 
     <Key id="@id/key_H">
@@ -549,8 +591,10 @@
             <Action gesture="@integer/alt_shaddah" text="ةّ"/>
         </Script>
         <Script id="@integer/cyrillic" text="х">
-            <State mod="@integer/shift" text="Х">
-            </State>
+            <State mod="@integer/shift" text="Х"/>
+        </Script>
+        <Script id="@integer/greek" text="η">
+            <State mod="@integer/shift" text="Η"/>
         </Script>
     </Key>
 
@@ -575,6 +619,9 @@
             <State mod="@integer/shift" text="Ж">
                 <Action gesture="@integer/soft"        text="Џ"/>
             </State>
+        </Script>
+        <Script id="@integer/greek" text="">
+            <State mod="@integer/shift" text=""/>
         </Script>
     </Key>
 
@@ -601,6 +648,9 @@
             <State mod="@integer/shift" text="К">
                 <Action gesture="@integer/soft"        text="Ќ"/>
             </State>
+        </Script>
+        <Script id="@integer/greek" text="κ">
+            <State mod="@integer/shift" text="Κ"/>
         </Script>
     </Key>
 
@@ -629,6 +679,9 @@
             <State mod="@integer/shift" text="Л">
                 <Action gesture="@integer/soft"        text="Љ"/>
             </State>
+        </Script>
+        <Script id="@integer/greek" text="λ">
+            <State mod="@integer/shift" text="Λ"/>
         </Script>
     </Key>
 
@@ -662,6 +715,9 @@
                 <Action gesture="@integer/soft"        text="Ѕ"/>
             </State>
         </Script>
+        <Script id="@integer/greek" text="ζ">
+            <State mod="@integer/shift" text="Ζ"/>
+        </Script>
     </Key>
 
     <Key id="@id/key_X">
@@ -683,6 +739,9 @@
             <State mod="@integer/shift" text="Ш">
                 <Action gesture="@integer/soft"        text="Щ"/>
             </State>
+        </Script>
+        <Script id="@integer/greek" text="ξ">
+            <State mod="@integer/shift" text="Ξ"/>
         </Script>
     </Key>
 
@@ -719,6 +778,9 @@
                 <Action gesture="@integer/soft_variant" text="Ћ"/>
             </State>
         </Script>
+        <Script id="@integer/greek" text="">
+            <State mod="@integer/shift" text=""/>
+        </Script>
     </Key>
 
     <Key id="@id/key_V">
@@ -735,6 +797,9 @@
         </Script>
         <Script id="@integer/cyrillic" text="в">
             <State mod="@integer/shift" text="В"/>
+        </Script>
+        <Script id="@integer/greek" text="">
+            <State mod="@integer/shift" text=""/>
         </Script>
     </Key>
 
@@ -757,6 +822,9 @@
         </Script>
         <Script id="@integer/cyrillic" text="б">
             <State mod="@integer/shift" text="Б"/>
+        </Script>
+        <Script id="@integer/greek" text="β"> <!-- NOTE: maybe key_V -->
+            <State mod="@integer/shift" text="Β"/>
         </Script>
     </Key>
 
@@ -786,6 +854,9 @@
                 <Action gesture="@integer/soft"        text="њ"/>
             </State>
         </Script>
+        <Script id="@integer/greek" text="ν">
+            <State mod="@integer/shift" text="Ν"/>
+        </Script>
     </Key>
 
     <Key id="@id/key_M">
@@ -803,8 +874,10 @@
             <!--Action gesture="@integer/alt_shaddah" text=""/-->
         </Script>
         <Script id="@integer/cyrillic" text="м">
-            <State mod="@integer/shift" text="М">
-            </State>
+            <State mod="@integer/shift" text="М"/>
+        </Script>
+        <Script id="@integer/greek" text="μ">
+            <State mod="@integer/shift" text="Μ"/>
         </Script>
     </Key>
 
@@ -931,8 +1004,13 @@
         </Script>
         <Script id="@integer/arabic" text=""/>
         <Script id="@integer/cyrillic" text="">
+            <Action gesture="@integer/soft"        text=""/>
             <State mod="@integer/shift" text="">
+                <Action gesture="@integer/soft"        text=""/>
             </State>
+        </Script>
+        <Script id="@integer/greek" text="">
+            <State mod="@integer/shift" text=""/>
         </Script>
     </Key>
 

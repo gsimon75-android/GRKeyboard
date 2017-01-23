@@ -80,3 +80,10 @@ Cyrillic not assigned yet
 <Action code="ҷ"/> <!-- che + descender -->
 
 diacritics: upturn, stroke, descender, macron, hacek
+
+Greek not assigned yet
+======================
+<Action code="θ"/> theta
+<Action code="ο"/> omicron
+<Action code="ψ"/> psi
+<Action code="ω"/> omega
