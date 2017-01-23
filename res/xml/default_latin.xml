@@ -71,8 +71,10 @@
             <!--Action gesture="@integer/alt"         text=""/-->
             <!--Action gesture="@integer/alt_shaddah" text=""/-->
         </Script>
-        <Script id="@integer/cyrillic" text="">
-            <State mod="@integer/shift" text="">
+        <Script id="@integer/cyrillic" text="ъ">
+            <Action gesture="@integer/soft"        text="ь"/>
+            <State mod="@integer/shift" text="Ъ">
+                <Action gesture="@integer/soft"        text="Ь"/>
             </State>
         </Script>
     </Key>
@@ -220,8 +222,11 @@
             <Action gesture="@integer/maddah"      text="يٓ"/>
             <Action gesture="@integer/hamza"       text="ئ"/>
         </Script>
-        <Script id="@integer/cyrillic" text="">
-            <State mod="@integer/shift" text="">
+        <Script id="@integer/cyrillic" text="й"> <!-- NOTE: this is redundant, see key_I+soft -->
+            <Action gesture="@integer/variant"     text="ї"/>
+            <State mod="@integer/shift" text="Й">
+                <Action gesture="@integer/soft"        text=""/>
+                <Action gesture="@integer/variant"     text="Ї"/>
             </State>
         </Script>
     </Key>
@@ -673,8 +678,10 @@
             <Action gesture="@integer/alt"         text="ظ"/>
             <Action gesture="@integer/alt_shaddah" text="ظّ"/>
         </Script>
-        <Script id="@integer/cyrillic" text="">
-            <State mod="@integer/shift" text="">
+        <Script id="@integer/cyrillic" text="ш">
+            <Action gesture="@integer/soft"        text="щ"/>
+            <State mod="@integer/shift" text="Ш">
+                <Action gesture="@integer/soft"        text="Щ"/>
             </State>
         </Script>
     </Key>
@@ -704,8 +711,12 @@
             <Action gesture="@integer/alt"         text="ض"/>
             <Action gesture="@integer/alt_shaddah" text="ضّ"/>
         </Script>
-        <Script id="@integer/cyrillic" text="">
-            <State mod="@integer/shift" text="">
+        <Script id="@integer/cyrillic" text="ц">
+            <Action gesture="@integer/soft"        text="ч"/>
+            <Action gesture="@integer/soft_variant" text="ћ"/>
+            <State mod="@integer/shift" text="Ц">
+                <Action gesture="@integer/soft"        text="Ч"/>
+                <Action gesture="@integer/soft_variant" text="Ћ"/>
             </State>
         </Script>
     </Key>

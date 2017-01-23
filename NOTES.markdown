@@ -61,16 +61,7 @@ alif	sin	dal	fa	h.a	ha	jim	kaf	lam
 Cyrillic not assigned yet
 =========================
 
-<Action code="ц"/>
-<Action code="ч"/>
-<Action code="ћ"/> <!-- tshe -->
-
-<Action code="ш"/>
 <Action code="һ"/> <!-- shha -->
-
-<Action code="щ"/>
-<Action code="ъ"/>
-<Action code="ь"/>
 
 <Action code="ү"/> <!-- straight u -->
 <Action code="ў"/> <!-- short u -->
@@ -87,3 +78,5 @@ Cyrillic not assigned yet
 <Action code="ң"/> <!-- en + descender -->
 <Action code="ҳ"/> <!-- ha + descender -->
 <Action code="ҷ"/> <!-- che + descender -->
+
+diacritics: upturn, stroke, descender, macron, hacek
