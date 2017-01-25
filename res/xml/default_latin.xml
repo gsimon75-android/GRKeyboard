@@ -620,8 +620,8 @@
                 <Action gesture="@integer/soft"        text="Џ"/>
             </State>
         </Script>
-        <Script id="@integer/greek" text="θ"> <!-- NOTE: where else? -->
-            <State mod="@integer/shift" text="Θ"/>
+        <Script id="@integer/greek" text="ϳ">
+            <State mod="@integer/shift" text="Ϳ"/>
         </Script>
     </Key>
 
@@ -778,8 +778,8 @@
                 <Action gesture="@integer/soft_variant" text="Ћ"/>
             </State>
         </Script>
-        <Script id="@integer/greek" text="">
-            <State mod="@integer/shift" text=""/>
+        <Script id="@integer/greek" text="θ"> <!-- NOTE: where else? -->
+            <State mod="@integer/shift" text="Θ"/>
         </Script>
     </Key>
 
