@@ -5,6 +5,28 @@
 		<attr name="label" format="string"/>
 	</declare-styleable>
 	
+	<declare-styleable name="GestureView">
+		<!-- gesture -->
+		<attr name="gesture" format="integer"/>
+
+		<!-- colours -->
+		<attr name="foreground" format="reference|color"/>
+		<attr name="outline" format="reference|color"/>
+
+		<!-- fg sizes (absolute) -->
+		<attr name="outlineWidth" format="dimension"/>
+		<attr name="circleRadius" format="dimension"/>
+		<attr name="lineWidth" format="dimension"/>
+		<attr name="arrowLength" format="dimension"/>
+		<attr name="arrowDegrees" format="float"/>
+
+		<!-- fg sizes (relative to image, if abs is 0) -->
+		<attr name="outlinePct" format="float"/>
+		<attr name="circlePct" format="float"/>
+		<attr name="linePct" format="float"/>
+		<attr name="arrowPct" format="float"/>
+	</declare-styleable>
+
 </resources>
 <!-- vim: set sw=4 ts=4 noet nowrap: -->
 
