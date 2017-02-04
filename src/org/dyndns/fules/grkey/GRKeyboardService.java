@@ -3,22 +3,25 @@ import org.dyndns.fules.grkey.R;
 
 import android.app.Notification;
 import android.app.NotificationManager;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
 import android.app.PendingIntent;
 import android.content.res.Configuration;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.content.res.Resources;
 import android.content.res.XmlResourceParser;
 import android.inputmethodservice.InputMethodService;
-import android.inputmethodservice.KeyboardView.OnKeyboardActionListener;
 import android.inputmethodservice.KeyboardView;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.ContextThemeWrapper;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputConnection;
 import android.view.inputmethod.ExtractedText;
@@ -642,20 +645,42 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
     }
 
     public void keyClicked(View keyview, int gestureCode) {
-        if (keyview instanceof TextView) {
-            TextView tv = (TextView)keyview;
-            Log.d(TAG, "keyClicked('" + tv.getText().toString() + "'), id=" + tv.getId() + ", state=" + currentShiftState + ", gesture=" + gestureCode);
+        if (keyview instanceof GRKey) {
+            GRKey key = (GRKey)keyview;
+            Log.d(TAG, "keyClicked('" + key.getText().toString() + "'), id=" + key.getId() + ", state=" + currentShiftState + ", gesture=" + gestureCode);
+            
+            if (gestureCode == 5) { // long tap -> help
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle(R.string.possible_gestures);
+                /*builder.setMessage("nesze");
+                builder.setNeutralButton("yo", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Log.d(TAG, "keyClicked.onClick; id=" + id);
+                    }
+                });*/
 
-            Action a = getActionForKey(tv.getId(), currentScript, currentShiftState, gestureCode);
+                builder.setItems(R.array.yadda, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        Log.d(TAG, "keyClicked.onClick; which=" + which);
+                    }
+                });
 
-            if (a.getCode() >= 0)
-                onKey(a.getCode());
-            else if (a.getText() != null)
-                onText(a.getText());
-            else if (a.getCmd() != null)
-                execCmd(a.getCmd());
-            else
-                Log.d(TAG, "Empty action for this key;");
+                AlertDialog dialog = builder.create();
+                dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+                dialog.show();
+            }
+            else {
+                Action a = getActionForKey(key.getId(), currentScript, currentShiftState, gestureCode);
+
+                if (a.getCode() >= 0)
+                    onKey(a.getCode());
+                else if (a.getText() != null)
+                    onText(a.getText());
+                else if (a.getCmd() != null)
+                    execCmd(a.getCmd());
+                else
+                    Log.d(TAG, "Empty action for this key;");
+            }
 
         }
         else {

@@ -16,4 +16,5 @@
 	<string name="copyright">Copyright</string>
 	<string name="copyright_summary">2016 Gabor Simon. All rights reserved, New BSD License applies.</string>
 
+	<string name="possible_gestures">Possible gestures</string>
 </resources>

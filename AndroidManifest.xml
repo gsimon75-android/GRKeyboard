@@ -3,6 +3,7 @@
 	a:versionCode="@integer/version_number" a:versionName="@string/version_summary">
 	<uses-sdk a:minSdkVersion="15" a:targetSdkVersion="15"/>
 	<uses-permission a:name="android.permission.BIND_INPUT_METHOD"/>
+	<uses-permission a:name="android.permission.SYSTEM_ALERT_WINDOW"/>
 
 	<application a:label="@string/app_label" a:icon="@drawable/icon_launcher" a:theme="@style/Theme.GRKeyApp">
 

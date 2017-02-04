@@ -59,6 +59,27 @@
 	<integer name="left_x">183</integer>
 	<integer name="right_x">381</integer>
 
+	<string-array name="yadda">
+		<item>"alpha"</item>
+		<item>"beta"</item>
+		<item>"gamma"</item>
+		<item>"epsilon"</item>
+		<item>"phi"</item>
+		<item>"rho"</item>
+		<item>"kappa"</item>
+		<item>"tau"</item>
+		<item>"mu"</item>
+		<item>"nu"</item>
+		<item>"ksi"</item>
+		<item>"omicron"</item>
+		<item>"psi"</item>
+		<item>"sigma"</item>
+		<item>"zeta"</item>
+		<item>"eta"</item>
+		<item>"theta"</item>
+		<item>"omega"</item>
+	</string-array>
+
 </resources>
 
 <!-- vim: set sw=4 ts=4 noet nowrap: -->
