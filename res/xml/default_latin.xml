@@ -3,6 +3,8 @@
 <KeyMap xmlns:a="http://schemas.android.com/apk/res/android"
     a:id="@+id/default_latin_keymap" name="Latin">
 
+    <Action gesture="@integer/long_tap" cmd="showGestures"/>
+
     <!-- Numeric keys -->
     <Key id="@id/key_0" text="0">
         <Script id="@integer/arabic" text="0">

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:a="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	a:orientation="horizontal" a:layout_width="fill_parent" a:layout_height="wrap_content">
+
+	<org.dyndns.fules.grkey.GestureView a:id="@+id/gestureView" a:layout_width="20mm" a:layout_height="wrap_content" a:padding="2mm"/>
+	<TextView a:id="@+id/gestureText" a:layout_width="0px" a:layout_weight="1" a:layout_height="wrap_content"/>
+</LinearLayout>
+<!-- vim: set sw=4 ts=4 noet nowrap: -->

@@ -51,7 +51,7 @@
 	<integer name="dirN">8</integer>
 	<integer name="dirNE">9</integer>
 	<integer name="dirW">4</integer>
-	<integer name="longtap">5</integer>
+	<integer name="long_tap">5</integer>
 	<integer name="dirE">6</integer>
 	<integer name="dirSW">1</integer>
 	<integer name="dirS">2</integer>

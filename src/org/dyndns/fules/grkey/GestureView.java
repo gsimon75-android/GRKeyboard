@@ -122,6 +122,8 @@ public class GestureView extends View {
             g = 0;
 
         if (gesture != g) {
+            if (g == 5)
+                g = 0; // FIXME: temporary hack, treat longtap as tap
             gesture = g;
             invalidate();
         }

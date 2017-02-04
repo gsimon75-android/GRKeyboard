@@ -27,10 +27,12 @@ import android.view.inputmethod.InputConnection;
 import android.view.inputmethod.ExtractedText;
 import android.view.inputmethod.ExtractedTextRequest;
 import android.view.LayoutInflater;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.R.id;
 import java.io.IOException;
 import java.util.Iterator;
+import java.util.HashSet;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
@@ -51,6 +53,7 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
     SharedPreferences           mPrefs;
 
     View                        kv;                 // the current layout view
+    AlertDialog.Builder         helpDialogBuilder;
 
     int                         lastOrientation = -1;
 
@@ -113,9 +116,9 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
         // Parse the attributes, but do not modify (eg. step ahead) the parser
         protected void parseAttributes(XmlResourceParser parser) throws XmlPullParserException, IOException {
             /*int n = parser.getAttributeCount();
-            for (int i = 0; i < n; ++i) {
-                Log.d(TAG, "<" + tagName + "> attribute[" + i + "] = { ns='" + parser.getAttributeNamespace(i) + "', name='" + parser.getAttributeName(i) + "', value='" + parser.getAttributeValue(i) + "' }");
-            }*/
+              for (int i = 0; i < n; ++i) {
+              Log.d(TAG, "<" + tagName + "> attribute[" + i + "] = { ns='" + parser.getAttributeNamespace(i) + "', name='" + parser.getAttributeName(i) + "', value='" + parser.getAttributeValue(i) + "' }");
+              }*/
         }
 
         // Parse a content tag, and leave the parser at the closing of this tag
@@ -150,18 +153,13 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
             int resId;
 
             resId = parser.getAttributeResourceValue(null, "gesture", -1);
-            if (resId >= 0) {
-                gesture = res.getInteger(resId);
-            }
-            else {
-                gesture = parser.getAttributeIntValue(null, "gesture", -1);
-                if (gesture < 0) 
-                    gesture = res.getInteger(R.integer.tap);
-            }
+            gesture = (resId >= 0) ? res.getInteger(resId) : parser.getAttributeIntValue(null, "gesture", -1);
             text = parser.getAttributeValue(null, "text");
             cmd = parser.getAttributeValue(null, "cmd");
             label = parser.getAttributeValue(null, "label");
             code = parser.getAttributeIntValue(null, "code", -1);
+            if ((gesture < 0) && ((text != null) || (cmd != null) || (code >= 0)))
+                gesture = res.getInteger(R.integer.tap);
             //Log.d(TAG, "Action.parseAttributes; this=" + this + ", gesture=" + gesture + ", code=" + code + ", text='" + nullSafe(text) + "', cmd='" + nullSafe(cmd) +"'");
         }
 
@@ -182,7 +180,48 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
         }
 
         public String getLabel() {
-            return label;
+            if (text != null)
+                return text;
+
+            if (label != null)
+                return label;
+
+            if (cmd != null)
+                return cmd; // TODO: localise
+
+            // NOTE: actions with 'code=' shall also have 'label='
+            return "<???>";
+        }
+
+        public String toString() {
+            StringBuilder sb = new StringBuilder("Action(gesture=");
+            sb.append(gesture);
+            
+            sb.append(", code=");
+            sb.append(code);
+
+
+            if (text != null) {
+                sb.append(", text=");
+                sb.append(text);
+            }
+
+            if (label != null) {
+                sb.append(", label=");
+                sb.append(label);
+            }
+
+            if (cmd != null) {
+                sb.append(", cmd=");
+                sb.append(cmd);
+            }
+
+            return sb.append(")").toString();
+        }
+
+        public void collectHelp(GestureHelpAdapter ghA) {
+            Log.d(TAG, "Action.collectHelp; this=" + toString());
+            ghA.add(new GestureHelp(gesture, getLabel(), this));
         }
 
     }
@@ -222,6 +261,15 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
             //Log.d(TAG, "State; lookup gesture=" + gesture + ", action=" + action);
             return (action != null) ? action : this;
         }
+
+        public void collectHelp(GestureHelpAdapter ghA) {
+            int n = actions.size();
+            for (int i = 0; i < n; ++i)
+                actions.valueAt(i).collectHelp(ghA);
+            if (actions.get(gesture) == null)
+                super.collectHelp(ghA);
+        }
+
     }
 
     class Script extends State {
@@ -260,6 +308,13 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
             return (state != null) ? state : this;
         }
 
+        public void collectHelp(GestureHelpAdapter ghA) {
+            State state = states[currentShiftState];
+            if (state != null)
+                state.collectHelp(ghA);
+            else
+                super.collectHelp(ghA);
+        }
     }
 
     class Key extends Script {
@@ -298,11 +353,18 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
             return (script != null) ? script : this;
         }
 
+        public void collectHelp(GestureHelpAdapter ghA) {
+            Script script = scripts[currentScript];
+            if (script != null)
+                script.collectHelp(ghA);
+            else
+                super.collectHelp(ghA);
+        }
     }
 
     class KeyMap extends Key {
         SparseArray<Key>    keys = new SparseArray<Key>(64);
-        
+
         public KeyMap() {
         }
 
@@ -336,6 +398,8 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
             //Log.d(TAG, "KeyMap; lookup id=" + id + ", key=" + key);
             return (key != null) ? key : this;
         }
+
+        // NOTE: intentionally doesn't override collectHelp(GestureHelpAdapter ghA)
     }
 
     @Override public void onCreate() {
@@ -359,11 +423,19 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
             keyMap = new KeyMap();
             keyMap.parse(parser);
         }
-		catch (XmlPullParserException e)	{ err = e.getMessage(); }
-		catch (java.io.IOException e)		{ err = e.getMessage(); }
+        catch (XmlPullParserException e)	{ err = e.getMessage(); }
+        catch (java.io.IOException e)		{ err = e.getMessage(); }
 
-		if (err != null)
+        if (err != null)
             Log.e(TAG, "Cannot load keyboard mapping: " + err);
+
+        helpDialogBuilder = new AlertDialog.Builder(this);
+        helpDialogBuilder.setTitle(R.string.possible_gestures);
+        /*helpDialogBuilder.setItems(R.array.yadda, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                Log.d(TAG, "keyClicked.onClick; which=" + which);
+            }
+        });*/
     }
 
     @Override public AbstractInputMethodService.AbstractInputMethodImpl onCreateInputMethodInterface() {
@@ -438,14 +510,17 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
     } 
 
     // Process a command
-    public void execCmd(String cmd) {
+    public void execCmd(String cmd, int keyId) {
         Log.d(TAG, "execCmd('" + cmd + "')");
         InputConnection ic = getCurrentInputConnection();
 
+        // ---- internal commands
         if (cmd.equals("hide"))
             requestHideSelf(0);
         else if (cmd.equals("switchIM"))
             ic.performContextMenuAction(android.R.id.switchInputMethod);
+        else if (cmd.equals("showGestures"))
+            showGestures(keyId);
         // ---- selection commands
         else if (cmd.equals("selectStart")) {
             selectionStart = ic.getExtractedText(etreq, 0).selectionStart;
@@ -581,24 +656,6 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
 
     // Handle one change in the preferences
     public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
-        //Log.d(TAG, "Changing pref "+key);
-        /*if (key.endsWith("margin_left")) {
-          kv.setLeftMargin(getPrefFloat("margin_left", 0));
-          getWindow().dismiss();
-        }
-        else if (key.endsWith("margin_right")) {
-        kv.setRightMargin(getPrefFloat("margin_right", 0));
-        getWindow().dismiss();
-        }
-        else if (key.endsWith("margin_bottom")) {
-        kv.setBottomMargin(getPrefFloat("margin_bottom", 0));
-        getWindow().dismiss();
-        }
-        else if (key.endsWith("max_keysize")) {
-        kv.setMaxKeySize(getPrefFloat("max_keysize", 12));
-        getWindow().dismiss();
-        }
-        }*/
     }
 
     public Action getActionForKey(int keyId, int script, int shiftState, int gestureCode) {
@@ -610,33 +667,21 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
         String s;
 
         a = getActionForKey(keyId, currentScript, currentShiftState, 0);
-        s = a.getText();
-        if (s != null)
-            return s;
         s = a.getLabel();
         if (s != null)
             return s;
 
         a = getActionForKey(keyId, currentScript, 0, 0);
-        s = a.getText();
-        if (s != null)
-            return s;
         s = a.getLabel();
         if (s != null)
             return s;
 
         a = getActionForKey(keyId, 0, currentShiftState, 0);
-        s = a.getText();
-        if (s != null)
-            return s;
         s = a.getLabel();
         if (s != null)
             return s;
 
         a = getActionForKey(keyId, 0, 0, 0);
-        s = a.getText();
-        if (s != null)
-            return s;
         s = a.getLabel();
         if (s != null)
             return s;
@@ -644,30 +689,101 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
         return "☹";
     }
 
+    class GestureHelp {
+        int gesture;
+        String text;
+        Action action;
+
+        GestureHelp(int gesture, String text, Action action) {
+            this.gesture = gesture;
+            this.text = text;
+            this.action = action;
+        }
+    }
+
+    class GestureHelpAdapter extends ArrayAdapter<GestureHelp> {
+        static final int layoutId = R.layout.gesture_help;
+        static final int gestureViewId = R.id.gestureView;
+        static final int gestureTextId = R.id.gestureText;
+        HashSet<Integer> gestures = new HashSet<Integer>();
+
+        class ViewHolder {
+            GestureView gestureView;
+            TextView gestureText;
+        }
+
+        public GestureHelpAdapter(Context context) {
+            super(context, layoutId);
+        }
+
+        public void clear() {
+            super.clear();
+            gestures.clear();
+        }
+
+        public boolean containsGesture(int g) {
+            return gestures.contains(g);
+        }
+
+        public void add(GestureHelp gh) {
+            if (!gestures.contains(gh.gesture)) {
+                super.add(gh);
+                gestures.add(gh.gesture);
+            }
+        }
+
+        public View getView(int position, View convertView, ViewGroup parent) {
+            ViewHolder holder;
+
+            if (convertView == null) {
+                convertView = getLayoutInflater().inflate(layoutId, null, false);
+                holder = new ViewHolder();
+                holder.gestureView = (GestureView)convertView.findViewById(gestureViewId);
+                holder.gestureText = (TextView)convertView.findViewById(gestureTextId);
+                convertView.setTag(holder);
+            }
+            else {
+                holder = (ViewHolder)convertView.getTag();
+            }
+
+            GestureHelp item = getItem(position);
+            if ((item != null) && (holder != null)) {
+                holder.gestureView.setGesture(item.gesture);
+                holder.gestureText.setText(item.text);
+            }
+            return convertView;
+        }
+    }
+
+
+    void showGestures(int keyId) {
+        GestureHelpAdapter ghA = new GestureHelpAdapter(this);
+
+        ghA.clear();
+
+        Key key = keyMap.getKey(keyId);
+        key.collectHelp(ghA);
+        if (key != keyMap)
+            keyMap.collectHelp(ghA);
+
+        helpDialogBuilder.setAdapter(ghA,
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        Log.d(TAG, "showGestures; which=" + which);
+                    }
+                });
+        AlertDialog dialog = helpDialogBuilder.create();
+        dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+        dialog.show();
+    }
+
     public void keyClicked(View keyview, int gestureCode) {
         if (keyview instanceof GRKey) {
             GRKey key = (GRKey)keyview;
             Log.d(TAG, "keyClicked('" + key.getText().toString() + "'), id=" + key.getId() + ", state=" + currentShiftState + ", gesture=" + gestureCode);
-            
-            if (gestureCode == 5) { // long tap -> help
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle(R.string.possible_gestures);
-                /*builder.setMessage("nesze");
-                builder.setNeutralButton("yo", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        Log.d(TAG, "keyClicked.onClick; id=" + id);
-                    }
-                });*/
 
-                builder.setItems(R.array.yadda, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        Log.d(TAG, "keyClicked.onClick; which=" + which);
-                    }
-                });
-
-                AlertDialog dialog = builder.create();
-                dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
-                dialog.show();
+            if (gestureCode == 5) { // FIXME: propagation is buggy, hardwire it here for testing
+                execCmd("showGestures", key.getId());
             }
             else {
                 Action a = getActionForKey(key.getId(), currentScript, currentShiftState, gestureCode);
@@ -677,7 +793,7 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
                 else if (a.getText() != null)
                     onText(a.getText());
                 else if (a.getCmd() != null)
-                    execCmd(a.getCmd());
+                    execCmd(a.getCmd(), key.getId());
                 else
                     Log.d(TAG, "Empty action for this key;");
             }
