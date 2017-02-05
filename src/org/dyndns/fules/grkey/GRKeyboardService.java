@@ -220,8 +220,10 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
         }
 
         public void collectHelp(GestureHelpAdapter ghA) {
-            Log.d(TAG, "Action.collectHelp; this=" + toString());
-            ghA.add(new GestureHelp(gesture, getLabel(), this));
+            if (gesture >= 0) {
+                Log.d(TAG, "Action.collectHelp; this=" + toString());
+                ghA.add(new GestureHelp(gesture, getLabel(), this));
+            }
         }
 
     }

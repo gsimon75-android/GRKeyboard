@@ -7,8 +7,10 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.View;
+import android.util.Log;
 
 public class GestureView extends View {
+    private static final String TAG = "GRKeyboard";
 
     // absolute and relative attributes
     float outlineWidth, outlinePct;
@@ -122,17 +124,19 @@ public class GestureView extends View {
             g = 0;
 
         if (gesture != g) {
-            if (g == 5)
-                g = 0; // FIXME: temporary hack, treat longtap as tap
             gesture = g;
+            points = null;
             invalidate();
         }
     }
 
     void recalculatePoints() {
+        float drift = 0.1f;
         int gesturesLength = 0;
         int gestureRev = 0;
         for (int g = gesture; g > 0; g /= 10) {
+            if ((g % 10) == 5)
+                continue;
             gesturesLength++;
             gestureRev = (10 * gestureRev) + (g % 10);
         }
@@ -142,17 +146,28 @@ public class GestureView extends View {
         points[0] = new PointF(0, 0);
         PointF pMin = new PointF(points[0]);
         PointF pMax = new PointF(points[0]);
+        int lastGesture = 10;
         for (int i = 0; i < gesturesLength; ++i) {
-            switch (gestureRev % 10) {
-                case 1: points[i+1] = new PointF(points[i].x - 1, points[i].y + 1); break;
-                case 2: points[i+1] = new PointF(points[i].x    , points[i].y + 1); break;
-                case 3: points[i+1] = new PointF(points[i].x + 1, points[i].y + 1); break;
-                case 4: points[i+1] = new PointF(points[i].x - 1, points[i].y    ); break;
-                case 6: points[i+1] = new PointF(points[i].x + 1, points[i].y    ); break;
-                case 7: points[i+1] = new PointF(points[i].x - 1, points[i].y - 1); break;
-                case 8: points[i+1] = new PointF(points[i].x    , points[i].y - 1); break;
-                case 9: points[i+1] = new PointF(points[i].x + 1, points[i].y - 1); break;
+            int g = gestureRev % 10;
+            float dx = 0, dy = 0;
+            switch (g) {
+                case 1: dx = -1; dy = +1; break;
+                case 2: dx =  0; dy = +1; break;
+                case 3: dx = +1; dy = +1; break;
+                case 4: dx = -1; dy =  0; break;
+                case 6: dx = +1; dy =  0; break;
+                case 7: dx = -1; dy = -1; break;
+                case 8: dx =  0; dy = -1; break;
+                case 9: dx = +1; dy = -1; break;
             }
+            if (lastGesture == (10 - g)) {
+                float q = dx * 0.1f;
+                dx += dy*0.1f;
+                dy -= q;
+            }
+            lastGesture = g;
+            if ((dx != 0) || (dy != 0))
+                points[i+1] = new PointF(points[i].x + dx, points[i].y + dy);
             if (pMin.x > points[i+1].x) pMin.x = points[i+1].x;
             if (pMin.y > points[i+1].y) pMin.y = points[i+1].y;
             if (pMax.x < points[i+1].x) pMax.x = points[i+1].x;
@@ -224,15 +239,18 @@ public class GestureView extends View {
 
         int n = points.length;
 
+        float circleR = circleRadius * ((gesture == 5) ? 2 : 1);
+        Log.d(TAG, "GestureView.onDraw; gesture=" + gesture + ", circleRadius=" + circleRadius + ", circleR=" + circleR);
+
         // start circle outline
-        canvas.drawCircle(points[0].x, points[0].y, circleRadius + outlineWidth, paintOutlineFill);
+        canvas.drawCircle(points[0].x, points[0].y, circleR + outlineWidth, paintOutlineFill);
 
         if (n > 2) {
             // 1st line segment outline and stroke
             canvas.drawLine(points[0].x, points[0].y, points[1].x, points[1].y, paintOutlineStroke);
             canvas.drawLine(points[0].x, points[0].y, points[1].x, points[1].y, paintLineStroke);
             // start circle stroke
-            canvas.drawCircle(points[0].x, points[0].y, circleRadius, paintLineFill);
+            canvas.drawCircle(points[0].x, points[0].y, circleR, paintLineFill);
         }
 
         // subsequent line segments: joining circle, outline, stroke
@@ -260,7 +278,7 @@ public class GestureView extends View {
 
         if (n <= 2)
             // start circle stroke
-            canvas.drawCircle(points[0].x, points[0].y, circleRadius, paintLineFill);
+            canvas.drawCircle(points[0].x, points[0].y, circleR, paintLineFill);
 
         if (n > 1) {
             // end arrow strokes and tip
