@@ -7,11 +7,8 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.View;
-import android.util.Log;
 
 public class GestureView extends View {
-    private static final String TAG = "GRKeyboard";
-
     // absolute and relative attributes
     float outlineWidth, outlinePct;
     float lineWidth, linePct;
@@ -238,9 +235,7 @@ public class GestureView extends View {
             recalculatePoints();
 
         int n = points.length;
-
         float circleR = circleRadius * ((gesture == 5) ? 2 : 1);
-        Log.d(TAG, "GestureView.onDraw; gesture=" + gesture + ", circleRadius=" + circleRadius + ", circleR=" + circleR);
 
         // start circle outline
         canvas.drawCircle(points[0].x, points[0].y, circleR + outlineWidth, paintOutlineFill);

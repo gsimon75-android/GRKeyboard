@@ -435,7 +435,7 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
         currentShiftState = res.getInteger(R.integer.normal);
 
         try {
-            XmlResourceParser parser = getResources().getXml(R.xml.default_latin);
+            XmlResourceParser parser = getResources().getXml(R.xml.keyboard_mapping);
             while (parser.getEventType() == XmlResourceParser.START_DOCUMENT)
                 parser.next();
             keyMap = new KeyMap();
@@ -799,9 +799,8 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
     }
 
 
-    void showGestures(int keyId) {
-        GestureHelpAdapter ghA = new GestureHelpAdapter(this);
-
+    void showGestures(final int keyId) {
+        final GestureHelpAdapter ghA = new GestureHelpAdapter(this);
         ghA.clear();
 
         Key key = keyMap.getKey(keyId);
@@ -815,11 +814,23 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         Log.d(TAG, "showGestures; which=" + which);
+                        performAction(ghA.getItem(which).action, keyId);
                     }
                 });
         AlertDialog dialog = helpDialogBuilder.create();
         dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
         dialog.show();
+    }
+
+    void performAction(Action a, int keyId) {
+        if (a.getCode() >= 0)
+            onKey(a.getCode());
+        else if (a.getText() != null)
+            onText(a.getText());
+        else if (a.getCmd() != null)
+            execCmd(a.getCmd(), keyId);
+        else
+            Log.d(TAG, "Empty action for this key;");
     }
 
     public void keyClicked(View keyview, int gestureCode) {
@@ -832,15 +843,7 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
             }
             else {
                 Action a = getActionForKey(key.getId(), currentScript, currentShiftState, gestureCode);
-
-                if (a.getCode() >= 0)
-                    onKey(a.getCode());
-                else if (a.getText() != null)
-                    onText(a.getText());
-                else if (a.getCmd() != null)
-                    execCmd(a.getCmd(), key.getId());
-                else
-                    Log.d(TAG, "Empty action for this key;");
+                performAction(a, key.getId());
             }
 
         }
