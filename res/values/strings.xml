@@ -16,9 +16,8 @@
 	<string name="copyright">Copyright</string>
 	<string name="copyright_summary">2016 Gabor Simon. All rights reserved, New BSD License applies.</string>
 
-	<string name="possible_gestures">Possible gestures</string>
-
 	<!-- defaults for localisable strings -->
+	<string name="possible_gestures">Possible gestures</string>
 	<string name="cmd_hide">Hide</string>
 	<string name="cmd_switch_im">Switch IM</string>
 	<string name="cmd_show_gestures">Show gestures</string>
