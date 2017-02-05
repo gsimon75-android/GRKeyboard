@@ -157,7 +157,8 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
             gesture = (resId >= 0) ? res.getInteger(resId) : parser.getAttributeIntValue(null, "gesture", -1);
             text = parser.getAttributeValue(null, "text");
             cmd = parser.getAttributeValue(null, "cmd");
-            label = parser.getAttributeValue(null, "label");
+            resId = parser.getAttributeResourceValue(null, "label", -1);
+            label = (resId >= 0) ? res.getString(resId) : parser.getAttributeValue(null, "label");
             code = parser.getAttributeIntValue(null, "code", -1);
             if ((gesture < 0) && ((text != null) || (cmd != null) || (code >= 0)))
                 gesture = res.getInteger(R.integer.tap);
@@ -196,11 +197,11 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
         }
 
         public String getLabel() {
-            if (text != null)
-                return text;
-
             if (label != null)
                 return label;
+
+            if (text != null)
+                return text;
 
             if (cmd != null)
                 return cmd; // TODO: localise
@@ -237,7 +238,6 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
 
         public void collectHelp(GestureHelpAdapter ghA) {
             if (gesture >= 0) {
-                Log.d(TAG, "Action.collectHelp; this=" + toString());
                 ghA.add(new GestureHelp(this, getLabel()));
             }
         }
@@ -423,7 +423,6 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
     @Override public void onCreate() {
         String err = null;
 
-        Log.d(TAG, "onCreate;");
         res = getResources();
         setTheme(R.style.Theme_GRKeyboard);
         inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -457,13 +456,11 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
     }
 
     @Override public AbstractInputMethodService.AbstractInputMethodImpl onCreateInputMethodInterface() {
-        Log.d(TAG, "onCreateInputMethodInterface;");
         etreq.hintMaxChars = etreq.hintMaxLines = 0;
         return super.onCreateInputMethodInterface();
     }
 
     @Override public void onConfigurationChanged(Configuration newConfig) {
-        Log.d(TAG, "onConfigurationChanged;");
         if (newConfig.orientation != lastOrientation) {
             lastOrientation = newConfig.orientation;
             kv = inflater.inflate(R.layout.keyboard, null);
@@ -473,7 +470,6 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
 
     @Override public void onStartInput(EditorInfo attribute, boolean restarting) {
         super.onStartInput(attribute, restarting); 
-        Log.v(TAG, "onStartInput(..., " + restarting + ")");
         //kv.resetState();
         //kv.setInputType(attribute.inputType);
     }
@@ -481,13 +477,12 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
     @Override public View onCreateInputView() {
         DisplayMetrics metrics = new DisplayMetrics();
         metrics.setTo(getResources().getDisplayMetrics());
-        Log.v(TAG, "onCreateInputView; w=" + String.valueOf(metrics.widthPixels) + ", h=" + String.valueOf(metrics.heightPixels));
+        //Log.v(TAG, "onCreateInputView; w=" + String.valueOf(metrics.widthPixels) + ", h=" + String.valueOf(metrics.heightPixels));
 
         Configuration config = getResources().getConfiguration();
         lastOrientation = config.orientation;
 
         kv = inflater.inflate(R.layout.keyboard, null);
-        Log.v(TAG, "kv=" + kv);
         return kv;
     } 
 
@@ -813,7 +808,6 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
         helpDialogBuilder.setAdapter(ghA,
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        Log.d(TAG, "showGestures; which=" + which);
                         performAction(ghA.getItem(which).action, keyId);
                     }
                 });
@@ -846,9 +840,6 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
                 performAction(a, key.getId());
             }
 
-        }
-        else {
-            Log.d(TAG, "keyClicked(...)");
         }
     }
 }

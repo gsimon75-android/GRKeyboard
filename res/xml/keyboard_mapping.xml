@@ -3,7 +3,7 @@
 <KeyMap xmlns:a="http://schemas.android.com/apk/res/android"
     a:id="@+id/default_latin_keymap" name="Latin">
 
-    <Action gesture="@integer/long_tap" cmd="showGestures"/>
+    <Action gesture="@integer/long_tap" cmd="showGestures" label="@string/cmd_show_gestures"/>
 
     <!-- Numeric keys -->
     <Key id="@id/key_0" text="0">
@@ -886,34 +886,34 @@
     <!-- Shift, Space, Enter, Backspace, Arrow keys -->
 
     <Key id="@id/key_Shift" cmd="shift" label="⇫">
-        <Action gesture="@integer/dirN"     cmd="caps"/>
-        <Action gesture="@integer/dirS"     cmd="hide"/>
-        <Action gesture="@integer/dirE"     cmd="ctrl"/>
-        <State mod="@integer/ctrl"          cmd="normal"/>
-        <State mod="@integer/ctrl_shift"    cmd="normal"/>
-        <Action gesture="@integer/dirW"     code="111"/> <!-- esc -->
-        <Action gesture="13"                cmd="copy"/>
-        <Action gesture="@integer/right_x"  cmd="cut"/>
-        <Action gesture="93"                cmd="selectAll"/>
-        <Action gesture="31"                cmd="paste"/>
+        <Action gesture="@integer/dirN"     cmd="caps" label="@string/cmd_caps"/>
+        <Action gesture="@integer/dirS"     cmd="hide" label="@string/cmd_hide"/>
+        <Action gesture="@integer/dirE"     cmd="ctrl" label="@string/cmd_ctrl"/>
+        <State mod="@integer/ctrl"          cmd="normal" label="@string/cmd_normal"/>
+        <State mod="@integer/ctrl_shift"    cmd="normal" label="@string/cmd_normal"/>
+        <Action gesture="@integer/dirW"     code="111" label="Esc"/>
+        <Action gesture="13"                cmd="copy" label="@string/cmd_copy"/>
+        <Action gesture="@integer/right_x"  cmd="cut" label="@string/cmd_cut"/>
+        <Action gesture="93"                cmd="selectAll" label="@string/cmd_select_all"/>
+        <Action gesture="31"                cmd="paste" label="@string/cmd_paste"/>
         <State mod="@integer/shift" cmd="normal">
-            <Action gesture="@integer/dirN"     cmd="caps"/>
-            <Action gesture="@integer/dirS"     cmd="hide"/>
-            <Action gesture="@integer/dirE"     cmd="ctrl"/>
-            <Action gesture="@integer/dirW"     code="111"/> <!-- esc -->
-            <Action gesture="13"                cmd="copy"/>
-            <Action gesture="@integer/right_x"  cmd="cut"/>
-            <Action gesture="93"                cmd="selectAll"/>
-            <Action gesture="31"                cmd="paste"/>
+            <Action gesture="@integer/dirN"     cmd="caps" label="@string/cmd_caps"/>
+            <Action gesture="@integer/dirS"     cmd="hide" label="@string/cmd_hide"/>
+            <Action gesture="@integer/dirE"     cmd="ctrl" label="@string/cmd_ctrl"/>
+            <Action gesture="@integer/dirW"     code="111" label="Esc"/>
+            <Action gesture="13"                cmd="copy" label="@string/cmd_copy"/>
+            <Action gesture="@integer/right_x"  cmd="cut" label="@string/cmd_cut"/>
+            <Action gesture="93"                cmd="selectAll" label="@string/cmd_select_all"/>
+            <Action gesture="31"                cmd="paste" label="@string/cmd_paste"/>
         </State>
     </Key>
 
     <Key id="@id/key_Space" text=" ">
-        <Action gesture="@integer/dirE"     cmd="tab"/>
-        <Action gesture="@integer/dirNE"    cmd="cyrillic"/>
-        <Action gesture="@integer/dirN"     cmd="greek"/>
-        <Action gesture="@integer/dirNW"    cmd="latin"/>
-        <Action gesture="@integer/dirW"     cmd="arabic"/>
+        <Action gesture="@integer/dirE"     code="61" label="⇨"/>
+        <Action gesture="@integer/dirNE"    cmd="cyrillic" label="@string/cmd_cyrillic"/>
+        <Action gesture="@integer/dirN"     cmd="greek" label="@string/cmd_greek"/>
+        <Action gesture="@integer/dirNW"    cmd="latin" label="@string/cmd_latin"/>
+        <Action gesture="@integer/dirW"     cmd="arabic" label="@string/cmd_arabic"/>
     </Key>
 
     <Key id="@id/key_Enter" code="66" label="↵"/>

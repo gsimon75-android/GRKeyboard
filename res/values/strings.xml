@@ -17,4 +17,22 @@
 	<string name="copyright_summary">2016 Gabor Simon. All rights reserved, New BSD License applies.</string>
 
 	<string name="possible_gestures">Possible gestures</string>
+
+	<!-- defaults for localisable strings -->
+	<string name="cmd_hide">Hide</string>
+	<string name="cmd_switch_im">Switch IM</string>
+	<string name="cmd_show_gestures">Show gestures</string>
+	<string name="cmd_select_start">Start selection</string>
+	<string name="cmd_select_end">End selection</string>
+	<string name="cmd_select_all">Select all</string>
+	<string name="cmd_copy">Copy</string>
+	<string name="cmd_cut">Cut</string>
+	<string name="cmd_paste">Paste</string>
+	<string name="cmd_normal">Normal mode</string>
+	<string name="cmd_caps">Caps mode</string>
+	<string name="cmd_ctrl">Ctrl mode</string>
+	<string name="cmd_latin">Latin layout</string>
+	<string name="cmd_cyrillic">Cyrillic layout</string>
+	<string name="cmd_greek">Greek layout</string>
+	<string name="cmd_arabic">Arabic layout</string>
 </resources>
