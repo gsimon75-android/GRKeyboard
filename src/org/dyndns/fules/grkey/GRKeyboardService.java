@@ -31,6 +31,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.R.id;
 import java.io.IOException;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.HashSet;
 import org.xmlpull.v1.XmlPullParser;
@@ -138,7 +139,7 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
     }
 
     class Action extends XmlStructure {
-        int                 gesture;
+        int                 gesture, gestureRev;
         String              text;
         String              cmd;
         String              label;
@@ -161,10 +162,25 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
             if ((gesture < 0) && ((text != null) || (cmd != null) || (code >= 0)))
                 gesture = res.getInteger(R.integer.tap);
             //Log.d(TAG, "Action.parseAttributes; this=" + this + ", gesture=" + gesture + ", code=" + code + ", text='" + nullSafe(text) + "', cmd='" + nullSafe(cmd) +"'");
+
+            if (gesture < 0) {
+                gestureRev = gesture;
+            }
+            else {
+                gestureRev = 0;
+                for (int g = gesture; g > 0; g /= 10) 
+                    gestureRev = (10 * gestureRev) + (g % 10);
+            }
+
+
         }
 
         public int getGesture() {
             return gesture;
+        }
+
+        public int getGestureRev() {
+            return gestureRev;
         }
 
         public int getCode() {
@@ -222,7 +238,7 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
         public void collectHelp(GestureHelpAdapter ghA) {
             if (gesture >= 0) {
                 Log.d(TAG, "Action.collectHelp; this=" + toString());
-                ghA.add(new GestureHelp(gesture, getLabel(), this));
+                ghA.add(new GestureHelp(this, getLabel()));
             }
         }
 
@@ -692,15 +708,14 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
     }
 
     class GestureHelp {
-        int gesture;
-        String text;
         Action action;
+        String text;
 
-        GestureHelp(int gesture, String text, Action action) {
-            this.gesture = gesture;
-            this.text = text;
+        GestureHelp(Action action, String text) {
             this.action = action;
+            this.text = text;
         }
+
     }
 
     class GestureHelpAdapter extends ArrayAdapter<GestureHelp> {
@@ -708,6 +723,32 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
         static final int gestureViewId = R.id.gestureView;
         static final int gestureTextId = R.id.gestureText;
         HashSet<Integer> gestures = new HashSet<Integer>();
+
+        public Comparator<GestureHelp> defaultComparator = new Comparator<GestureHelp>() {
+            public int compare(GestureHelp lhs, GestureHelp rhs) {
+                int gl = lhs.action.getGestureRev();
+                int gr = rhs.action.getGestureRev();
+                // handle special cases: tap, longtap
+                if ((gl == 0) || (gr == 5))
+                    return -1;
+                if ((gr == 0) || (gl == 5))
+                    return 1;
+
+                while ((gl > 0) && (gr > 0)) {
+                    if ((gl % 10) < (gr % 10))
+                        return -1;
+                    if ((gl % 10) > (gr % 10))
+                        return 1;
+                    gl /= 10;
+                    gr /= 10;
+                }
+                if (gl < gr)
+                    return -1;
+                if (gl > gr)
+                    return 1;
+                return 0;
+            }
+        };
 
         class ViewHolder {
             GestureView gestureView;
@@ -728,9 +769,9 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
         }
 
         public void add(GestureHelp gh) {
-            if (!gestures.contains(gh.gesture)) {
+            if (!gestures.contains(gh.action.gesture)) {
                 super.add(gh);
-                gestures.add(gh.gesture);
+                gestures.add(gh.action.gesture);
             }
         }
 
@@ -750,7 +791,7 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
 
             GestureHelp item = getItem(position);
             if ((item != null) && (holder != null)) {
-                holder.gestureView.setGesture(item.gesture);
+                holder.gestureView.setGesture(item.action.gesture);
                 holder.gestureText.setText(item.text);
             }
             return convertView;
@@ -767,6 +808,8 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
         key.collectHelp(ghA);
         if (key != keyMap)
             keyMap.collectHelp(ghA);
+
+        ghA.sort(ghA.defaultComparator);
 
         helpDialogBuilder.setAdapter(ghA,
                 new DialogInterface.OnClickListener() {
