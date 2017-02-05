@@ -33,7 +33,7 @@ import java.util.Iterator;
 public class GRKey extends Button {
 	// Constants
 	private static final String		TAG = "GRKeyboard";
-	private static final int                LONG_TAP_TIMEOUT = 1200;
+	private static final int                LONG_TAP_TIMEOUT = 800;
 
 	private GRKeyboardService		svc;
 	private int[] stateNormal		= { android.R.attr.state_enabled, android.R.attr.state_window_focused, android.R.attr.state_multiline };
