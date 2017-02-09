@@ -64,6 +64,7 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
     KeyMap                      keyMap;
     int                         currentScript = 0;
     int                         currentShiftState = 0;
+    int                         nextShiftState = 0;
 
     public static String nullSafe(String s) {
         return (s == null) ? "<null>" : s;
@@ -558,12 +559,18 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
         else if (cmd.equals("paste"))
             ic.performContextMenuAction(android.R.id.paste);
         // ---- shift commands
-        else if (cmd.equals("normal"))
-            setShiftState(res.getInteger(R.integer.normal));
+        else if (cmd.equals("normal")) {
+            nextShiftState = res.getInteger(R.integer.normal); 
+            setShiftState(nextShiftState);
+        }
+        else if (cmd.equals("caps")) {
+            nextShiftState = currentShiftState ^ res.getInteger(R.integer.shift);
+            setShiftState(nextShiftState);
+        }
         else if (cmd.equals("shift"))
-            setShiftState(currentShiftState | res.getInteger(R.integer.shift));
+            setShiftState(currentShiftState ^ res.getInteger(R.integer.shift));
         else if (cmd.equals("ctrl"))
-            setShiftState(currentShiftState | res.getInteger(R.integer.ctrl));
+            setShiftState(currentShiftState ^ res.getInteger(R.integer.ctrl));
         // ---- script change commands
         else if (cmd.equals("latin"))
             setScript(res.getInteger(R.integer.latin));
@@ -817,14 +824,19 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
     }
 
     void performAction(Action a, int keyId) {
-        if (a.getCode() >= 0)
-            onKey(a.getCode());
-        else if (a.getText() != null)
-            onText(a.getText());
-        else if (a.getCmd() != null)
+        if (a.getCmd() != null)
             execCmd(a.getCmd(), keyId);
-        else
-            Log.d(TAG, "Empty action for this key;");
+        else {
+            if (a.getCode() >= 0)
+                onKey(a.getCode());
+            else if (a.getText() != null)
+                onText(a.getText());
+            else
+                Log.d(TAG, "Empty action for this key;");
+
+            if (currentShiftState != nextShiftState)
+                setShiftState(nextShiftState);
+        }
     }
 
     public void keyClicked(View keyview, int gestureCode) {
@@ -839,7 +851,6 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
                 Action a = getActionForKey(key.getId(), currentScript, currentShiftState, gestureCode);
                 performAction(a, key.getId());
             }
-
         }
     }
 }

@@ -44,6 +44,8 @@
 	<integer name="soft">2</integer>
 	<integer name="variant">4</integer>
 	<integer name="soft_variant">1</integer>
+	<integer name="descender">3</integer>
+	<integer name="upturn">9</integer>
 
 	<!-- other gestures -->
 	<integer name="tap">0</integer>

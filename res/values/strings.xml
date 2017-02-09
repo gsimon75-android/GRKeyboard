@@ -27,8 +27,6 @@
 	<string name="cmd_copy">Copy</string>
 	<string name="cmd_cut">Cut</string>
 	<string name="cmd_paste">Paste</string>
-	<string name="cmd_normal">Normal mode</string>
-	<string name="cmd_caps">Caps mode</string>
 	<string name="cmd_ctrl">Ctrl mode</string>
 	<string name="cmd_latin">Latin layout</string>
 	<string name="cmd_cyrillic">Cyrillic layout</string>
