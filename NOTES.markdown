@@ -67,3 +67,16 @@ Cyrillic not assigned yet
 <Action code="ұ"/> <!-- u + bar -->
 diacritics: stroke, macron, hacek
 
+
+Greek missing
+=============
+
+* greek question mark 037E ;
+* do we need: stigma, koppa (archaic or normal?), sampi (archaic or normal?)
+* heta, {, reversed} {, dotted} lunate {sigma, epsilon}, ano teleia, kai, pamphylian digamma, shei, fei, khei, hori, gangia, shima, dei, yot, sho, san
+* upsilon with hook, rho with stroke
+* symbols ?!: beta, theta, phi, pi, kappa, rho, sigma, theta
+
+
+
+

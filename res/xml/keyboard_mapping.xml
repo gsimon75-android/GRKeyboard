@@ -108,7 +108,10 @@
             <State mod="@integer/shift" text="Ы"/>
         </Script>
         <Script id="@integer/greek" text="ω">
-            <State mod="@integer/shift" text="Ω"/>
+            <Action gesture="@integer/tonos"       text="ώ"/>
+            <State mod="@integer/shift" text="Ω">
+                <Action gesture="@integer/tonos"       text="Ώ"/>
+            </State>
         </Script>
     </Key>
 
@@ -153,7 +156,10 @@
             </State>
         </Script>
         <Script id="@integer/greek" text="ε">
-            <State mod="@integer/shift" text="Ε"/>
+            <Action gesture="@integer/tonos"       text="έ"/>
+            <State mod="@integer/shift" text="Ε">
+                <Action gesture="@integer/tonos"       text="Έ"/>
+            </State>
         </Script>
     </Key>
 
@@ -244,7 +250,12 @@
             </State>
         </Script>
         <Script id="@integer/greek" text="υ">
-            <State mod="@integer/shift" text="Υ"/>
+            <Action gesture="@integer/tonos"       text="ύ"/>
+            <Action gesture="@integer/dialytika"   text="ϋ"/>
+            <State mod="@integer/shift" text="Υ">
+                <Action gesture="@integer/tonos"       text="Ύ"/>
+                <Action gesture="@integer/dialytika"   text="Ϋ"/>
+            </State>
         </Script>
     </Key>
 
@@ -332,7 +343,14 @@
             </State>
         </Script>
         <Script id="@integer/greek" text="ι">
-            <State mod="@integer/shift" text="Ι"/>
+            <Action gesture="@integer/tonos"       text="ί"/>
+            <Action gesture="@integer/dialytika"   text="ϊ"/>
+            <Action gesture="@integer/spec"        text="ΐ"/>
+            <State mod="@integer/shift" text="Ι">
+                <Action gesture="@integer/tonos"       text="Ί"/>
+                <Action gesture="@integer/dialytika"   text="Ϊ"/>
+                <Action gesture="@integer/spec"        text="ΐ"/>
+            </State>
         </Script>
     </Key>
 
@@ -377,7 +395,10 @@
             </State>
         </Script>
         <Script id="@integer/greek" text="ο">
-            <State mod="@integer/shift" text="Ο"/>
+            <Action gesture="@integer/tonos"       text="ό"/>
+            <State mod="@integer/shift" text="Ο">
+                <Action gesture="@integer/tonos"       text="Ό"/>
+            </State>
         </Script>
     </Key>
 
@@ -452,7 +473,10 @@
             </State>
         </Script>
         <Script id="@integer/greek" text="α">
-            <State mod="@integer/shift" text="Α"/>
+            <Action gesture="@integer/tonos"       text="ά"/>
+            <State mod="@integer/shift" text="Α">
+                <Action gesture="@integer/tonos"       text="Ά"/>
+            </State>
         </Script>
     </Key>
 
@@ -605,7 +629,10 @@
             </State>
         </Script>
         <Script id="@integer/greek" text="η">
-            <State mod="@integer/shift" text="Η"/>
+            <Action gesture="@integer/tonos"       text="ή"/>
+            <State mod="@integer/shift" text="Η">
+                <Action gesture="@integer/tonos"       text="Ή"/>
+            </State>
         </Script>
     </Key>
 
@@ -1036,11 +1063,13 @@
         <Script id="@integer/cyrillic" text="">
             <Action gesture="@integer/soft"        text=""/>
             <State mod="@integer/shift" text="">
-                <Action gesture="@integer/soft"        text=""/>
             </State>
         </Script>
         <Script id="@integer/greek" text="">
-            <State mod="@integer/shift" text=""/>
+            <Action gesture="@integer/tonos"       text=""/>
+            <Action gesture="@integer/dialytika"   text=""/>
+            <State mod="@integer/shift" text="">
+            </State>
         </Script>
     </Key>
 

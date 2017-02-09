@@ -47,6 +47,10 @@
 	<integer name="descender">3</integer>
 	<integer name="upturn">9</integer>
 
+    <!-- greek gestures -->
+	<integer name="tonos">9</integer> <!-- == acute -->
+	<integer name="dialytika">4</integer> <!-- == umlaut -->
+
 	<!-- other gestures -->
 	<integer name="tap">0</integer>
 	<integer name="dirNW">7</integer>
