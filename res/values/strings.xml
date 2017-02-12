@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+	<!-- app-related -->
 	<string name="app_label">GRKeyboard</string>
 	<string name="settings_label">GRKeyboard Settings</string>
 
+	<!-- preference screen: layout -->
+	<string name="pg_layout">Layout</string>
+	<string name="pg_layout_summary">Appearance-related settings</string>
+
+	<string name="key_height">Key height</string>
+	<string name="key_height_summary">Height of a key relative to its width</string>
+
+	<!-- preference screen: about -->
 	<string name="pg_about">About</string>
 	<string name="pg_about_summary">Miscellaneous information</string>
 
 	<string name="version">Version</string>
-	<integer name="version_number"> 1 </integer>
-	<string name="version_summary">v1.6pre2</string>
+	<integer name="version_number">1</integer>
+	<string name="version_summary">v0.1</string>
 
 	<string name="source">Source</string>
 	<string name="source_summary">$HeadURL$</string>

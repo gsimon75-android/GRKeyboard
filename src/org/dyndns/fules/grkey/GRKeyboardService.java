@@ -5,6 +5,7 @@ import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
+import android.app.Dialog;
 import android.app.PendingIntent;
 import android.content.res.Configuration;
 import android.content.Context;
@@ -44,10 +45,15 @@ import android.view.ViewParent;
 
 
 public class GRKeyboardService extends InputMethodService implements SharedPreferences.OnSharedPreferenceChangeListener  {
-	public static final String  SHARED_PREFS_NAME = "GRKeyboardSettings";
-	private static final String TAG = "GRKeyboard";
-
+	static final String         TAG = "GRKeyboard";
 	public static final String  NS_ANDROID = "http://schemas.android.com/apk/res/android";
+	
+	static final float          GESTURE_JITTER_LIMIT = 0.6f;
+	static final float          GESTURE_QUALITY_THRESHOLD = 0.8f;
+	static final float          GESTURE_MINIMAL_LENGTH = 20f;
+
+	public static final String  SHARED_PREFS_NAME = "GRKeyboardSettings";
+	public static final float   DEFAULT_RELATIVE_KEY_HEIGHT = 0.8f;
 
 	LayoutInflater              inflater;
 	Resources                   res;
@@ -57,7 +63,7 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
 	AlertDialog.Builder         helpDialogBuilder;
 
 	int                         lastOrientation = -1;
-	float                       relativeKeyHeight = 0.8f;
+	float                       relativeKeyHeight = DEFAULT_RELATIVE_KEY_HEIGHT;
 
 	ExtractedTextRequest        etreq = new ExtractedTextRequest();
 	int                         selectionStart = -1, selectionEnd = -1;
@@ -67,7 +73,7 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
 	int                         currentShiftState = 0;
 	int                         nextShiftState = 0;
 
-	GestureRecogniser           gestureRecogniser = new GestureRecogniser(this, 0.6f, 0.8f, 20f);
+	GestureRecogniser           gestureRecogniser = new GestureRecogniser(this, GESTURE_JITTER_LIMIT, GESTURE_QUALITY_THRESHOLD, GESTURE_MINIMAL_LENGTH);
 
 	public static String nullSafe(String s) {
 		return (s == null) ? "<null>" : s;
@@ -682,6 +688,17 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
 	// Handle one change in the preferences
 	public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
 		Log.d(TAG, "onSharedPreferenceChanged(..., '" + key + "')");
+		// NOTE: EditTextPreference item always stores strings, we must convert manually...
+		if (key.equals("key_height")) {
+			String s = prefs.getString(key, null);
+			float f = (s != null) ? Float.parseFloat(s) : DEFAULT_RELATIVE_KEY_HEIGHT;
+			if (relativeKeyHeight != f) {
+				relativeKeyHeight = f;
+				Dialog d = getWindow();
+				if (d != null)
+					d.dismiss();
+			}
+		}
 	}
 
 	public Action getActionForKey(int keyId, int script, int shiftState, int gestureCode) {

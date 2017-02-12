@@ -1,29 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen
-       	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:fules="http://schemas.android.com/apk/res/org.dyndns.fules.ck"
-	android:title="@string/settings_label"
-        android:key="settings">
+	xmlns:a="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	a:title="@string/settings_label" a:key="settings">
 
 	<PreferenceScreen
-		android:key="pg_about"
-		android:title="@string/pg_about"
-		android:summary="@string/pg_about_summary"
-		android:orderingFromXml="true">
+		a:key="pg_layout"
+		a:title="@string/pg_layout"
+		a:summary="@string/pg_layout_summary"
+		a:orderingFromXml="true">
+		<EditTextPreference
+			a:key="key_height"
+			a:title="@string/key_height"
+			a:summary="@string/key_height_summary"
+			a:defaultValue="0.8"/>
+	</PreferenceScreen>
+
+	<PreferenceScreen
+		a:key="pg_about"
+		a:title="@string/pg_about"
+		a:summary="@string/pg_about_summary"
+		a:orderingFromXml="true">
 		<Preference
-			android:key="version"
-			android:title="@string/version"
-			android:summary="@string/version_summary"
-			android:selectable="false"/>
+			a:key="version"
+			a:title="@string/version"
+			a:summary="@string/version_summary"
+			a:selectable="false"/>
 		<Preference
-			android:key="source"
-			android:title="@string/source"
-			android:summary="@string/source_summary"
-			android:selectable="false"/>
+			a:key="source"
+			a:title="@string/source"
+			a:summary="@string/source_summary"
+			a:selectable="false"/>
 		<Preference
-			android:key="copyright"
-			android:title="@string/copyright"
-			android:summary="@string/copyright_summary"
-			android:selectable="false"/>
+			a:key="copyright"
+			a:title="@string/copyright"
+			a:summary="@string/copyright_summary"
+			a:selectable="false"/>
 	</PreferenceScreen>
 </PreferenceScreen>
+<!-- vim: set sw=4 ts=4 noet nowrap: -->
