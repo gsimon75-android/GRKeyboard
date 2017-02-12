@@ -5,15 +5,15 @@ import java.util.Vector;
 import java.util.Iterator;
 
 public class LinearRegression {
-	private static final String		TAG = "GRKeyboard";
-	Vector<PointF>	input = new Vector<PointF>();
+	private static final String     TAG = "GRKeyboard";
+	Vector<PointF>                  input = new Vector<PointF>();
 
-	float		qualityThreshold, minimalRequiredLength;
-	PointF		center = new PointF();
-	PointF		sum = new PointF();
-	float		angle = 0;
-	float		quality = 0;
-	PointF		deviation = new PointF();
+	float                           qualityThreshold, minimalRequiredLength;
+	PointF                          center = new PointF();
+	PointF                          sum = new PointF();
+	float                           angle = 0;
+	float                           quality = 0;
+	PointF                          deviation = new PointF();
 
 	public LinearRegression(float qualityThreshold, float minimalRequiredLength) {
 		this.qualityThreshold = qualityThreshold;
@@ -66,7 +66,7 @@ public class LinearRegression {
 
 		float d = (float)Math.sqrt(4*xy*xy + ((yy - xx)*(yy - xx)));
 		/* NOTE: the total squared deviation would be:
-		   	Hx = (xx + yy + d) / 2
+			Hx = (xx + yy + d) / 2
 			Hy = (xx + yy - d) / 2
 		From this we can derive a 'quality' factor that spans [0..1],
 		0 meaning totally incoherent data, 1 meaning strict linear dependence. */
@@ -81,12 +81,12 @@ public class LinearRegression {
 		if (xx != yy) {
 			angle = -(float)Math.atan(2*xy / (yy - xx)) / 2;
 			/* NOTE: atan() has a periodicity of PI, so atan()/2 has PI/2, so
-			   although in the -PI/4..PI/4 region we get the correct result,
-			   outside of it we get an angle perpendicular to the correct one.
+			although in the -PI/4..PI/4 region we get the correct result,
+			outside of it we get an angle perpendicular to the correct one.
 
-			   In addition to this, we get the angle of the series without
-			   considering the direction of it, so it must also be 'turned
-			   backwards' if needed */
+			In addition to this, we get the angle of the series without
+			considering the direction of it, so it must also be 'turned
+			backwards' if needed */
 
 			if (yy > xx) {
 				// the correct angle is perpendicular to 'angle', and
@@ -109,32 +109,32 @@ public class LinearRegression {
 		deviation.x = (float)Math.sqrt((xx + yy + d) / 2);
 		deviation.y = (float)Math.sqrt((xx + yy - d) / 2);
 
-        //Log.d(TAG, "LinearRegression.add" + p + "; angle=" + (angle * 180.0f / Math.PI) + "', deviation='" + deviation + "', quality='" + quality + "'");
-        if (isLongEnough()) {
-            // the series is long enough (trendwise)
+		//Log.d(TAG, "LinearRegression.add" + p + "; angle=" + (angle * 180.0f / Math.PI) + "', deviation='" + deviation + "', quality='" + quality + "'");
+		if (isLongEnough()) {
+			// the series is long enough (trendwise)
 
-            // check if we try to 'go backwards'
-            // FIXME: this does not belong here
-            if (n >= 2) {
-                PointF pN1 = input.get(n - 1);
-                PointF pN2 = input.get(n - 2);
+			// check if we try to 'go backwards'
+			// FIXME: this does not belong here
+			if (n >= 2) {
+				PointF pN1 = input.get(n - 1);
+				PointF pN2 = input.get(n - 2);
 
-                // 'Backwards' means that the proposed new vector (p-pN1) forms
-                // an acute angle with the (back-pointing) last vector (pN2-pN1),
-                // that is, the cosine of this angle is positive, which means
-                // the scalar product is positive.
-                if (((p.x - pN1.x)*(pN2.x - pN1.x) + (p.y - pN1.y)*(pN2.y - pN1.y)) > 0) {
-                    //Log.d(TAG, "LinearRegression.add backwards");
-                    return false;
-                }
-            }
+				// 'Backwards' means that the proposed new vector (p-pN1) forms
+				// an acute angle with the (back-pointing) last vector (pN2-pN1),
+				// that is, the cosine of this angle is positive, which means
+				// the scalar product is positive.
+				if (((p.x - pN1.x)*(pN2.x - pN1.x) + (p.y - pN1.y)*(pN2.y - pN1.y)) > 0) {
+					//Log.d(TAG, "LinearRegression.add backwards");
+					return false;
+				}
+			}
 
-            if (!isGoodEnough()) {
-                // quality would drop too much, return without touching the data
-                //Log.d(TAG, "LinearRegression.add quality drop");
-                return false;
-            }
-        }
+			if (!isGoodEnough()) {
+				// quality would drop too much, return without touching the data
+				//Log.d(TAG, "LinearRegression.add quality drop");
+				return false;
+			}
+		}
 
 		// quality stays ok, so add the new item to the input series
 		input.addElement(p);
@@ -145,14 +145,14 @@ public class LinearRegression {
 
 		return true;
 	}
-    
-    public boolean isLongEnough() {
-        return deviation.x >= minimalRequiredLength;
-    }
+	
+	public boolean isLongEnough() {
+		return deviation.x >= minimalRequiredLength;
+	}
 
-    public boolean isGoodEnough() {
-        return quality >= qualityThreshold;
-    }
+	public boolean isGoodEnough() {
+		return quality >= qualityThreshold;
+	}
 
 	public float getAngle() { // NOTE: returns [-PI .. PI)
 		return angle;
@@ -172,4 +172,4 @@ public class LinearRegression {
 
 }
 
-// vim: set ai si sw=8 ts=8 noet:
+// vim: set ai si sw=4 ts=4 noet:

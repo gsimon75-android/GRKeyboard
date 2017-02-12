@@ -5,9 +5,9 @@ import java.util.Vector;
 import java.util.Iterator;
 
 public class JitterFilter {
-	PointF		last;
-	float		jitterLimit2, currentLimit2;
-	Vector<PointF>	input = new Vector<PointF>();
+	PointF          last;
+	float           jitterLimit2, currentLimit2;
+	Vector<PointF>  input = new Vector<PointF>();
 
 	public JitterFilter() {
 		this(4.0f);
@@ -75,4 +75,4 @@ public class JitterFilter {
 
 }
 
-// vim: set ai si sw=8 ts=8 noet:
+// vim: set ai si sw=4 ts=4 noet:

@@ -10,7 +10,7 @@ import android.preference.ListPreference;
 //import android.preference.PreferenceScreen;
 
 public class GRKeyboardSettings extends PreferenceActivity {
-	private static final String	TAG = "GRKeyboard";
+	private static final String     TAG = "GRKeyboard";
 
 	public CharSequence[] myCopyOf(CharSequence[] x, int n) { // java.utils.Arrays.copyOf() is missing in API < 9
 		CharSequence[] result = new CharSequence[n];
@@ -52,4 +52,4 @@ public class GRKeyboardSettings extends PreferenceActivity {
 	}
 }
 
-// vim: set ai si sw=8 ts=8 noet:
+// vim: set ai si sw=4 ts=4 noet:
