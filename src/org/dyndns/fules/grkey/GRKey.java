@@ -94,9 +94,6 @@ public class GRKey extends Button {
 				Drawable bg = getBackground();
 				if (bg.setState(statePressed))
 					bg.invalidateSelf();
-
-				if (svc != null)
-					svc.gestureRecogniser.onTouchEvent(this, event);
 			}
 			break;
 
@@ -104,12 +101,11 @@ public class GRKey extends Button {
 				Drawable bg = getBackground();
 				if (bg.setState(stateNormal))
 					bg.invalidateSelf();
-
-				if (svc != null)
-					svc.gestureRecogniser.onTouchEvent(this, event);
 			}
 			break;
 		}
+		if (svc != null)
+			svc.gestureRecogniser.onTouchEvent(this, event);
 		return true;
 	}
 

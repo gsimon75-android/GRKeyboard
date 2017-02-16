@@ -7,30 +7,30 @@
 
     <!-- Numeric keys -->
     <Key id="@id/key_0" text="0">
-        <Action gesture="@integer/dirN"     cmd="latin" label="@string/cmd_latin"/>
         <Script id="@integer/arabic" text="0">
             <Action gesture="@integer/dirS" text="٠"/>
         </Script>
     </Key>
     <Key id="@id/key_1" text="1">
-        <Action gesture="@integer/dirN"     cmd="cyrillic" label="@string/cmd_cyrillic"/>
+        <Action gesture="@integer/dirN"     cmd="latin" label="@string/cmd_latin"/>
         <Script id="@integer/arabic" text="1">
             <Action gesture="@integer/dirS" text="١"/>
         </Script>
     </Key>
     <Key id="@id/key_2" text="2">
-        <Action gesture="@integer/dirN"     cmd="greek" label="@string/cmd_greek"/>
+        <Action gesture="@integer/dirN"     cmd="cyrillic" label="@string/cmd_cyrillic"/>
         <Script id="@integer/arabic" text="2">
             <Action gesture="@integer/dirS" text="٢"/>
         </Script>
     </Key>
     <Key id="@id/key_3" text="3">
-        <Action gesture="@integer/dirN"     cmd="arabic" label="@string/cmd_arabic"/>
+        <Action gesture="@integer/dirN"     cmd="greek" label="@string/cmd_greek"/>
         <Script id="@integer/arabic" text="3">
             <Action gesture="@integer/dirS" text="٣"/>
         </Script>
     </Key>
     <Key id="@id/key_4" text="4">
+        <Action gesture="@integer/dirN"     cmd="arabic" label="@string/cmd_arabic"/>
         <Script id="@integer/arabic" text="4">
             <Action gesture="@integer/dirS" text="٤"/>
         </Script>
