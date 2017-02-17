@@ -285,7 +285,7 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
 
 		public Action getAction(int gesture) {
 			Action action = actions.get(gesture);
-			Log.d(TAG, "State; lookup gesture=" + gesture + ", action=" + action);
+			//Log.d(TAG, "State; lookup gesture=" + gesture + ", action=" + action);
 			return action;
 		}
 
@@ -295,6 +295,16 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
 				actions.valueAt(i).collectHelp(ghA);
 			super.collectHelp(ghA);
 		}
+
+		public Action getActionFor(int gestureCode) {
+			Action a = getAction(gestureCode);
+			if (a != null)
+				return a;
+			if (getGesture() == gestureCode)
+				return this;
+			return null;
+		}
+
 	}
 
 	class Script extends State {
@@ -331,7 +341,7 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
 
 		public State getState(int mod) {
 			State state = states[mod];
-			Log.d(TAG, "Script; lookup mod=" + mod + ", state=" + state);
+			//Log.d(TAG, "Script; lookup mod=" + mod + ", state=" + state);
 			return state;
 		}
 
@@ -341,6 +351,17 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
 				state.collectHelp(ghA);
 			super.collectHelp(ghA);
 		}
+
+		public Action getActionFor(int shiftState, int gestureCode) {
+			State st = getState(shiftState);
+			if (st != null) {
+				Action a = st.getActionFor(gestureCode);
+				if (a != null)
+					return a;
+			}
+			return super.getActionFor(gestureCode);
+		}
+
 	}
 
 	class Key extends Script {
@@ -375,7 +396,7 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
 
 		public Script getScript(int id) {
 			Script script = scripts[id];
-			Log.d(TAG, "Key; lookup id=" + id + ", script=" + script);
+			//Log.d(TAG, "Key; lookup id=" + id + ", script=" + script);
 			return script;
 		}
 
@@ -385,6 +406,17 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
 				script.collectHelp(ghA);
 			super.collectHelp(ghA);
 		}
+
+		public Action getActionFor(int script, int shiftState, int gestureCode) {
+			Script sc = getScript(script);
+			if (sc != null) {
+				Action a = sc.getActionFor(shiftState, gestureCode);
+				if (a != null)
+					return a;
+			}
+			return super.getActionFor(shiftState, gestureCode);
+		}
+
 	}
 
 	class KeyMap extends Key {
@@ -420,8 +452,18 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
 
 		public Key getKey(int id) {
 			Key key = keys.get(id);
-			Log.d(TAG, "KeyMap; lookup id=" + id + ", key=" + key);
+			//Log.d(TAG, "KeyMap; lookup id=" + id + ", key=" + key);
 			return key;
+		}
+
+		public Action getActionFor(int keyId, int script, int shiftState, int gestureCode) {
+			Key k = getKey(keyId);
+			if (k != null) {
+				Action a = k.getActionFor(script, shiftState, gestureCode);
+				if (a != null)
+					return a;
+			}
+			return super.getActionFor(script, shiftState, gestureCode);
 		}
 
 		// NOTE: intentionally doesn't override collectHelp(GestureHelpAdapter ghA)
@@ -698,62 +740,6 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
 		}
 	}
 
-	public Action getActionForState(State st, int gestureCode) {
-		Action a = st.getAction(gestureCode);
-		if (a != null)
-			return a;
-		if (st.getGesture() == gestureCode)
-			return st;
-		return null;
-	}
-
-	public Action getActionForScript(Script sc, int shiftState, int gestureCode) {
-		State st = sc.getState(shiftState);
-		if (st != null) {
-			Action a = getActionForState(st, gestureCode);
-			if (a != null)
-				return a;
-		}
-		Action a = getActionForState(sc, gestureCode);
-		if (a != null)
-			return a;
-		return null;
-	}
-
-	public Action getActionForKey(Key k, int script, int shiftState, int gestureCode) {
-		Script sc = k.getScript(script);
-		if (sc != null) {
-			Action a = getActionForScript(sc, shiftState, gestureCode);
-			if (a != null)
-				return a;
-		}
-		Action a = getActionForScript(k, shiftState, gestureCode);
-		if (a != null)
-			return a;
-		return null;
-	}
-
-	public Action getActionForKeyMap(KeyMap km, int keyId, int script, int shiftState, int gestureCode) {
-		Key k = km.getKey(keyId);
-		if (k != null) {
-			Action a = getActionForKey(k, script, shiftState, gestureCode);
-			if (a != null)
-				return a;
-		}
-		Action a = getActionForKey(km, script, shiftState, gestureCode);
-		if (a != null)
-			return a;
-		return null;
-	}
-
-	public String getLabelForKey(int keyId) {
-		String s = null;
-		Action a = getActionForKeyMap(keyMap, keyId, currentScript, currentShiftState, res.getInteger(R.integer.tap));
-		if (a != null)
-			s = a.getLabel();
-		return (s != null) ? s : "☹";
-	}
-
 	class GestureHelp {
 		Action action;
 		String text;
@@ -884,6 +870,12 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
 		}
 	}
 
+	public String getLabelForKey(int keyId) {
+		Action a = keyMap.getActionFor(keyId, currentScript, currentShiftState, res.getInteger(R.integer.tap));
+		String s = (a != null) ? a.getLabel() : null;
+		return (s != null) ? s : "☹";
+	}
+
 	public void keyClicked(View keyview, int gestureCode) {
 		if (keyview instanceof GRKey) {
 			GRKey key = (GRKey)keyview;
@@ -893,7 +885,7 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
 				execCmd("showGestures", key.getId());
 			}
 			else {
-				Action a = getActionForKeyMap(keyMap, key.getId(), currentScript, currentShiftState, gestureCode);
+				Action a = keyMap.getActionFor(key.getId(), currentScript, currentShiftState, gestureCode);
 				if (a != null)
 					performAction(a, key.getId());
 			}
