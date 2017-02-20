@@ -29,6 +29,7 @@ import android.view.inputmethod.ExtractedText;
 import android.view.inputmethod.ExtractedTextRequest;
 import android.view.LayoutInflater;
 import android.widget.ArrayAdapter;
+import android.widget.AdapterView;
 import android.widget.TextView;
 import android.R.id;
 import java.io.IOException;
@@ -60,6 +61,7 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
 	SharedPreferences           mPrefs;
 
 	View                        kv; // the current layout view
+	AdapterView                 candidatesView;
 	AlertDialog.Builder         helpDialogBuilder;
 
 	int                         lastOrientation = -1;
@@ -140,6 +142,11 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
 		kv = inflater.inflate(R.layout.keyboard, null);
 		return kv;
 	} 
+
+	/*public View onCreateCandidatesView() {
+		candidatesView = (AdapterView)inflater.inflate(R.layout.candidates, null);
+		return candidatesView;
+	}*/
 
 	@Override public boolean onEvaluateFullscreenMode() {
 		return false; // never require fullscreen
@@ -304,6 +311,16 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
 		dialog.show();
 	}
 
+	void showCandidates(final int keyId) {
+		final GestureHelp.Adapter ghA = new GestureHelp.Adapter(this);
+		ghA.clear();
+		keyMapping.collectHelpForKey(ghA, keyId, currentScript, currentShiftState);
+		ghA.sort(ghA.defaultComparator);
+
+		candidatesView.setAdapter(ghA);
+		setCandidatesViewShown(true);
+	}
+
 	// Process a command
 	public void execCmd(String cmd, int keyId) {
 		Log.d(TAG, "execCmd('" + cmd + "')");
@@ -315,6 +332,7 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
 		else if (cmd.equals("switchIM"))
 			ic.performContextMenuAction(android.R.id.switchInputMethod);
 		else if (cmd.equals("showGestures"))
+			//showCandidates(keyId);
 			showGestures(keyId);
 		// ---- selection commands
 		else if (cmd.equals("selectStart")) {
