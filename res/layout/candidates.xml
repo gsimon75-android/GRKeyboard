@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Spinner
+<HorizontalScrollView
 	xmlns:a="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
-	a:spinnerMode="dropdown" a:layout_width="fill_parent" a:layout_height="wrap_content">
-</Spinner>
+	a:layout_width="fill_parent" a:layout_height="wrap_content" a:fillViewport="true">
+	<LinearLayout a:id="@+id/candidatesLL" a:layout_width="fill_parent" a:layout_height="wrap_content" a:orientation="horizontal"/>
+</HorizontalScrollView>
 <!-- vim: set sw=4 ts=4 noet nowrap: -->

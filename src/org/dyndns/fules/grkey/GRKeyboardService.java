@@ -29,7 +29,7 @@ import android.view.inputmethod.ExtractedText;
 import android.view.inputmethod.ExtractedTextRequest;
 import android.view.LayoutInflater;
 import android.widget.ArrayAdapter;
-import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.R.id;
 import java.io.IOException;
@@ -61,7 +61,8 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
 	SharedPreferences           mPrefs;
 
 	View                        kv; // the current layout view
-	AdapterView                 candidatesView;
+	View                        candidatesView;
+	LinearLayout                candidatesLL;
 	AlertDialog.Builder         helpDialogBuilder;
 
 	int                         lastOrientation = -1;
@@ -144,7 +145,8 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
 	} 
 
 	/*public View onCreateCandidatesView() {
-		candidatesView = (AdapterView)inflater.inflate(R.layout.candidates, null);
+		candidatesView = inflater.inflate(R.layout.candidates, null);
+		candidatesLL = (LinearLayout)candidatesView.findViewById(R.id.candidatesLL);
 		return candidatesView;
 	}*/
 
@@ -317,7 +319,22 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
 		keyMapping.collectHelpForKey(ghA, keyId, currentScript, currentShiftState);
 		ghA.sort(ghA.defaultComparator);
 
-		candidatesView.setAdapter(ghA);
+		int n = ghA.getCount();
+		int oldn = candidatesLL.getChildCount();
+		if (oldn > n)
+			candidatesLL.removeViews(n, oldn - n);
+		Log.d(TAG, "showCandidates; adapter_count=" + n + ", list_count=" + oldn);
+		for (int i = 0; i < n; i++) {
+			View oldv = candidatesLL.getChildAt(i);
+			View v = ghA.getView(i, oldv, candidatesLL);
+			Log.d(TAG, "showCandidates; i=" + i + ", oldv=" + oldv + ", v="  + v);
+			if (v != oldv) {
+				if (oldv != null)
+					candidatesLL.removeViewAt(i);
+				candidatesLL.addView(v, i);
+			}
+		}
+		candidatesLL.invalidate();
 		setCandidatesViewShown(true);
 	}
 
