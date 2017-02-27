@@ -153,6 +153,7 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
 		super.onStartInput(attribute, restarting); 
 		//kv.resetState();
 		//kv.setInputType(attribute.inputType);
+		setCandidatesViewShown(false);
 	}
 
 	@Override public View onCreateInputView() {
@@ -182,14 +183,8 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
 	}
 
 	private void sendModifiers(InputConnection ic, int action) {
-		if (kv == null)
-			return;
-		/*if (kv.checkState("shift"))
-		  ic.sendKeyEvent(new KeyEvent(action, KeyEvent.KEYCODE_SHIFT_LEFT));
-		if (kv.checkState("alt"))
-		  ic.sendKeyEvent(new KeyEvent(action, KeyEvent.KEYCODE_ALT_LEFT));
-		if (kv.checkState("altgr"))
-		  ic.sendKeyEvent(new KeyEvent(action, KeyEvent.KEYCODE_ALT_RIGHT));*/
+		if ((currentShiftState & res.getInteger(R.integer.shift)) != 0)
+			ic.sendKeyEvent(new KeyEvent(action, KeyEvent.KEYCODE_SHIFT_LEFT));
 	}
 
 	// Process a generated keycode
@@ -235,26 +230,6 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
 		currentScript = newScript;
 		if (kv != null)
 			kv.invalidate();
-	}
-
-	public void pickDefaultCandidate() {
-	}
-
-	public void swipeRight() {
-	}
-
-	public void swipeLeft() {
-	}
-
-	// Hide the view
-	public void swipeDown() {
-		requestHideSelf(0);
-	}
-
-	public void swipeUp() {
-	}
-
-	public void onPress(int primaryCode) {
 	}
 
 	public void onRelease(int primaryCode) {
