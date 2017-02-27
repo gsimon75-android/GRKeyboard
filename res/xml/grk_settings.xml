@@ -14,6 +14,13 @@
 			a:title="@string/key_height"
 			a:summary="@string/key_height_summary"
 			a:defaultValue="0.8"/>
+		<ListPreference
+			a:key="help_method"
+			a:title="@string/help_method"                                                                                                                                                       
+			a:summary="@string/help_method_summary"
+			a:entries="@array/help_method_names"
+			a:entryValues="@array/help_method_values"
+			a:defaultValue="0"/>
 	</PreferenceScreen>
 
 	<PreferenceScreen

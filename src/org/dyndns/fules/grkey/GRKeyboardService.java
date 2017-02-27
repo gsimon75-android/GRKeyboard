@@ -32,6 +32,7 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.R.id;
+import java.lang.EnumConstantNotPresentException;
 import java.io.IOException;
 import java.util.Comparator;
 import java.util.Iterator;
@@ -49,12 +50,34 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
 	static final String         TAG = "GRKeyboard";
 	public static final String  NS_ANDROID = "http://schemas.android.com/apk/res/android";
 	
-	static final float          GESTURE_JITTER_LIMIT = 0.6f;
-	static final float          GESTURE_QUALITY_THRESHOLD = 0.8f;
-	static final float          GESTURE_MINIMAL_LENGTH = 20f;
+	enum HelpMethod {
+		// NOTE: keep in sync with @array/help_method_names and help_method_values
+		AS_DIALOG(0),
+		AS_CANDIDATES(1);
 
-	public static final String  SHARED_PREFS_NAME = "GRKeyboardSettings";
-	public static final float   DEFAULT_RELATIVE_KEY_HEIGHT = 0.8f;
+		private int value;
+
+		HelpMethod(int value) {
+			this.value = value;
+		}
+
+		static HelpMethod byValue(int n) {
+			for (HelpMethod h : values()) {
+				if (h.value == n)
+					return h;
+			}
+			throw new EnumConstantNotPresentException(HelpMethod.class, String.valueOf(n));
+			
+		}
+	}
+
+	static final float              GESTURE_JITTER_LIMIT = 0.6f;
+	static final float              GESTURE_QUALITY_THRESHOLD = 0.8f;
+	static final float              GESTURE_MINIMAL_LENGTH = 20f;
+
+	public static final String      SHARED_PREFS_NAME = "GRKeyboardSettings";
+	public static final float       DEFAULT_RELATIVE_KEY_HEIGHT = 0.8f;
+	public static final HelpMethod  DEFAULT_HELP_METHOD = HelpMethod.AS_CANDIDATES;
 
 	LayoutInflater              inflater;
 	Resources                   res;
@@ -67,6 +90,7 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
 
 	int                         lastOrientation = -1;
 	float                       relativeKeyHeight = DEFAULT_RELATIVE_KEY_HEIGHT;
+	HelpMethod                  helpMethod = DEFAULT_HELP_METHOD;
 
 	ExtractedTextRequest        etreq = new ExtractedTextRequest();
 	int                         selectionStart = -1, selectionEnd = -1;
@@ -91,7 +115,6 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
 	((NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE)).notify(1, n);
 	Log.e(TAG, title+"; "+msg);
 	}*/
-
 
 	@Override public void onCreate() {
 		res = getResources();
@@ -297,6 +320,11 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
 					d.dismiss();
 			}
 		}
+		else if (key.equals("help_method")) {
+			String s = prefs.getString(key, null);
+			helpMethod = (s != null) ? HelpMethod.byValue(Integer.parseInt(s)) : DEFAULT_HELP_METHOD;
+			Log.d(TAG, "onSharedPreferenceChanged; value='" + s + "', helpMethod=" + helpMethod);
+		}
 	}
 
 	void showGestures(final int keyId) {
@@ -354,9 +382,17 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
 			requestHideSelf(0);
 		else if (cmd.equals("switchIM"))
 			ic.performContextMenuAction(android.R.id.switchInputMethod);
-		else if (cmd.equals("showGestures"))
-			showCandidates(keyId);
-			//showGestures(keyId);
+		else if (cmd.equals("showGestures")) {
+			switch (helpMethod) {
+				case AS_CANDIDATES:
+					showCandidates(keyId);
+					break;
+
+				case AS_DIALOG:
+					showGestures(keyId);
+					break;
+			}
+		}
 		// ---- selection commands
 		else if (cmd.equals("selectStart")) {
 			selectionStart = ic.getExtractedText(etreq, 0).selectionStart;
