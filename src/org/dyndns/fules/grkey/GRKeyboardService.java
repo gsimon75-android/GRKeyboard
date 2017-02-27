@@ -45,7 +45,7 @@ import android.view.ViewGroup;
 import android.view.ViewParent;
 
 
-public class GRKeyboardService extends InputMethodService implements SharedPreferences.OnSharedPreferenceChangeListener  {
+public class GRKeyboardService extends InputMethodService implements SharedPreferences.OnSharedPreferenceChangeListener, KeyMapping.OnActionListener {
 	static final String         TAG = "GRKeyboard";
 	public static final String  NS_ANDROID = "http://schemas.android.com/apk/res/android";
 	
@@ -144,11 +144,15 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
 		return kv;
 	} 
 
-	/*public View onCreateCandidatesView() {
+	@Override public View onCreateCandidatesView() {
 		candidatesView = inflater.inflate(R.layout.candidates, null);
 		candidatesLL = (LinearLayout)candidatesView.findViewById(R.id.candidatesLL);
 		return candidatesView;
-	}*/
+	}
+
+	@Override public int getCandidatesHiddenVisibility() {
+		return View.GONE;
+	}
 
 	@Override public boolean onEvaluateFullscreenMode() {
 		return false; // never require fullscreen
@@ -296,7 +300,7 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
 	}
 
 	void showGestures(final int keyId) {
-		final GestureHelp.Adapter ghA = new GestureHelp.Adapter(this);
+		final GestureHelp.Adapter ghA = new GestureHelp.Adapter(this, R.layout.gesture_help, R.id.gestureView, R.id.gestureText);
 		ghA.clear();
 		keyMapping.collectHelpForKey(ghA, keyId, currentScript, currentShiftState);
 		ghA.sort(ghA.defaultComparator);
@@ -314,7 +318,8 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
 	}
 
 	void showCandidates(final int keyId) {
-		final GestureHelp.Adapter ghA = new GestureHelp.Adapter(this);
+		final GestureHelp.Adapter ghA = new GestureHelp.Adapter(this, R.layout.candidate_item, R.id.candidateGesture, R.id.candidateText);
+		ghA.registerOnActionListener(this);
 		ghA.clear();
 		keyMapping.collectHelpForKey(ghA, keyId, currentScript, currentShiftState);
 		ghA.sort(ghA.defaultComparator);
@@ -323,11 +328,9 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
 		int oldn = candidatesLL.getChildCount();
 		if (oldn > n)
 			candidatesLL.removeViews(n, oldn - n);
-		Log.d(TAG, "showCandidates; adapter_count=" + n + ", list_count=" + oldn);
 		for (int i = 0; i < n; i++) {
 			View oldv = candidatesLL.getChildAt(i);
 			View v = ghA.getView(i, oldv, candidatesLL);
-			Log.d(TAG, "showCandidates; i=" + i + ", oldv=" + oldv + ", v="  + v);
 			if (v != oldv) {
 				if (oldv != null)
 					candidatesLL.removeViewAt(i);
@@ -343,14 +346,17 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
 		Log.d(TAG, "execCmd('" + cmd + "')");
 		InputConnection ic = getCurrentInputConnection();
 
+		if (!cmd.equals("showGestures"))
+			setCandidatesViewShown(false);
+
 		// ---- internal commands
 		if (cmd.equals("hide"))
 			requestHideSelf(0);
 		else if (cmd.equals("switchIM"))
 			ic.performContextMenuAction(android.R.id.switchInputMethod);
 		else if (cmd.equals("showGestures"))
-			//showCandidates(keyId);
-			showGestures(keyId);
+			showCandidates(keyId);
+			//showGestures(keyId);
 		// ---- selection commands
 		else if (cmd.equals("selectStart")) {
 			selectionStart = ic.getExtractedText(etreq, 0).selectionStart;
@@ -402,8 +408,11 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
 	}
 
 	void performAction(KeyMapping.Action a, int keyId) {
-		if (a.getCmd() != null)
+		if (a == null) {
+		}
+		else if (a.getCmd() != null) {
 			execCmd(a.getCmd(), keyId);
+		}
 		else {
 			if (a.getCode() >= 0)
 				onKey(a.getCode());
@@ -414,6 +423,7 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
 
 			if (currentShiftState != nextShiftState)
 				setShiftState(nextShiftState);
+			setCandidatesViewShown(false);
 		}
 	}
 
@@ -432,6 +442,10 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
 			if (a != null)
 				performAction(a, key.getId());
 		}
+	}
+
+	public void onActionRequested(KeyMapping.Action a) {
+		performAction(a, 0);
 	}
 }
 

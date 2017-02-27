@@ -19,12 +19,13 @@ class GestureHelp {
 		this.text = text;
 	}
 
-	static class Adapter extends ArrayAdapter<GestureHelp> {
-		static final int layoutId = R.layout.gesture_help;
-		static final int gestureViewId = R.id.gestureView;
-		static final int gestureTextId = R.id.gestureText;
+	static class Adapter extends ArrayAdapter<GestureHelp> implements View.OnClickListener {
+		int layoutId;
+		int gestureViewId;
+		int gestureTextId;
 		HashSet<Integer> gestures = new HashSet<Integer>();
 		final LayoutInflater inflater;
+		KeyMapping.OnActionListener listener = null;
 
 		public Comparator<GestureHelp> defaultComparator = new Comparator<GestureHelp>() {
 			public int compare(GestureHelp lhs, GestureHelp rhs) {
@@ -55,10 +56,14 @@ class GestureHelp {
 		class ViewHolder {
 			GestureView gestureView;
 			TextView gestureText;
+			KeyMapping.Action action;
 		}
 
-		public Adapter(Context context) {
+		public Adapter(Context context, int layoutId, int gestureViewId, int gestureTextId) {
 			super(context, layoutId);
+			this.layoutId = layoutId;
+			this.gestureViewId = gestureViewId;
+			this.gestureTextId = gestureTextId;
 			inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		}
 
@@ -87,6 +92,7 @@ class GestureHelp {
 				holder.gestureView = (GestureView)convertView.findViewById(gestureViewId);
 				holder.gestureText = (TextView)convertView.findViewById(gestureTextId);
 				convertView.setTag(holder);
+				convertView.setOnClickListener(this);
 			}
 			else {
 				holder = (ViewHolder)convertView.getTag();
@@ -94,10 +100,21 @@ class GestureHelp {
 
 			GestureHelp item = getItem(position);
 			if ((item != null) && (holder != null)) {
+				holder.action = item.action;
 				holder.gestureView.setGesture(item.action.gesture);
 				holder.gestureText.setText(item.text);
 			}
 			return convertView;
+		}
+
+		public void registerOnActionListener(KeyMapping.OnActionListener l) {
+			listener = l;
+		}
+
+		public void onClick(View v) {
+			ViewHolder holder = (ViewHolder)v.getTag();
+			if (listener != null)
+				listener.onActionRequested(holder.action);
 		}
 	}
 

@@ -13,6 +13,10 @@ public class KeyMapping {
 	Context                     context;
 	Resources                   res;
 
+	public static interface OnActionListener {
+		abstract void onActionRequested(Action a);
+	}
+
 	class XmlStructure {
 		String tagName;
 
