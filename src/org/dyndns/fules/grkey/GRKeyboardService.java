@@ -52,8 +52,8 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
 	
 	enum HelpMethod {
 		// NOTE: keep in sync with @array/help_method_names and help_method_values
-		AS_DIALOG(0),
-		AS_CANDIDATES(1);
+		AS_CANDIDATES(0),
+		AS_DIALOG(1);
 
 		private int value;
 
