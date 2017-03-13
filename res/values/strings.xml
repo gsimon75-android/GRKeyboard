@@ -19,7 +19,6 @@
 	<string name="pg_about_summary">Miscellaneous information</string>
 
 	<string name="version">Version</string>
-	<integer name="version_number">1</integer>
 	<string name="version_summary">v0.1</string>
 
 	<string name="source">Source</string>

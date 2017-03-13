@@ -218,8 +218,11 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
 
 	private void setShiftState(int newState) {
 		currentShiftState = newState;
-		if (kv != null)
-			kv.invalidate();
+		if (kv != null) {
+			//kv.invalidate(); // does not redraw all keys, only the one being pressed!
+			kv.setVisibility(View.INVISIBLE);
+			kv.setVisibility(View.VISIBLE);
+		}
 	}
 
 	public int getScript() {
@@ -228,8 +231,11 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
 
 	private void setScript(int newScript) {
 		currentScript = newScript;
-		if (kv != null)
-			kv.invalidate();
+		if (kv != null) {
+			//kv.invalidate(); // does not redraw all keys, only the one being pressed!
+			kv.setVisibility(View.INVISIBLE);
+			kv.setVisibility(View.VISIBLE);
+		}
 	}
 
 	public void onRelease(int primaryCode) {
