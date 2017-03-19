@@ -50,34 +50,12 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
 	static final String         TAG = "GRKeyboard";
 	public static final String  NS_ANDROID = "http://schemas.android.com/apk/res/android";
 	
-	enum HelpMethod {
-		// NOTE: keep in sync with @array/help_method_names and help_method_values
-		AS_CANDIDATES(0),
-		AS_DIALOG(1);
-
-		private int value;
-
-		HelpMethod(int value) {
-			this.value = value;
-		}
-
-		static HelpMethod byValue(int n) {
-			for (HelpMethod h : values()) {
-				if (h.value == n)
-					return h;
-			}
-			throw new EnumConstantNotPresentException(HelpMethod.class, String.valueOf(n));
-			
-		}
-	}
-
 	static final float              GESTURE_JITTER_LIMIT = 0.6f;
 	static final float              GESTURE_QUALITY_THRESHOLD = 0.8f;
 	static final float              GESTURE_MINIMAL_LENGTH = 20f;
 
 	public static final String      SHARED_PREFS_NAME = "GRKeyboardSettings";
 	public static final float       DEFAULT_RELATIVE_KEY_HEIGHT = 0.8f;
-	public static final HelpMethod  DEFAULT_HELP_METHOD = HelpMethod.AS_CANDIDATES;
 
 	LayoutInflater              inflater;
 	Resources                   res;
@@ -90,7 +68,6 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
 
 	int                         lastOrientation = -1;
 	float                       relativeKeyHeight = DEFAULT_RELATIVE_KEY_HEIGHT;
-	HelpMethod                  helpMethod = DEFAULT_HELP_METHOD;
 
 	ExtractedTextRequest        etreq = new ExtractedTextRequest();
 	int                         selectionStart = -1, selectionEnd = -1;
@@ -301,29 +278,6 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
 					d.dismiss();
 			}
 		}
-		else if (key.equals("help_method")) {
-			String s = prefs.getString(key, null);
-			helpMethod = (s != null) ? HelpMethod.byValue(Integer.parseInt(s)) : DEFAULT_HELP_METHOD;
-			Log.d(TAG, "onSharedPreferenceChanged; value='" + s + "', helpMethod=" + helpMethod);
-		}
-	}
-
-	void showGestures(final int keyId) {
-		final GestureHelp.Adapter ghA = new GestureHelp.Adapter(this, R.layout.gesture_help, R.id.gestureView, R.id.gestureText);
-		ghA.clear();
-		keyMapping.collectHelpForKey(ghA, keyId, currentScript, currentShiftState);
-		ghA.sort(ghA.defaultComparator);
-
-		helpDialogBuilder.setAdapter(ghA,
-			new DialogInterface.OnClickListener() {
-				public void onClick(DialogInterface dialog, int which) {
-					performAction(ghA.getItem(which).action, keyId);
-				}
-			}
-		);
-		AlertDialog dialog = helpDialogBuilder.create();
-		dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
-		dialog.show();
 	}
 
 	void showCandidates(final int keyId) {
@@ -363,17 +317,8 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
 			requestHideSelf(0);
 		else if (cmd.equals("switchIM"))
 			ic.performContextMenuAction(android.R.id.switchInputMethod);
-		else if (cmd.equals("showGestures")) {
-			switch (helpMethod) {
-				case AS_CANDIDATES:
-					showCandidates(keyId);
-					break;
-
-				case AS_DIALOG:
-					showGestures(keyId);
-					break;
-			}
-		}
+		else if (cmd.equals("showGestures"))
+			showCandidates(keyId);
 		// ---- selection commands
 		else if (cmd.equals("selectStart")) {
 			selectionStart = ic.getExtractedText(etreq, 0).selectionStart;

@@ -11,9 +11,6 @@
 	<string name="key_height">Key height</string>
 	<string name="key_height_summary">Height of a key relative to its width</string>
 
-	<string name="help_method">Hint method</string>
-	<string name="help_method_summary">How to display the available chars of a key</string>
-
 	<!-- preference screen: about -->
 	<string name="pg_about">About</string>
 	<string name="pg_about_summary">Miscellaneous information</string>
@@ -44,8 +41,4 @@
 	<string name="cmd_greek">Ελληνικό</string>
 	<string name="cmd_arabic">العَرَبِيَّة</string>
 
-	<string-array name="help_method_names">
-		<item>"As candidates"</item>
-		<item>"As dialog"</item>
-	</string-array>
 </resources>
