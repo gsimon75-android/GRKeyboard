@@ -40,7 +40,7 @@ public class HelpKey extends Button {
 	}
 
 	public HelpKey(Context context, AttributeSet attributes) {
-		this(context, attributes, android.R.attr.buttonStyle);
+		this(context, attributes, R.attr.helpKeyStyle);
 	}
 
 	public HelpKey(Context context, AttributeSet attributes, int defStyleAttr) {

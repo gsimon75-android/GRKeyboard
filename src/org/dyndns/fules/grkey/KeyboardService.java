@@ -18,7 +18,6 @@ import android.inputmethodservice.InputMethodService;
 import android.inputmethodservice.KeyboardView;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.util.SparseArray;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ContextThemeWrapper;
@@ -34,6 +33,7 @@ import android.widget.TextView;
 import android.R.id;
 import java.lang.EnumConstantNotPresentException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.HashSet;
@@ -401,6 +401,7 @@ public class KeyboardService extends InputMethodService implements SharedPrefere
 	public String getAllLabelsForKey(int keyId) {
 		StringBuilder sb = new StringBuilder();
 		HashSet<String> alreadyListed = new HashSet<String>();
+		ArrayList<String> items = new ArrayList<String>();
 
 		GestureHelp.Adapter ghA = new GestureHelp.Adapter(this, -1, -1, -1);
 		keyMapping.collectHelpForKey(ghA, keyId, currentScript, currentShiftState);
@@ -417,11 +418,21 @@ public class KeyboardService extends InputMethodService implements SharedPrefere
 				s = gh.action.label;
 
 			if ((s != null) && !alreadyListed.contains(s)) {
-				sb.append(' ');
-				sb.append(s);
+				items.add(s);
 				alreadyListed.add(s);
 			}
+		}
 
+		n = items.size();
+		int sqrtN = (int)(Math.sqrt(n) + 0.5);
+		for (int i = 0; i < n; ++i) {
+			if (i == 0) 
+				;
+			else if ((i % sqrtN) == 0)
+				sb.append('\n');
+			else
+				sb.append(' ');
+			sb.append(items.get(i));
 		}
 		return sb.toString();
 	}

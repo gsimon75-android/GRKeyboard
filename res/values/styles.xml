@@ -2,9 +2,6 @@
 <resources>
 
 	<!-- STYLES -->
-	<style name="myEditTextStyle" parent="@android:style/Widget.EditText">
-		<item name="android:layout_height">40dp</item>
-	</style>
 
 	<style name="Widget.Button.GRKey" parent="@android:style/Widget.Holo.Button">
 		<item name="android:minHeight">0px</item>
@@ -15,15 +12,17 @@
 
 	<style name="Widget.Button.HelpKey" parent="@android:style/Widget.Holo.Button">
 		<item name="android:minHeight">0px</item>
-		<item name="android:padding">0px</item>
+		<item name="android:padding">2sp</item>
 		<item name="android:layout_margin">0px</item>
-		<item name="android:textSize">5sp</item>
+		<item name="android:textSize">20sp</item>
 		<item name="android:textColor">#ffff00</item>
 	</style>
 
 	<!-- THEMES -->
+
 	<style name="Theme.GRKeyApp" parent="@android:style/Theme.Holo">
-		<item name="android:editTextStyle">@style/myEditTextStyle</item>
+		<item name="grKeyStyle">@style/Widget.Button.GRKey</item>
+		<item name="helpKeyStyle">@style/Widget.Button.HelpKey</item>
 	</style>
 
 	<style name="Theme.GRKeyboard" parent="@android:style/Theme.NoTitleBar">
