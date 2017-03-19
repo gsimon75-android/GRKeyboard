@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<declare-styleable name="GRKey">
-		<attr name="label" format="reference|string"/>
-	</declare-styleable>
-	
 	<declare-styleable name="GestureView">
 		<!-- gesture -->
 		<attr name="gesture" format="integer"/>

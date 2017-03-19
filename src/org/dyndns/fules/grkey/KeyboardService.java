@@ -286,7 +286,7 @@ public class KeyboardService extends InputMethodService implements SharedPrefere
 	void showCandidates(final int keyId) {
 		final GestureHelp.Adapter ghA = new GestureHelp.Adapter(this, R.layout.candidate_item, R.id.candidateGesture, R.id.candidateText);
 		ghA.registerOnActionListener(this);
-		ghA.clear();
+		//ghA.clear();
 		keyMapping.collectHelpForKey(ghA, keyId, currentScript, currentShiftState);
 		ghA.sort(ghA.defaultComparator);
 
@@ -396,6 +396,34 @@ public class KeyboardService extends InputMethodService implements SharedPrefere
 		KeyMapping.Action a = keyMapping.keyMap.getActionFor(keyId, currentScript, currentShiftState, res.getInteger(R.integer.tap));
 		String s = (a != null) ? a.getLabel() : null;
 		return (s != null) ? s : "☹";
+	}
+
+	public String getAllLabelsForKey(int keyId) {
+		StringBuilder sb = new StringBuilder();
+		HashSet<String> alreadyListed = new HashSet<String>();
+
+		GestureHelp.Adapter ghA = new GestureHelp.Adapter(this, -1, -1, -1);
+		keyMapping.collectHelpForKey(ghA, keyId, currentScript, currentShiftState);
+		ghA.sort(ghA.defaultComparator);
+
+		int n = ghA.getCount();
+		for (int i = 0; i < n; ++i) {
+			GestureHelp gh = ghA.getItem(i);
+			String s = null;
+
+			if (gh.action.text != null)
+				s = gh.action.text;
+			else if (gh.action.code >= 0)
+				s = gh.action.label;
+
+			if ((s != null) && !alreadyListed.contains(s)) {
+				sb.append(' ');
+				sb.append(s);
+				alreadyListed.add(s);
+			}
+
+		}
+		return sb.toString();
 	}
 
 	public void keyClicked(View keyview, int gestureCode) {
