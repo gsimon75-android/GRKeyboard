@@ -412,9 +412,13 @@ public class KeyboardService extends InputMethodService implements SharedPrefere
 			GestureHelp gh = ghA.getItem(i);
 			String s = null;
 
-			if (gh.action.text != null)
+			/*if (gh.action.text != null)
 				s = gh.action.text;
 			else if (gh.action.code >= 0)
+				s = gh.action.label;*/
+			if (gh.action.text != null)
+				s = gh.action.text;
+			else if ((gh.action.cmd == null) || !gh.action.cmd.equals("showGestures"))
 				s = gh.action.label;
 
 			if ((s != null) && !alreadyListed.contains(s)) {
@@ -424,16 +428,18 @@ public class KeyboardService extends InputMethodService implements SharedPrefere
 		}
 
 		n = items.size();
-		int sqrtN = (int)(Math.sqrt(n) + 0.5);
+		int nCols = (int)Math.ceil(Math.sqrt(n));
+		//int nRows = (int)Math.ceil((double)n / (double)nCols);
 		for (int i = 0; i < n; ++i) {
 			if (i == 0) 
 				;
-			else if ((i % sqrtN) == 0)
+			else if ((i % nCols) == 0)
 				sb.append('\n');
 			else
 				sb.append(' ');
 			sb.append(items.get(i));
 		}
+		//Log.d(TAG, "getAllLabelsForKey; n=" + n + ", nRows=" + nRows + ", nCols=" + nCols + ", s='" + sb.toString() + "'");
 		return sb.toString();
 	}
 

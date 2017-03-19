@@ -53,13 +53,24 @@ public class HelpKey extends Button {
 
 	public void onMeasure(int w, int h) {
 		super.onMeasure(w, h);
+		int mw = getMeasuredWidth();
+		int mh = getMeasuredHeight();
+
 		ViewGroup.LayoutParams lp = getLayoutParams();
 		if (lp instanceof LinearLayout.LayoutParams) {
 			LinearLayout.LayoutParams llp = (LinearLayout.LayoutParams)lp;
-			int mw = getMeasuredWidth();
-			float keyHeight = (KeyboardService.theKeyboardService == null) ? 1.0f : KeyboardService.theKeyboardService.getRelativeKeyHeight();
-			setMeasuredDimension(mw, (int)(keyHeight * mw / llp.weight));
+			// NOTE: assuming horizontal LinearLayout
+			if (llp.weight <= 0)
+				llp.weight = 1;
+			int mh2 = (int)(mw / llp.weight); // either mw x mh2
+			int mw2 = (int)(mh * llp.weight); // or mw2 x mh
+
+			if (mh2 > mh)
+				setMeasuredDimension(mw, mh2);
+			else if (mw2 > mw)
+				setMeasuredDimension(mw2, mh);
 		}
+
 	}
 }
 
