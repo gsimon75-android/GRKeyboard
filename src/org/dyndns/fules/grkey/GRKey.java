@@ -33,10 +33,8 @@ import java.util.Vector;
 import java.util.Iterator;
 
 public class GRKey extends Button {
-	// Constants
 	private static final String     TAG = "GRKeyboard";
 
-	private KeyboardService         svc;
 	private int[]                   stateNormal = { android.R.attr.state_enabled, android.R.attr.state_window_focused, android.R.attr.state_multiline };
 	private int[]                   statePressed = { android.R.attr.state_enabled, android.R.attr.state_window_focused, android.R.attr.state_multiline, android.R.attr.state_pressed };
 	private int                     lastScript = -1;
@@ -53,24 +51,15 @@ public class GRKey extends Button {
 	public GRKey(Context context, AttributeSet attributes, int defStyleAttr) {
 		super(context, attributes, defStyleAttr);
 
-		//TypedArray a = context.obtainStyledAttributes(attributes, R.styleable.GRKey);
-		//label = a.getString(R.styleable.GRKey_label);
-
-		//Log.d(TAG, "GRKey(" + context + ", " + attributes + ", " + defStyleAttr + ")");
-		//dumpAttributeSet(attributes);
-		if (context instanceof KeyboardService)
-			svc = (KeyboardService)context;
-		else
-			Log.d(TAG, "Context of key is not a KeyboardService");
 		updateShiftState();
 	}
 
 	public void updateShiftState() {
-		if (svc != null) {
-			int script = svc.getScript();
-			int shiftState = svc.getShiftState();
+		if (KeyboardService.theKeyboardService != null) {
+			int script = KeyboardService.theKeyboardService.getScript();
+			int shiftState = KeyboardService.theKeyboardService.getShiftState();
 			if ((lastScript != script) || (lastShiftState != shiftState)) {
-				setText(svc.getLabelForKey(getId()));
+				setText(KeyboardService.theKeyboardService.getLabelForKey(getId()));
 				lastScript = script;
 				lastShiftState = shiftState;
 			}
@@ -104,8 +93,8 @@ public class GRKey extends Button {
 			}
 			break;
 		}
-		if (svc != null)
-			svc.gestureRecogniser.onTouchEvent(this, event);
+		if (KeyboardService.theKeyboardService != null)
+			KeyboardService.theKeyboardService.gestureRecogniser.onTouchEvent(this, event);
 		return true;
 	}
 
@@ -115,7 +104,7 @@ public class GRKey extends Button {
 		if (lp instanceof LinearLayout.LayoutParams) {
 			LinearLayout.LayoutParams llp = (LinearLayout.LayoutParams)lp;
 			int mw = getMeasuredWidth();
-			float keyHeight = (svc == null) ? 1.0f : svc.getRelativeKeyHeight();
+			float keyHeight = (KeyboardService.theKeyboardService == null) ? 1.0f : KeyboardService.theKeyboardService.getRelativeKeyHeight();
 			setMeasuredDimension(mw, (int)(keyHeight * mw / llp.weight));
 		}
 	}

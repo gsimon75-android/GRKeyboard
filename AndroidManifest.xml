@@ -21,5 +21,12 @@
 			a:exported="true">
 		</activity>
 
+		<activity a:name="HelpScreen" a:label="@string/app_label" a:launchMode="singleInstance">
+			<intent-filter>
+				<action a:name="android.intent.action.MAIN"/>
+				<category a:name="android.intent.category.DEFAULT"/>
+			</intent-filter>
+		</activity>
+
 	</application>
 </manifest> 

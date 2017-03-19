@@ -57,6 +57,7 @@ public class KeyboardService extends InputMethodService implements SharedPrefere
 	public static final String      SHARED_PREFS_NAME = "Settings";
 	public static final float       DEFAULT_RELATIVE_KEY_HEIGHT = 0.8f;
 
+	public static KeyboardService theKeyboardService = null;
 	LayoutInflater              inflater;
 	Resources                   res;
 	SharedPreferences           mPrefs;
@@ -111,6 +112,8 @@ public class KeyboardService extends InputMethodService implements SharedPrefere
 		Iterator<String> prefKey = mPrefs.getAll().keySet().iterator();
 		while (prefKey.hasNext())
 			onSharedPreferenceChanged(mPrefs, prefKey.next());
+
+		theKeyboardService = this;
 	}
 
 	@Override public AbstractInputMethodService.AbstractInputMethodImpl onCreateInputMethodInterface() {
@@ -407,6 +410,14 @@ public class KeyboardService extends InputMethodService implements SharedPrefere
 	}
 
 	public void onActionRequested(KeyMapping.Action a) {
+		String cmd = a.getCmd();
+		
+		if ((cmd != null) && cmd.equals("showGestures")) {
+			setCandidatesViewShown(false);
+
+			Intent showHelpScreen = new Intent(Intent.ACTION_MAIN).setClass(this, HelpScreen.class).addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+			startActivity(showHelpScreen);
+		}
 		performAction(a, 0);
 	}
 }
