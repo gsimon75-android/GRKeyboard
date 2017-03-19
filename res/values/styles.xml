@@ -13,6 +13,14 @@
 		<!--item name="android:textColor">@android:color/primary_text_light</item-->
 	</style>
 
+	<style name="Widget.Button.HelpKey" parent="@android:style/Widget.Holo.Button">
+		<item name="android:minHeight">0px</item>
+		<item name="android:padding">0px</item>
+		<item name="android:layout_margin">0px</item>
+		<item name="android:textSize">5sp</item>
+		<item name="android:textColor">#ffff00</item>
+	</style>
+
 	<!-- THEMES -->
 	<style name="Theme.GRKeyApp" parent="@android:style/Theme.Holo">
 		<item name="android:editTextStyle">@style/myEditTextStyle</item>
