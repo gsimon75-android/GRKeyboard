@@ -9,7 +9,7 @@ import android.preference.Preference;
 import android.preference.ListPreference;
 //import android.preference.PreferenceScreen;
 
-public class GRKeyboardSettings extends PreferenceActivity {
+public class Settings extends PreferenceActivity {
 	private static final String     TAG = "GRKeyboard";
 
 	public CharSequence[] myCopyOf(CharSequence[] x, int n) { // java.utils.Arrays.copyOf() is missing in API < 9
@@ -23,7 +23,7 @@ public class GRKeyboardSettings extends PreferenceActivity {
 	@Override protected void onCreate(Bundle b) {
 		super.onCreate(b);
 
-		getPreferenceManager().setSharedPreferencesName(GRKeyboardService.SHARED_PREFS_NAME);
+		getPreferenceManager().setSharedPreferencesName(KeyboardService.SHARED_PREFS_NAME);
 		addPreferencesFromResource(R.xml.grk_settings);
 
 		/*Preference lp = findPreference("layout");

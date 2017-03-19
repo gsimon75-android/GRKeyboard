@@ -9,13 +9,13 @@ public class GestureRecogniser {
 	private static final int        LONG_TAP_TIMEOUT = 800;
 	private LongTap                 onLongTap;
 
-	private GRKeyboardService       svc;
+	private KeyboardService         svc;
 	private View                    key;
 	JitterFilter                    jitterFilter;
 	LinearRegression                strokeFinder;
 	int                             gestureCode;
 
-	GestureRecogniser(GRKeyboardService s, float jitterLimit, float qualityThreshold, float minimalRequiredLength) {
+	GestureRecogniser(KeyboardService s, float jitterLimit, float qualityThreshold, float minimalRequiredLength) {
 		svc = s;
 		jitterFilter = new JitterFilter(jitterLimit);
 		strokeFinder = new LinearRegression(qualityThreshold, minimalRequiredLength);

@@ -7,7 +7,7 @@
 
 	<application a:label="@string/app_label" a:icon="@drawable/icon_launcher" a:theme="@style/Theme.GRKeyApp">
 
-		<service a:name="GRKeyboardService" a:permission="android.permission.BIND_INPUT_METHOD"> 
+		<service a:name="KeyboardService" a:permission="android.permission.BIND_INPUT_METHOD"> 
 			<intent-filter>
 				<action a:name="android.view.InputMethod"/>
 				<action a:name="android.intent.action.DELETE"/>
@@ -16,7 +16,7 @@
 		</service>
 
 		<activity
-			a:name="GRKeyboardSettings"
+			a:name="Settings"
 			a:label="@string/settings_label"
 			a:exported="true">
 		</activity>

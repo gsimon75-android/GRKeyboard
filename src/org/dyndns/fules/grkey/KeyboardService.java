@@ -46,7 +46,7 @@ import android.view.ViewGroup;
 import android.view.ViewParent;
 
 
-public class GRKeyboardService extends InputMethodService implements SharedPreferences.OnSharedPreferenceChangeListener, KeyMapping.OnActionListener {
+public class KeyboardService extends InputMethodService implements SharedPreferences.OnSharedPreferenceChangeListener, KeyMapping.OnActionListener {
 	static final String         TAG = "GRKeyboard";
 	public static final String  NS_ANDROID = "http://schemas.android.com/apk/res/android";
 	
@@ -54,7 +54,7 @@ public class GRKeyboardService extends InputMethodService implements SharedPrefe
 	static final float              GESTURE_QUALITY_THRESHOLD = 0.8f;
 	static final float              GESTURE_MINIMAL_LENGTH = 20f;
 
-	public static final String      SHARED_PREFS_NAME = "GRKeyboardSettings";
+	public static final String      SHARED_PREFS_NAME = "Settings";
 	public static final float       DEFAULT_RELATIVE_KEY_HEIGHT = 0.8f;
 
 	LayoutInflater              inflater;

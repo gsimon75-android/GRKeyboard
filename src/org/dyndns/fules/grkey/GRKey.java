@@ -36,7 +36,7 @@ public class GRKey extends Button {
 	// Constants
 	private static final String     TAG = "GRKeyboard";
 
-	private GRKeyboardService       svc;
+	private KeyboardService         svc;
 	private int[]                   stateNormal = { android.R.attr.state_enabled, android.R.attr.state_window_focused, android.R.attr.state_multiline };
 	private int[]                   statePressed = { android.R.attr.state_enabled, android.R.attr.state_window_focused, android.R.attr.state_multiline, android.R.attr.state_pressed };
 	private int                     lastScript = -1;
@@ -58,10 +58,10 @@ public class GRKey extends Button {
 
 		//Log.d(TAG, "GRKey(" + context + ", " + attributes + ", " + defStyleAttr + ")");
 		//dumpAttributeSet(attributes);
-		if (context instanceof GRKeyboardService)
-			svc = (GRKeyboardService)context;
+		if (context instanceof KeyboardService)
+			svc = (KeyboardService)context;
 		else
-			Log.d(TAG, "Context of key is not a GRKeyboardService");
+			Log.d(TAG, "Context of key is not a KeyboardService");
 		updateShiftState();
 	}
 
