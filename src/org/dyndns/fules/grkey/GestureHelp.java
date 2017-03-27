@@ -53,6 +53,32 @@ class GestureHelp {
 			}
 		};
 
+		public Comparator<GestureHelp> alphabeticComparator = new Comparator<GestureHelp>() {
+			public int compare(GestureHelp lhs, GestureHelp rhs) {
+				int gl = lhs.action.getGestureRev();
+				int gr = rhs.action.getGestureRev();
+				// handle special cases: tap, longtap
+				if ((gl == 0) || (gr == 5))
+					return -1;
+				if ((gr == 0) || (gl == 5))
+					return 1;
+
+				while ((gl > 0) && (gr > 0)) {
+					if ((gl % 10) < (gr % 10))
+						return -1;
+					if ((gl % 10) > (gr % 10))
+						return 1;
+					gl /= 10;
+					gr /= 10;
+				}
+				if (gl < gr)
+					return -1;
+				if (gl > gr)
+					return 1;
+				return 0;
+			}
+		};
+
 		class ViewHolder {
 			GestureView gestureView;
 			TextView gestureText;

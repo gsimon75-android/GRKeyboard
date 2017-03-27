@@ -947,14 +947,12 @@
             <Action gesture="@integer/dirS"     cmd="hide" label="@string/cmd_hide"/>
             <Action gesture="@integer/dirE"     cmd="ctrl" label="@string/cmd_ctrl"/>
             <Action gesture="@integer/dirW"     code="111" label="Esc"/>
-            <Action gesture="13"                cmd="copy" label="@string/cmd_copy"/>
-            <Action gesture="@integer/right_x"  cmd="cut" label="@string/cmd_cut"/>
-            <Action gesture="93"                cmd="selectAll" label="@string/cmd_select_all"/>
         </State>
     </Key>
 
     <Key id="@id/key_Space" text=" ">
-        <Action gesture="@integer/dirE"     code="61" label="⇨"/>
+        <Action gesture="@integer/dirN"     code="61" label="⇨"/>
+        <Action gesture="@integer/dirE"     text="_"/>
     </Key>
 
     <Key id="@id/key_Enter" code="66" label="↵">
@@ -984,16 +982,14 @@
     <!-- Special keys: At, Dollar, Dot, Quote -->
 
     <Key id="@id/key_At" text="\@"> <!-- @ -->
-        <Action gesture="13"                text="&lt;"/>
-        <Action gesture="31"                text="&gt;"/>
         <Action gesture="@integer/dirW"     text="["/>
         <Action gesture="@integer/dirE"     text="]"/>
         <Action gesture="@integer/dirN"     text="("/>
         <Action gesture="@integer/dirS"     text=")"/>
-        <Action gesture="183"               text="{"/>
         <Action gesture="46"                text="{"/>
-        <Action gesture="381"               text="}"/>
         <Action gesture="64"                text="}"/>
+        <Action gesture="28"                text="&lt;"/>
+        <Action gesture="82"                text="&gt;"/>
     </Key>
 
     <Key id="@id/key_Dollar" text="$">
@@ -1004,36 +1000,27 @@
         <Action gesture="@integer/dirW"     text="+"/>
         <Action gesture="@integer/dirN"     text="*"/>
         <Action gesture="@integer/dirS"     text="&#37;"/> <!-- % -->
-        <Action gesture="616"               text="="/>
         <Action gesture="64"                text="="/>
-        <Action gesture="93"                text="^"/>
+        <Action gesture="82"                text="^"/>
     </Key>
 
     <Key id="@id/key_Dot" text=".">
         <Action gesture="@integer/dirN"     text="¡"/>
         <Action gesture="@integer/dirS"     text="!"/>
         <Action gesture="@integer/dirSW"    text=","/>
-        <Action gesture="@integer/dirE"     text="_"/>
-        <Action gesture="46"                text="¿"/>
-        <Action gesture="64"                text="\?"/>
-        <Action gesture="93"                text=";"/>
-        <Action gesture="19"                text=";"/>
-        <Action gesture="39"                text=":"/>
-        <Action gesture="37"                text=":"/>
+        <Action gesture="@integer/dirW"     text="¿"/>
+        <Action gesture="@integer/dirE"     text="\?"/>
+        <Action gesture="64"                text=";"/>
+        <Action gesture="46"                text=":"/>
     </Key>
 
     <Key id="@id/key_Quote" text="&quot;">
-        <Action gesture="93"                text="~"/>
-        <Action gesture="929"               text="~"/>
-        <Action gesture="838"               text="~"/>
+        <Action gesture="@integer/dirSE"    text="`"/>
+        <Action gesture="@integer/dirSW"    text="'"/>
         <Action gesture="@integer/dirS"     text="|"/>
-        <Action gesture="82"                text="&amp;"/>
-        <Action gesture="46"                text="&amp;"/>
-        <Action gesture="183"               text="&amp;"/>
+        <Action gesture="@integer/dirN"     text="&amp;"/>
+        <Action gesture="46"                text="~"/>
         <Action gesture="64"                text="\#"/>
-        <Action gesture="616"               text="\#"/>
-        <Action gesture="@integer/dirSW"    text="`"/>
-        <Action gesture="@integer/dirSE"    text="'"/>
     </Key>
 
 </KeyMap>
