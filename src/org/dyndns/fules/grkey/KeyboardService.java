@@ -50,10 +50,6 @@ public class KeyboardService extends InputMethodService implements SharedPrefere
 	static final String         TAG = "GRKeyboard";
 	public static final String  NS_ANDROID = "http://schemas.android.com/apk/res/android";
 	
-	static final float              GESTURE_JITTER_LIMIT = 0.6f;
-	static final float              GESTURE_QUALITY_THRESHOLD = 0.8f;
-	static final float              GESTURE_MINIMAL_LENGTH = 20f;
-
 	public static final String      SHARED_PREFS_NAME = "Settings";
 	public static final float       DEFAULT_RELATIVE_KEY_HEIGHT = 0.8f;
 
@@ -78,7 +74,7 @@ public class KeyboardService extends InputMethodService implements SharedPrefere
 	int                         currentShiftState = 0;
 	int                         nextShiftState = 0;
 
-	GestureRecogniser           gestureRecogniser = new GestureRecogniser(this, GESTURE_JITTER_LIMIT, GESTURE_QUALITY_THRESHOLD, GESTURE_MINIMAL_LENGTH);
+	GestureRecogniser           gestureRecogniser = new StrokeBasedGestureRecogniser(this);
 
 	public static String nullSafe(String s) {
 		return (s == null) ? "<null>" : s;

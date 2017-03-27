@@ -4,9 +4,13 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
-public class GestureRecogniser {
+public class StrokeBasedGestureRecogniser implements GestureRecogniser {
 	private static final String     TAG = "GRKeyboard";
 	private static final int        LONG_TAP_TIMEOUT = 800;
+	static final float              GESTURE_JITTER_LIMIT = 0.6f;
+	static final float              GESTURE_QUALITY_THRESHOLD = 0.8f;
+	static final float              GESTURE_MINIMAL_LENGTH = 20f;
+
 	private LongTap                 onLongTap;
 
 	private KeyboardService         svc;
@@ -15,7 +19,11 @@ public class GestureRecogniser {
 	LinearRegression                strokeFinder;
 	int                             gestureCode;
 
-	GestureRecogniser(KeyboardService s, float jitterLimit, float qualityThreshold, float minimalRequiredLength) {
+	StrokeBasedGestureRecogniser(KeyboardService s) {
+		this(s, GESTURE_JITTER_LIMIT, GESTURE_QUALITY_THRESHOLD, GESTURE_MINIMAL_LENGTH);
+	}
+
+	StrokeBasedGestureRecogniser(KeyboardService s, float jitterLimit, float qualityThreshold, float minimalRequiredLength) {
 		svc = s;
 		jitterFilter = new JitterFilter(jitterLimit);
 		strokeFinder = new LinearRegression(qualityThreshold, minimalRequiredLength);
@@ -140,16 +148,12 @@ public class GestureRecogniser {
 					if (strokeFinder.isLongEnough())
 						gesturePartFinished();
 				}
-				svc.keyClicked(key, svc.gestureRecogniser.getGestureCode());
+				svc.keyClicked(key, gestureCode);
 				key = null;
 				//Log.d(TAG, "Stopped gesture;");
 			}
 			break;
 		}
-	}
-
-	public int getGestureCode() {
-		return gestureCode;
 	}
 
 }
