@@ -93,8 +93,9 @@ public class GRKey extends Button {
 			}
 			break;
 		}
-		if (KeyboardService.theKeyboardService != null)
-			KeyboardService.theKeyboardService.gestureRecogniser.onTouchEvent(this, event);
+		if ((KeyboardService.theKeyboardService != null) &&
+			(KeyboardService.theKeyboardService.gestureRecogniser != null))
+			KeyboardService.theKeyboardService.gestureRecogniser.onTouch(this, event);
 		return true;
 	}
 

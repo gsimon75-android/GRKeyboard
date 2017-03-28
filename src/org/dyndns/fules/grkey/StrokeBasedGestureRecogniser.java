@@ -4,7 +4,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
-public class StrokeBasedGestureRecogniser implements GestureRecogniser {
+public class StrokeBasedGestureRecogniser implements View.OnTouchListener {
 	private static final String     TAG = "GRKeyboard";
 	private static final int        LONG_TAP_TIMEOUT = 800;
 	static final float              GESTURE_JITTER_LIMIT = 0.6f;
@@ -13,18 +13,16 @@ public class StrokeBasedGestureRecogniser implements GestureRecogniser {
 
 	private LongTap                 onLongTap;
 
-	private KeyboardService         svc;
 	private View                    key;
 	JitterFilter                    jitterFilter;
 	LinearRegression                strokeFinder;
 	int                             gestureCode;
 
-	StrokeBasedGestureRecogniser(KeyboardService s) {
-		this(s, GESTURE_JITTER_LIMIT, GESTURE_QUALITY_THRESHOLD, GESTURE_MINIMAL_LENGTH);
+	StrokeBasedGestureRecogniser() {
+		this(GESTURE_JITTER_LIMIT, GESTURE_QUALITY_THRESHOLD, GESTURE_MINIMAL_LENGTH);
 	}
 
-	StrokeBasedGestureRecogniser(KeyboardService s, float jitterLimit, float qualityThreshold, float minimalRequiredLength) {
-		svc = s;
+	StrokeBasedGestureRecogniser(float jitterLimit, float qualityThreshold, float minimalRequiredLength) {
 		jitterFilter = new JitterFilter(jitterLimit);
 		strokeFinder = new LinearRegression(qualityThreshold, minimalRequiredLength);
 		onLongTap = new LongTap();
@@ -33,8 +31,8 @@ public class StrokeBasedGestureRecogniser implements GestureRecogniser {
 	private final class LongTap implements Runnable {
 		public void run() {
 			gestureCode = 5; // long tap
-			if (svc != null)
-				svc.keyClicked(key, gestureCode);
+			if (KeyboardService.theKeyboardService != null)
+				KeyboardService.theKeyboardService.keyClicked(key, gestureCode);
 			key = null;
 		}
 	}
@@ -107,7 +105,7 @@ public class StrokeBasedGestureRecogniser implements GestureRecogniser {
 		}
 	}
 
-	public void onTouchEvent(View k, MotionEvent event) {
+	public boolean onTouch(View k, MotionEvent event) {
 		key = k;
 		switch (event.getAction()) {
 			case MotionEvent.ACTION_DOWN: {
@@ -117,7 +115,7 @@ public class StrokeBasedGestureRecogniser implements GestureRecogniser {
 				processGestureMove(event.getX(), event.getY());
 				key.postDelayed(onLongTap, LONG_TAP_TIMEOUT);
 			}
-			break;
+			return true;
 
 			case MotionEvent.ACTION_MOVE: {
 				int historySize = event.getHistorySize();
@@ -125,7 +123,7 @@ public class StrokeBasedGestureRecogniser implements GestureRecogniser {
 					processGestureMove(event.getHistoricalX(0, h), event.getHistoricalY(0, h));
 				processGestureMove(event.getX(), event.getY());
 			}
-			break;
+			return true;
 
 			case MotionEvent.ACTION_UP: {
 				if (gestureCode == 5) { // long tap is already reported
@@ -148,12 +146,14 @@ public class StrokeBasedGestureRecogniser implements GestureRecogniser {
 					if (strokeFinder.isLongEnough())
 						gesturePartFinished();
 				}
-				svc.keyClicked(key, gestureCode);
+				if (KeyboardService.theKeyboardService != null)
+					KeyboardService.theKeyboardService.keyClicked(key, gestureCode);
 				key = null;
 				//Log.d(TAG, "Stopped gesture;");
 			}
-			break;
+			return true;
 		}
+		return false;
 	}
 
 }
