@@ -58,6 +58,10 @@ class PointF {
 		}
 	}
 
+	public float dist2(PointF other) {
+		return (float)Math.hypot(x-other.x, y-other.y);
+	}
+
 }
 
 // vim: set ts=4 sw=4 noet:

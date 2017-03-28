@@ -74,7 +74,8 @@ public class KeyboardService extends InputMethodService implements SharedPrefere
 	int                         currentShiftState = 0;
 	int                         nextShiftState = 0;
 
-	View.OnTouchListener        gestureRecogniser = new StrokeBasedGestureRecogniser();
+	//View.OnTouchListener        gestureRecogniser = new StrokeBasedGestureRecogniser();
+	View.OnTouchListener        gestureRecogniser = new SimpleGestureRecogniser();
 
 	public static String nullSafe(String s) {
 		return (s == null) ? "<null>" : s;
