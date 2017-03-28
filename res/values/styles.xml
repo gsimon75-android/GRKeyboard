@@ -14,7 +14,7 @@
 		<item name="android:minHeight">0px</item>
 		<item name="android:padding">2sp</item>
 		<item name="android:layout_margin">0px</item>
-		<item name="android:textSize">20sp</item>
+		<item name="android:textSize">10sp</item>
 		<item name="android:textColor">#ffff00</item>
 	</style>
 

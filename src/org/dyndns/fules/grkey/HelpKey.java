@@ -51,7 +51,7 @@ public class HelpKey extends Button {
 		}
 	}
 
-	public void onMeasure(int w, int h) {
+	/*public void onMeasure(int w, int h) {
 		super.onMeasure(w, h);
 		int mw = getMeasuredWidth();
 		int mh = getMeasuredHeight();
@@ -71,7 +71,7 @@ public class HelpKey extends Button {
 				setMeasuredDimension(mw2, mh);
 		}
 
-	}
+	}*/
 }
 
 // vim: set ai si sw=4 ts=4 noet:
