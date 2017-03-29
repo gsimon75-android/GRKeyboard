@@ -986,10 +986,10 @@
         <Action gesture="@integer/dirE"     text="]"/>
         <Action gesture="@integer/dirN"     text="("/>
         <Action gesture="@integer/dirS"     text=")"/>
-        <Action gesture="46"                text="{"/>
-        <Action gesture="64"                text="}"/>
-        <Action gesture="28"                text="&lt;"/>
-        <Action gesture="82"                text="&gt;"/>
+        <Action gesture="@integer/dirWE"    text="{"/>
+        <Action gesture="@integer/dirEW"    text="}"/>
+        <Action gesture="@integer/dirSN"    text="&lt;"/>
+        <Action gesture="@integer/dirNS"    text="&gt;"/>
     </Key>
 
     <Key id="@id/key_Dollar" text="$">
@@ -1000,8 +1000,8 @@
         <Action gesture="@integer/dirW"     text="+"/>
         <Action gesture="@integer/dirN"     text="*"/>
         <Action gesture="@integer/dirS"     text="&#37;"/> <!-- % -->
-        <Action gesture="64"                text="="/>
-        <Action gesture="82"                text="^"/>
+        <Action gesture="@integer/dirEW"    text="="/>
+        <Action gesture="@integer/dirNS"    text="^"/>
     </Key>
 
     <Key id="@id/key_Dot" text=".">
@@ -1010,8 +1010,8 @@
         <Action gesture="@integer/dirSW"    text=","/>
         <Action gesture="@integer/dirW"     text="¿"/>
         <Action gesture="@integer/dirE"     text="\?"/>
-        <Action gesture="64"                text=";"/>
-        <Action gesture="46"                text=":"/>
+        <Action gesture="@integer/dirEW"    text=";"/>
+        <Action gesture="@integer/dirWE"    text=":"/>
     </Key>
 
     <Key id="@id/key_Quote" text="&quot;">
@@ -1019,8 +1019,8 @@
         <Action gesture="@integer/dirSW"    text="'"/>
         <Action gesture="@integer/dirS"     text="|"/>
         <Action gesture="@integer/dirN"     text="&amp;"/>
-        <Action gesture="46"                text="~"/>
-        <Action gesture="64"                text="\#"/>
+        <Action gesture="@integer/dirWE"    text="~"/>
+        <Action gesture="@integer/dirEW"    text="\#"/>
     </Key>
 
 </KeyMap>

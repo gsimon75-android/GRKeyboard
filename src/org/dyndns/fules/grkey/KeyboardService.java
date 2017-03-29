@@ -278,7 +278,6 @@ public class KeyboardService extends InputMethodService implements SharedPrefere
 	void showCandidates(final int keyId) {
 		final GestureHelp.Adapter ghA = new GestureHelp.Adapter(this, R.layout.candidate_item, R.id.candidateGesture, R.id.candidateText);
 		ghA.registerOnActionListener(this);
-		//ghA.clear();
 		keyMapping.collectHelpForKey(ghA, keyId, currentScript, currentShiftState);
 		ghA.sort(ghA.defaultComparator);
 
@@ -456,4 +455,4 @@ public class KeyboardService extends InputMethodService implements SharedPrefere
 	}
 }
 
-// vim: set ai si sw=4 ts=4 noet:
+// vim: set ai si sw=4 ts=4 tw=0 noet:

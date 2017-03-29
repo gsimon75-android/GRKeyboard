@@ -51,17 +51,27 @@
 	<integer name="tonos">9</integer> <!-- == acute -->
 	<integer name="dialytika">4</integer> <!-- == umlaut -->
 
-	<!-- other gestures -->
+	<!-- taps -->
 	<integer name="tap">0</integer>
+	<integer name="long_tap">5</integer>
+	<!-- single swipes -->
 	<integer name="dirNW">7</integer>
 	<integer name="dirN">8</integer>
 	<integer name="dirNE">9</integer>
 	<integer name="dirW">4</integer>
-	<integer name="long_tap">5</integer>
 	<integer name="dirE">6</integer>
 	<integer name="dirSW">1</integer>
 	<integer name="dirS">2</integer>
 	<integer name="dirSE">3</integer>
+	<!-- forth-and-back swipes -->
+	<integer name="dirNWSE">73</integer>
+	<integer name="dirNS">82</integer>
+	<integer name="dirNESW">91</integer>
+	<integer name="dirWE">46</integer>
+	<integer name="dirEW">64</integer>
+	<integer name="dirSWNE">19</integer>
+	<integer name="dirSN">28</integer>
+	<integer name="dirSENW">37</integer>
 
 </resources>
 

@@ -42,4 +42,115 @@
 	<string name="cmd_greek">Ελληνικό</string>
 	<string name="cmd_arabic">العَرَبِيَّة</string>
 
+	<string name="help_general"><![CDATA[
+	<h1>Basic usage</h1>
+	<p>
+		A simple tap always does what is displayed on the key, a long tap shows
+		all the functions of that key as suggestions, along with the gestures
+		that trigger them.<br/>
+		The suggestion bar also contains a key that displays the whole layout
+		with all mapped characters, and below it you will can also find this
+		text :).
+	</p>
+	<h1>About gestures</h1>
+	<p>
+		In addition to a single tap, you may also drag a key to one of the 8 main
+		directions: N, NW, W, SW, S, SE, E, NE (single swipe), or you can drag it
+		away and back to the key (forth-and-back or double swipe).<br/>
+		These drag gestures will produce a modified form of the letters, eg. with
+		accent, softened form, with consonant mark, some kind of variant.<br/>
+		For example, on Latin layout a NE swipe on a letter will add an acute
+		accent to it (\'a\'→\'á\'), on Greek layout it will add tonos
+		(\'α\'→\'ά\'), on Cyrillic layout a S swipe will produce the softened form
+		of that letter (\'а\'→\'я\'), on Arabic layout it will add maddah
+		(\'ا\'→\'آ\').
+	</p>
+	<h1>About the keys</h1>
+	<h2>Letter keys</h2>
+	<p>
+		They produce letters of the chosen alphabet by tapping, and their
+		modified/related forms by the gestures.
+		Where these gestures encode accents, they somewhat resemble the
+		motion how you would write the accent mark, although it was not
+		always possible.<br/>
+		For details see the gestures of different alphabets below.
+	</p>
+	<h2>Number keys</h2>
+		Even simpler, they produce the numbers, with the alphabet choosing
+		as special functions via gestures.
+		(In Arabic layout the Arabic number forms are also available via
+		gestures.)
+	</p>
+	<h2>Control keys</h2>
+	<p>
+		Their special functions contain the non-alphabetical items like clipboard handling.
+	</p>
+	<ul>
+		<li>Shift: caps mode, ctrl, esc, hide keyboard</li>
+		<li>Space: tab and underscore</li>
+		<li>Enter: select all</li>
+		<li>Backspace, Up and Down arrows: cut, copy and paste text</li>
+		<li>Left and right arrows: start and end of selection</li>
+	</ul>
+	<h2>Multifunctional keys</h2>
+	<p>
+		All the other non-alphabetical characters are mapped to four
+		multifunctional keys, vaguely grouped by similarity in function,
+		but their gestures were assigned only by the frequencies of the
+		symbols.
+	</p>
+	<ul>
+		<li>At-sign: braces (square, round, curly, angled)</li>
+		<li>Dollar: mathematical operators</li>
+		<li>Dot: punctuation</li>
+		<li>Quote: quote marks, ampersand, hash, tilde</li>
+	</ul>
+	<h1>Latin gestures</h1>
+	<ul>
+		<li>NE: acute</li>
+		<li>SW: bar</li>
+		<li>N-S: caret</li>
+		<li>E-W: cedilla</li>
+		<li>SW-NE: double acute</li>
+		<li>S: dot</li>
+		<li>NW: grave</li>
+		<li>S-N: hacek</li>
+		<li>E: macron</li>
+		<li>W-E: ogonek</li>
+		<li>N: ring</li>
+		<li>NE-SW: tilde</li>
+		<li>W: umlaut/diaeresis</li>
+		<li>SE: special/related symbol</li>
+	</ul>
+	<h1>Cyrillic gestures</h1>
+	<ul>
+		<li>S: soft form</li>
+		<li>W: alternate variant</li>
+		<li>SW: soft form of alternate</li>
+		<li>SE: with descender</li>
+		<li>NE: with upturn</li>
+	</ul>
+	<h1>Greek gestures</h1>
+	<ul>
+		<li>NE: with tonos</li>
+		<li>W: with dialytika</li>
+		<li>SE: special/related symbol</li>
+	</ul>
+	<h1>Arabic gestures</h1>
+	<h2>For alif, waw, ya</h2>
+	<ul>
+		<li>S: with maddah</li>
+		<li>S-N: with hamza</li>
+		<li>SW, SE: hamza below, alef maksura</li>
+	</ul>
+	<h2>For consonants</h2>
+	<ul>
+		<li>N: with shaddah</li>
+		<li>S: related letter</li>
+		<li>S-N: related with shaddah</li>
+	</ul>
+	]]></string>
+
 </resources>
+
+<!-- vim: set sw=4 ts=4 noet nowrap: -->

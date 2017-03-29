@@ -146,7 +146,7 @@ public class KeyMapping {
 			return "<???>";
 		}
 
-		public String DisabledtoString() {
+		public String toString() {
 			StringBuilder sb = new StringBuilder("Action(gesture=");
 			sb.append(gesture);
 
@@ -173,9 +173,8 @@ public class KeyMapping {
 		}
 
 		public void collectHelp(GestureHelp.Adapter ghA) {
-			if (gesture >= 0) {
+			if ((gesture >= 0) && ((cmd == null) || !cmd.equals("showGestures")))
 				ghA.add(new GestureHelp(this, getLabel()));
-			}
 		}
 
 	}
