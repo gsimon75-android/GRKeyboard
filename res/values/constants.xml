@@ -6,7 +6,8 @@
 	<integer name="cyrillic">1</integer>
 	<integer name="greek">2</integer>
 	<integer name="arabic">3</integer>
-	<integer name="script_max">4</integer>
+	<integer name="georgian">4</integer>
+	<integer name="script_max">5</integer>
 
 	<!-- shift states -->
 	<integer name="normal">0</integer>

@@ -358,6 +358,8 @@ public class KeyboardService extends InputMethodService implements SharedPrefere
 			setScript(res.getInteger(R.integer.greek));
 		else if (cmd.equals("arabic"))
 			setScript(res.getInteger(R.integer.arabic));
+		else if (cmd.equals("georgian"))
+			setScript(res.getInteger(R.integer.georgian));
 		// ----
 		else
 			Log.w(TAG, "Unknown cmd '" + cmd + "'");

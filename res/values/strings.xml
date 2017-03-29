@@ -41,6 +41,7 @@
 	<string name="cmd_cyrillic">Кириллица</string>
 	<string name="cmd_greek">Ελληνικό</string>
 	<string name="cmd_arabic">العَرَبِيَّة</string>
+	<string name="cmd_georgian">მხედრული</string>
 
 	<string name="help_general"><![CDATA[
 	<h1>Basic usage</h1>

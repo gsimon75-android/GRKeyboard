@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <KeyMap xmlns:a="http://schemas.android.com/apk/res/android"
-    a:id="@+id/default_latin_keymap" name="Latin">
+    a:id="@+id/default_latin_keymap" name="">
 
     <Action gesture="@integer/long_tap" cmd="showGestures" label="@string/cmd_show_gestures"/>
 
@@ -36,6 +36,7 @@
         </Script>
     </Key>
     <Key id="@id/key_5" text="5">
+        <Action gesture="@integer/dirN"     cmd="georgian" label="@string/cmd_georgian"/>
         <Script id="@integer/arabic" text="5">
             <Action gesture="@integer/dirS" text="٥"/>
         </Script>
