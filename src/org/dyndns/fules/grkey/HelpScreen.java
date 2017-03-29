@@ -10,6 +10,7 @@ import android.content.res.Resources;
 import android.util.Log;
 import android.view.Display;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
@@ -36,11 +37,14 @@ public class HelpScreen extends Activity {
 		help_text.setText(Html.fromHtml(getString(R.string.help_general)));
 
 		// resize help_keyboard to fit screen - can't do it from xml either
-		Point size = new Point();
-		getWindowManager().getDefaultDisplay().getSize(size);
 		LinearLayout help_keyboard = (LinearLayout)findViewById(R.id.help_keyboard);
-		LinearLayout.LayoutParams params = (LinearLayout.LayoutParams)(help_keyboard.getLayoutParams());
-		params.height = size.y - getStatusBarHeight();
+		ViewGroup.LayoutParams lp = help_keyboard.getLayoutParams();
+		if (lp instanceof LinearLayout.LayoutParams) {
+			LinearLayout.LayoutParams llp = (LinearLayout.LayoutParams)lp;
+			Point size = new Point();
+			getWindowManager().getDefaultDisplay().getSize(size);
+			llp.height = size.y - getStatusBarHeight();
+		}
 	}
 }
 

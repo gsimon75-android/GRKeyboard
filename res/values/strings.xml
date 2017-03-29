@@ -60,10 +60,10 @@
 		These drag gestures will produce a modified form of the letters, eg. with
 		accent, softened form, with consonant mark, some kind of variant.<br/>
 		For example, on Latin layout a NE swipe on a letter will add an acute
-		accent to it (\'a\'→\'á\'), on Greek layout it will add tonos
-		(\'α\'→\'ά\'), on Cyrillic layout a S swipe will produce the softened form
-		of that letter (\'а\'→\'я\'), on Arabic layout it will add maddah
-		(\'ا\'→\'آ\').
+		accent to it (a→á), on Greek layout it will add tonos
+		(α→ά), on Cyrillic layout a S swipe will produce the softened form
+		of that letter (а→я), on Arabic layout it will add maddah
+		(آ→ا).
 	</p>
 	<h1>About the keys</h1>
 	<h2>Letter keys</h2>
