@@ -8,7 +8,8 @@
 	<string name="pg_layout">Layout</string>
 	<string name="pg_layout_summary">Appearance-related settings</string>
 
-	<string name="key_height">Key height</string>
+	<string name="portrait_key_height">Portrait key height</string>
+	<string name="landscape_key_height">Landscape key height</string>
 	<string name="key_height_summary">Height of a key relative to its width</string>
 
 	<!-- preference screen: about -->
@@ -22,7 +23,7 @@
 	<string name="source_summary">$HeadURL$</string>
 
 	<string name="copyright">Copyright</string>
-	<string name="copyright_summary">2016 Gabor Simon. All rights reserved, New BSD License applies.</string>
+	<string name="copyright_summary">2017 Gabor Simon. All rights reserved, New BSD License applies.</string>
 
 	<!-- defaults for localisable strings -->
 	<string name="possible_gestures">Possible gestures</string>

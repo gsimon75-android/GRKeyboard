@@ -51,7 +51,7 @@ public class KeyboardService extends InputMethodService implements SharedPrefere
 	public static final String  NS_ANDROID = "http://schemas.android.com/apk/res/android";
 	
 	public static final String      SHARED_PREFS_NAME = "Settings";
-	public static final float       DEFAULT_RELATIVE_KEY_HEIGHT = 0.8f;
+	public static final float       DEFAULT_RELATIVE_KEY_HEIGHT = 1.0f;
 
 	public static KeyboardService theKeyboardService = null;
 	LayoutInflater              inflater;
@@ -64,7 +64,8 @@ public class KeyboardService extends InputMethodService implements SharedPrefere
 	AlertDialog.Builder         helpDialogBuilder;
 
 	int                         lastOrientation = -1;
-	float                       relativeKeyHeight = DEFAULT_RELATIVE_KEY_HEIGHT;
+	float                       portraitKeyHeight = DEFAULT_RELATIVE_KEY_HEIGHT;
+	float                       landscapeKeyHeight = DEFAULT_RELATIVE_KEY_HEIGHT;
 
 	ExtractedTextRequest        etreq = new ExtractedTextRequest();
 	int                         selectionStart = -1, selectionEnd = -1;
@@ -186,7 +187,7 @@ public class KeyboardService extends InputMethodService implements SharedPrefere
 	} 
 
 	public float getRelativeKeyHeight() {
-		return relativeKeyHeight;
+		return (lastOrientation == Configuration.ORIENTATION_PORTRAIT) ? portraitKeyHeight : landscapeKeyHeight;
 	}
 
 	public int getShiftState() {
@@ -218,26 +219,9 @@ public class KeyboardService extends InputMethodService implements SharedPrefere
 	public void onRelease(int primaryCode) {
 	} 
 
-	String getPrefString(String key, String def) {
-		String s = "";
-
-		if (lastOrientation == Configuration.ORIENTATION_PORTRAIT) {
-			s = mPrefs.getString("portrait_" + key, "");
-			if (s.contentEquals(""))
-				s = mPrefs.getString("landscape_" + key, "");
-		}
-		else {
-			s = mPrefs.getString("landscape_" + key, "");
-			if (s.contentEquals(""))
-				s = mPrefs.getString("portrait_" + key, "");
-		}
-		if (s.contentEquals(""))
-			s = mPrefs.getString(key, "");
-		return s.contentEquals("") ? def : s;
-	}
-
 	int getPrefInt(String key, int def) {
-		String s = getPrefString(key, "");
+		// NOTE: EditTextPreference item always stores strings, we must convert manually...
+		String s = mPrefs.getString(key, "");
 		try {
 			return s.contentEquals("") ? def : Integer.parseInt(s);
 		}
@@ -251,7 +235,8 @@ public class KeyboardService extends InputMethodService implements SharedPrefere
 	}
 
 	float getPrefFloat(String key, float def) {
-		String s = getPrefString(key, "");
+		// NOTE: EditTextPreference item always stores strings, we must convert manually...
+		String s = mPrefs.getString(key, "");
 		try {
 			return s.contentEquals("") ? def : Float.parseFloat(s);
 		}
@@ -267,16 +252,26 @@ public class KeyboardService extends InputMethodService implements SharedPrefere
 	// Handle one change in the preferences
 	public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
 		Log.d(TAG, "onSharedPreferenceChanged(..., '" + key + "')");
-		// NOTE: EditTextPreference item always stores strings, we must convert manually...
-		if (key.equals("key_height")) {
-			String s = prefs.getString(key, null);
-			float f = (s != null) ? Float.parseFloat(s) : DEFAULT_RELATIVE_KEY_HEIGHT;
-			if (relativeKeyHeight != f) {
-				relativeKeyHeight = f;
-				Dialog d = getWindow();
-				if (d != null)
-					d.dismiss();
+		boolean changed = false;
+		if (key.equals("portrait_key_height")) {
+			float f = getPrefFloat(key, DEFAULT_RELATIVE_KEY_HEIGHT);
+			if (portraitKeyHeight != f) {
+				changed = true;
+				portraitKeyHeight = f;
 			}
+		}
+		else if (key.equals("landscape_key_height")) {
+			float f = getPrefFloat(key, DEFAULT_RELATIVE_KEY_HEIGHT);
+			if (landscapeKeyHeight != f) {
+				changed = true;
+				landscapeKeyHeight = f;
+			}
+		}
+
+		/*if (changed)*/ {
+			Dialog d = getWindow();
+			if (d != null)
+				d.dismiss();
 		}
 	}
 

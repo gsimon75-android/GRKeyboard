@@ -10,10 +10,15 @@
 		a:summary="@string/pg_layout_summary"
 		a:orderingFromXml="true">
 		<EditTextPreference
-			a:key="key_height"
-			a:title="@string/key_height"
+			a:key="portrait_key_height"
+			a:title="@string/portrait_key_height"
 			a:summary="@string/key_height_summary"
-			a:defaultValue="0.8"/>
+			a:defaultValue="1.2"/>
+		<EditTextPreference
+			a:key="landscape_key_height"
+			a:title="@string/landscape_key_height"
+			a:summary="@string/key_height_summary"
+			a:defaultValue="0.7"/>
 	</PreferenceScreen>
 
 	<PreferenceScreen

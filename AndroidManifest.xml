@@ -21,7 +21,8 @@
 			a:exported="true">
 		</activity>
 
-		<activity a:name="HelpScreen" a:label="@string/app_label" a:launchMode="singleInstance">
+		<activity a:name="HelpScreen" a:label="@string/app_label"
+			a:screenOrientation="landscape" a:launchMode="singleInstance">
 			<intent-filter>
 				<action a:name="android.intent.action.MAIN"/>
 				<category a:name="android.intent.category.DEFAULT"/>
@@ -30,3 +31,5 @@
 
 	</application>
 </manifest> 
+
+<!-- vim: set sw=4 ts=4 noet nowrap: -->
