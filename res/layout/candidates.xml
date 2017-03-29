@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<HorizontalScrollView
+<LinearLayout
 	xmlns:a="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
-	a:layout_width="fill_parent" a:layout_height="wrap_content" a:fillViewport="true">
-	<LinearLayout a:id="@+id/candidatesLL" a:layout_width="fill_parent" a:layout_height="wrap_content" a:orientation="horizontal"/>
-</HorizontalScrollView>
+	a:layout_width="fill_parent" a:layout_height="wrap_content" a:orientation="horizontal">
+	<HorizontalScrollView a:layout_width="0px" a:layout_height="wrap_content" a:layout_weight="1" a:fillViewport="true">
+		<LinearLayout a:id="@+id/candidatesLL" a:layout_width="fill_parent" a:layout_height="wrap_content" a:orientation="horizontal"/>
+	</HorizontalScrollView>
+	<!--Button a:layout_width="wrap_content" a:layout_height="fill_parent" a:background="@android:drawable/ic_menu_help"/-->
+	<ImageButton a:layout_width="wrap_content" a:layout_height="fill_parent" a:src="@android:drawable/ic_menu_help" a:onClick="showHelpScreen"/>
+</LinearLayout>
 <!-- vim: set sw=4 ts=4 noet nowrap: -->

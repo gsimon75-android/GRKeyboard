@@ -446,15 +446,12 @@ public class KeyboardService extends InputMethodService implements SharedPrefere
 		}
 	}
 
-	public void onActionRequested(KeyMapping.Action a) {
-		String cmd = a.getCmd();
-		
-		if ((cmd != null) && cmd.equals("showGestures")) {
-			setCandidatesViewShown(false);
+	public void showHelpScreen(View v) {
+		Intent showHelpScreen = new Intent(Intent.ACTION_MAIN).setClass(this, HelpScreen.class).addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+		startActivity(showHelpScreen);
+	}
 
-			Intent showHelpScreen = new Intent(Intent.ACTION_MAIN).setClass(this, HelpScreen.class).addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-			startActivity(showHelpScreen);
-		}
+	public void onActionRequested(KeyMapping.Action a) {
 		performAction(a, 0);
 	}
 }
