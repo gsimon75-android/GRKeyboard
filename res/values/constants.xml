@@ -52,6 +52,10 @@
 	<integer name="tonos">9</integer> <!-- == acute -->
 	<integer name="dialytika">4</integer> <!-- == umlaut -->
 
+    <!-- georgian gestures -->
+	<integer name="ejective">4</integer>
+	<integer name="alt_ejective">1</integer>
+
 	<!-- taps -->
 	<integer name="tap">0</integer>
 	<integer name="long_tap">5</integer>

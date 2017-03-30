@@ -87,6 +87,7 @@
         <Script id="@integer/greek" text="χ">
             <State mod="@integer/shift" text="Χ"/>
         </Script>
+        <Script id="@integer/georgian" text="ყ"/>
     </Key>
 
     <Key id="@id/key_W">
@@ -118,6 +119,7 @@
                 <Action gesture="@integer/tonos"       text="Ώ"/>
             </State>
         </Script>
+        <Script id="@integer/georgian" text="ჷ"/>
     </Key>
 
     <Key id="@id/key_E">
@@ -166,6 +168,9 @@
                 <Action gesture="@integer/tonos"       text="Έ"/>
             </State>
         </Script>
+        <Script id="@integer/georgian" text="ე">
+            <Action gesture="@integer/alt"         text="ჱ"/>
+        </Script>
     </Key>
 
     <Key id="@id/key_R">
@@ -194,6 +199,7 @@
         <Script id="@integer/greek" text="ρ">
             <State mod="@integer/shift" text="Ρ"/>
         </Script>
+        <Script id="@integer/georgian" text="რ"/>
     </Key>
 
     <Key id="@id/key_T">
@@ -219,6 +225,11 @@
         </Script>
         <Script id="@integer/greek" text="τ">
             <State mod="@integer/shift" text="Τ"/>
+        </Script>
+        <Script id="@integer/georgian" text="თ">
+            <Action gesture="@integer/ejective"    text="ტ"/>
+            <Action gesture="@integer/alt"         text="ც"/>
+            <Action gesture="@integer/alt_ejective" text="წ"/>
         </Script>
     </Key>
 
@@ -262,6 +273,7 @@
                 <Action gesture="@integer/dialytika"   text="Ϋ"/>
             </State>
         </Script>
+        <Script id="@integer/georgian" text="ჲ"/>
     </Key>
 
     <Key id="@id/key_U">
@@ -303,6 +315,7 @@
         <Script id="@integer/greek" text="">
             <State mod="@integer/shift" text=""/>
         </Script>
+        <Script id="@integer/georgian" text="უ"/>
     </Key>
 
     <Key id="@id/key_I">
@@ -357,6 +370,7 @@
                 <Action gesture="@integer/spec"        text="ΐ"/>
             </State>
         </Script>
+        <Script id="@integer/georgian" text="ი"/>
     </Key>
 
     <Key id="@id/key_O">
@@ -405,6 +419,9 @@
                 <Action gesture="@integer/tonos"       text="Ό"/>
             </State>
         </Script>
+        <Script id="@integer/georgian" text="ო">
+            <Action gesture="@integer/alt"         text="ჵ"/>
+        </Script>
     </Key>
 
     <Key id="@id/key_P">
@@ -430,6 +447,9 @@
         </Script>
         <Script id="@integer/greek" text="π">
             <State mod="@integer/shift" text="Π"/>
+        </Script>
+        <Script id="@integer/georgian" text="ფ">
+            <Action gesture="@integer/ejective"    text="პ"/>
         </Script>
     </Key>
 
@@ -483,6 +503,9 @@
                 <Action gesture="@integer/tonos"       text="Ά"/>
             </State>
         </Script>
+        <Script id="@integer/georgian" text="ა">
+            <Action gesture="@integer/alt"         text="ჸ"/>
+        </Script>
     </Key>
 
     <Key id="@id/key_S">
@@ -520,6 +543,9 @@
                 <Action gesture="@integer/spec"        text="Σ"/>
             </State>
         </Script>
+        <Script id="@integer/georgian" text="ს">
+            <Action gesture="@integer/alt"         text="შ"/>
+        </Script>
     </Key>
 
     <Key id="@id/key_D">
@@ -551,6 +577,9 @@
         <Script id="@integer/greek" text="δ">
             <State mod="@integer/shift" text="Δ"/>
         </Script>
+        <Script id="@integer/georgian" text="დ">
+            <Action gesture="@integer/alt"         text="ძ"/>
+        </Script>
     </Key>
 
     <Key id="@id/key_F">
@@ -572,6 +601,7 @@
         <Script id="@integer/greek" text="φ">
             <State mod="@integer/shift" text="Φ"/>
         </Script>
+        <Script id="@integer/georgian" text="ჶ"/>
     </Key>
 
     <Key id="@id/key_G">
@@ -604,6 +634,10 @@
         </Script>
         <Script id="@integer/greek" text="γ">
             <State mod="@integer/shift" text="Γ"/>
+        </Script>
+        <Script id="@integer/georgian" text="გ">
+            <Action gesture="@integer/ejective"    text="ჹ"/>
+            <Action gesture="@integer/alt"         text="ღ"/>
         </Script>
     </Key>
 
@@ -639,6 +673,9 @@
                 <Action gesture="@integer/tonos"       text="Ή"/>
             </State>
         </Script>
+        <Script id="@integer/georgian" text="ჰ">
+            <Action gesture="@integer/alt"         text="ჺ"/>
+        </Script>
     </Key>
 
     <Key id="@id/key_J">
@@ -669,6 +706,9 @@
         </Script>
         <Script id="@integer/greek" text="ϳ">
             <State mod="@integer/shift" text="Ϳ"/>
+        </Script>
+        <Script id="@integer/georgian" text="ჟ">
+            <Action gesture="@integer/alt"         text="ჯ"/>
         </Script>
     </Key>
 
@@ -701,6 +741,9 @@
         <Script id="@integer/greek" text="κ">
             <State mod="@integer/shift" text="Κ"/>
         </Script>
+        <Script id="@integer/georgian" text="ქ">
+            <Action gesture="@integer/ejective"    text="კ"/>
+        </Script>
     </Key>
 
     <Key id="@id/key_L">
@@ -732,6 +775,7 @@
         <Script id="@integer/greek" text="λ">
             <State mod="@integer/shift" text="Λ"/>
         </Script>
+        <Script id="@integer/georgian" text="ლ"/>
     </Key>
 
     <!-- ZXCV row -->
@@ -767,6 +811,7 @@
         <Script id="@integer/greek" text="ζ">
             <State mod="@integer/shift" text="Ζ"/>
         </Script>
+        <Script id="@integer/georgian" text="ზ"/>
     </Key>
 
     <Key id="@id/key_X">
@@ -791,6 +836,9 @@
         </Script>
         <Script id="@integer/greek" text="ξ">
             <State mod="@integer/shift" text="Ξ"/>
+        </Script>
+        <Script id="@integer/georgian" text="ხ">
+            <Action gesture="@integer/alt"         text="ჴ"/>
         </Script>
     </Key>
 
@@ -832,6 +880,9 @@
         <Script id="@integer/greek" text="θ"> <!-- NOTE: where else? -->
             <State mod="@integer/shift" text="Θ"/>
         </Script>
+        <Script id="@integer/georgian" text="ჩ">
+            <Action gesture="@integer/ejective"    text="ჭ"/>
+        </Script>
     </Key>
 
     <Key id="@id/key_V">
@@ -851,6 +902,9 @@
         </Script>
         <Script id="@integer/greek" text="ψ"> <!-- NOTE: where else? -->
             <State mod="@integer/shift" text="Ψ"/>
+        </Script>
+        <Script id="@integer/georgian" text="ვ">
+            <Action gesture="@integer/alt"         text="ჳ"/>
         </Script>
     </Key>
 
@@ -877,6 +931,7 @@
         <Script id="@integer/greek" text="β"> <!-- NOTE: maybe key_V -->
             <State mod="@integer/shift" text="Β"/>
         </Script>
+        <Script id="@integer/georgian" text="ბ"/>
     </Key>
 
     <Key id="@id/key_N">
@@ -910,6 +965,7 @@
         <Script id="@integer/greek" text="ν">
             <State mod="@integer/shift" text="Ν"/>
         </Script>
+        <Script id="@integer/georgian" text="ნ"/>
     </Key>
 
     <Key id="@id/key_M">
@@ -932,6 +988,7 @@
         <Script id="@integer/greek" text="μ">
             <State mod="@integer/shift" text="Μ"/>
         </Script>
+        <Script id="@integer/georgian" text="მ"/>
     </Key>
 
     <!-- Shift, Space, Enter, Backspace, Arrow keys -->
@@ -1058,6 +1115,11 @@
             <Action gesture="@integer/dialytika"   text=""/>
             <State mod="@integer/shift" text="">
             </State>
+        </Script>
+        <Script id="@integer/georgian" text="">
+            <Action gesture="@integer/ejective"    text=""/>
+            <Action gesture="@integer/alt"         text=""/>
+            <Action gesture="@integer/alt_ejective" text=""/>
         </Script>
     </Key>
 
