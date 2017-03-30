@@ -78,3 +78,23 @@ Greek missing
 * symbols ?!: beta, theta, phi, pi, kappa, rho, sigma, theta
 
 
+Other supported typefaces
+=========================
+
+ 1. Latin               (done)
+ 2. Cyrillic            (done)
+ 3. Arabic      292M    (done)
+ 4. Devanagari  381M
+ 5. Bengali     261M
+ 6. Gujarati    47M
+ 7. Kannada     46.7M
+ 8. Gurmukhi    29M
+ 9. Malayalam   34.4M
+10. Khmer       17.4M
+11. Greek       13M     (done)
+12. Mongolian   6M
+13. Armenian    5M
+14. Hebrew      5.2M
+15. Lao         4M
+16. Georgian    3.7M    (done)
+17. Cherokee    140k

@@ -14,51 +14,51 @@
     <Key id="@id/key_1" text="1">
         <Action gesture="@integer/dirN"     cmd="latin" label="@string/cmd_latin"/>
         <Script id="@integer/arabic" text="1">
-            <Action gesture="@integer/dirS" text="١"/>
+            <Action gesture="@integer/spec" text="١"/>
         </Script>
     </Key>
     <Key id="@id/key_2" text="2">
         <Action gesture="@integer/dirN"     cmd="cyrillic" label="@string/cmd_cyrillic"/>
         <Script id="@integer/arabic" text="2">
-            <Action gesture="@integer/dirS" text="٢"/>
+            <Action gesture="@integer/spec" text="٢"/>
         </Script>
     </Key>
     <Key id="@id/key_3" text="3">
         <Action gesture="@integer/dirN"     cmd="greek" label="@string/cmd_greek"/>
         <Script id="@integer/arabic" text="3">
-            <Action gesture="@integer/dirS" text="٣"/>
+            <Action gesture="@integer/spec" text="٣"/>
         </Script>
     </Key>
     <Key id="@id/key_4" text="4">
         <Action gesture="@integer/dirN"     cmd="arabic" label="@string/cmd_arabic"/>
         <Script id="@integer/arabic" text="4">
-            <Action gesture="@integer/dirS" text="٤"/>
+            <Action gesture="@integer/spec" text="٤"/>
         </Script>
     </Key>
     <Key id="@id/key_5" text="5">
         <Action gesture="@integer/dirN"     cmd="georgian" label="@string/cmd_georgian"/>
         <Script id="@integer/arabic" text="5">
-            <Action gesture="@integer/dirS" text="٥"/>
+            <Action gesture="@integer/spec" text="٥"/>
         </Script>
     </Key>
     <Key id="@id/key_6" text="6">
         <Script id="@integer/arabic" text="6">
-            <Action gesture="@integer/dirS" text="٦"/>
+            <Action gesture="@integer/spec" text="٦"/>
         </Script>
     </Key>
     <Key id="@id/key_7" text="7">
         <Script id="@integer/arabic" text="7">
-            <Action gesture="@integer/dirS" text="٧"/>
+            <Action gesture="@integer/spec" text="٧"/>
         </Script>
     </Key>
     <Key id="@id/key_8" text="8">
         <Script id="@integer/arabic" text="8">
-            <Action gesture="@integer/dirS" text="٨"/>
+            <Action gesture="@integer/spec" text="٨"/>
         </Script>
     </Key>
     <Key id="@id/key_9" text="9">
         <Script id="@integer/arabic" text="9">
-            <Action gesture="@integer/dirS" text="٩"/>
+            <Action gesture="@integer/spec" text="٩"/>
         </Script>
     </Key>
 
