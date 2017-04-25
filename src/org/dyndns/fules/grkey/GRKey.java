@@ -45,7 +45,7 @@ public class GRKey extends Button {
 	}
 
 	public GRKey(Context context, AttributeSet attributes) {
-		this(context, attributes, android.R.attr.buttonStyle);
+		this(context, attributes, R.attr.grKeyStyle);
 	}
 
 	public GRKey(Context context, AttributeSet attributes, int defStyleAttr) {

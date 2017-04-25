@@ -19,7 +19,7 @@
 		<!--item name="android:textColor">@android:color/primary_text_light</item-->
 	</style>
 
-	<style name="Widget.Button.HelpKey" parent="@android:style/Widget.Holo.Button">
+	<style name="HelpKey" parent="@android:style/Widget.Holo.Button">
 		<item name="android:minHeight">0px</item>
 		<item name="android:padding">2sp</item>
 		<item name="android:layout_margin">0px</item>
@@ -30,7 +30,8 @@
 	<!-- THEMES -->
 
 	<style name="Theme.GRKeyApp" parent="@android:style/Theme.Holo">
-		<item name="helpKeyStyle">@style/Widget.Button.HelpKey</item>
+		<item name="grKeyStyle">@style/GRKey</item>
+		<item name="helpKeyStyle">@style/HelpKey</item>
 	</style>
 
 	<style name="Theme.GRKeyboard" parent="@android:style/Theme.NoTitleBar">
