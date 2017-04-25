@@ -29,7 +29,6 @@
 	</declare-styleable-->
 
 	<declare-styleable name="Theme.GRKeyApp">
-		<attr name="grKeyStyle" format="reference"/>
 		<attr name="helpKeyStyle" format="reference"/>
 	</declare-styleable>
 
