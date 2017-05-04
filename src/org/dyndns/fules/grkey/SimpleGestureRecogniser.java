@@ -7,7 +7,6 @@ import android.view.View;
 public class SimpleGestureRecogniser implements View.OnTouchListener {
 	private static final String     TAG = "GRKeyboard";
 	private static final int        LONG_TAP_TIMEOUT = 800;
-	private static final float      TAP_RANGE = 5.0f;
 
 	private LongTap                 onLongTap;
 
@@ -15,9 +14,15 @@ public class SimpleGestureRecogniser implements View.OnTouchListener {
 	int                             gestureCode;
 	PointF                          startPoint, farthestPoint;
 	float                           longestDistance2;
+	float                           minGestureLength;
 
 	SimpleGestureRecogniser() {
+		this(20f);
+	}
+
+	SimpleGestureRecogniser(float minGestureLength) {
 		onLongTap = new LongTap();
+		this.minGestureLength = minGestureLength;
 	}
 
 	private final class LongTap implements Runnable {
@@ -45,7 +50,7 @@ public class SimpleGestureRecogniser implements View.OnTouchListener {
 		if (angle < 0)
 			angle += 2*PointF.PI;
 
-		if (longestDistance2 < TAP_RANGE) {
+		if (longestDistance2 < minGestureLength) {
 			gestureCode = 0; // Tap
 		}
 		else if (angle < PointF.PI) {

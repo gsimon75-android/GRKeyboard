@@ -52,6 +52,7 @@ public class KeyboardService extends InputMethodService implements SharedPrefere
 	
 	public static final String      SHARED_PREFS_NAME = "Settings";
 	public static final float       DEFAULT_RELATIVE_KEY_HEIGHT = 1.0f;
+	public static final float       DEFAULT_MINIMAL_GESTURE_LENGTH = 20.0f;
 
 	public static KeyboardService theKeyboardService = null;
 	LayoutInflater              inflater;
@@ -66,6 +67,7 @@ public class KeyboardService extends InputMethodService implements SharedPrefere
 	int                         lastOrientation = -1;
 	float                       portraitKeyHeight = DEFAULT_RELATIVE_KEY_HEIGHT;
 	float                       landscapeKeyHeight = DEFAULT_RELATIVE_KEY_HEIGHT;
+	float                       minimalGestureLength = -1;
 
 	ExtractedTextRequest        etreq = new ExtractedTextRequest();
 	int                         selectionStart = -1, selectionEnd = -1;
@@ -75,8 +77,7 @@ public class KeyboardService extends InputMethodService implements SharedPrefere
 	int                         currentShiftState = 0;
 	int                         nextShiftState = 0;
 
-	//View.OnTouchListener        gestureRecogniser = new StrokeBasedGestureRecogniser();
-	View.OnTouchListener        gestureRecogniser = new SimpleGestureRecogniser();
+	View.OnTouchListener        gestureRecogniser;
 
 	public static String nullSafe(String s) {
 		return (s == null) ? "<null>" : s;
@@ -91,6 +92,14 @@ public class KeyboardService extends InputMethodService implements SharedPrefere
 	((NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE)).notify(1, n);
 	Log.e(TAG, title+"; "+msg);
 	}*/
+
+	void setMinimalGestureLength(float l) {
+		if (minimalGestureLength != l) {
+			minimalGestureLength = l;
+			gestureRecogniser = new SimpleGestureRecogniser(minimalGestureLength);
+			//gestureRecogniser = new StrokeBasedGestureRecogniser(minimalGestureLength);
+		}
+	}
 
 	@Override public void onCreate() {
 		res = getResources();
@@ -110,6 +119,9 @@ public class KeyboardService extends InputMethodService implements SharedPrefere
 		Iterator<String> prefKey = mPrefs.getAll().keySet().iterator();
 		while (prefKey.hasNext())
 			onSharedPreferenceChanged(mPrefs, prefKey.next());
+
+		if (minimalGestureLength <= 0)
+			setMinimalGestureLength(DEFAULT_MINIMAL_GESTURE_LENGTH);
 
 		theKeyboardService = this;
 	}
@@ -267,6 +279,13 @@ public class KeyboardService extends InputMethodService implements SharedPrefere
 				landscapeKeyHeight = f;
 			}
 		}
+		else if (key.equals("minimal_stroke_length")) {
+			float f = getPrefFloat(key, DEFAULT_MINIMAL_GESTURE_LENGTH);
+			if (minimalGestureLength != f) {
+				changed = true;
+				setMinimalGestureLength(f);
+			}
+		}
 
 		/*if (changed)*/ {
 			Dialog d = getWindow();
@@ -388,7 +407,7 @@ public class KeyboardService extends InputMethodService implements SharedPrefere
 	public String getLabelForKey(int keyId) {
 		KeyMapping.Action a = keyMapping.keyMap.getActionFor(keyId, currentScript, currentShiftState, res.getInteger(R.integer.tap));
 		String s = (a != null) ? a.getLabel() : null;
-		return (s != null) ? s : "☹";
+		return (s != null) ? s : ""; // "☹"
 	}
 
 	public String getAllLabelsForKey(int keyId) {
@@ -442,6 +461,10 @@ public class KeyboardService extends InputMethodService implements SharedPrefere
 			Log.d(TAG, "keyClicked('" + key.getText().toString() + "'), id=" + key.getId() + ", state=" + currentShiftState + ", gesture=" + gestureCode);
 
 			KeyMapping.Action a = keyMapping.keyMap.getActionFor(key.getId(), currentScript, currentShiftState, gestureCode);
+
+			if (a == null)
+				a = keyMapping.keyMap.getActionFor(key.getId(), currentScript, currentShiftState, 0); // fall back to tap
+
 			if (a != null)
 				performAction(a, key.getId());
 		}

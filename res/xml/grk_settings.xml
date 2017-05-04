@@ -22,6 +22,18 @@
 	</PreferenceScreen>
 
 	<PreferenceScreen
+		a:key="pg_input"
+		a:title="@string/pg_input"
+		a:summary="@string/pg_input_summary"
+		a:orderingFromXml="true">
+		<EditTextPreference
+			a:key="minimal_stroke_length"
+			a:title="@string/minimal_stroke_length"
+			a:summary="@string/minimal_stroke_summary"
+			a:defaultValue="20.0"/>
+	</PreferenceScreen>
+
+	<PreferenceScreen
 		a:key="pg_about"
 		a:title="@string/pg_about"
 		a:summary="@string/pg_about_summary"

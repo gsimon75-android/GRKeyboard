@@ -12,6 +12,12 @@
 	<string name="landscape_key_height">Landscape key height</string>
 	<string name="key_height_summary">Height of a key relative to its width</string>
 
+	<string name="pg_input">Input</string>
+	<string name="pg_input_summary">Input behaviour</string>
+
+	<string name="minimal_stroke_length">Minimal stroke length</string>
+	<string name="minimal_stroke_summary">Below this it will be considered as a tap</string>
+
 	<!-- preference screen: about -->
 	<string name="pg_about">About</string>
 	<string name="pg_about_summary">Miscellaneous information</string>

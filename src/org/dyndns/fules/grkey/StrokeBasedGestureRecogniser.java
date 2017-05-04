@@ -7,9 +7,6 @@ import android.view.View;
 public class StrokeBasedGestureRecogniser implements View.OnTouchListener {
 	private static final String     TAG = "GRKeyboard";
 	private static final int        LONG_TAP_TIMEOUT = 800;
-	static final float              GESTURE_JITTER_LIMIT = 0.6f;
-	static final float              GESTURE_QUALITY_THRESHOLD = 0.8f;
-	static final float              GESTURE_MINIMAL_LENGTH = 20f;
 
 	private LongTap                 onLongTap;
 
@@ -19,7 +16,11 @@ public class StrokeBasedGestureRecogniser implements View.OnTouchListener {
 	int                             gestureCode;
 
 	StrokeBasedGestureRecogniser() {
-		this(GESTURE_JITTER_LIMIT, GESTURE_QUALITY_THRESHOLD, GESTURE_MINIMAL_LENGTH);
+		this(0.6f, 0.8f, 20f);
+	}
+
+	StrokeBasedGestureRecogniser(float minGestureLength) {
+		this(0.6f, 0.8f, minGestureLength);
 	}
 
 	StrokeBasedGestureRecogniser(float jitterLimit, float qualityThreshold, float minimalRequiredLength) {
