@@ -1066,6 +1066,7 @@
         <Action gesture="@integer/dirN"     text="!"/>
         <Action gesture="@integer/dirNS"    text="¡"/>
         <Action gesture="@integer/dirS"     text=","/>
+        <Action gesture="@integer/dirSW"    text=","/>
         <Action gesture="@integer/dirE"     text="\?"/>
         <Action gesture="@integer/dirEW"    text="¿"/>
         <Action gesture="@integer/dirW"     text=":"/>
