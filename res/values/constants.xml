@@ -34,12 +34,8 @@
 
 	<!-- arabic gestures -->
 	<!-- on consonants -->
-	<integer name="shaddah">8</integer>
-	<integer name="alt">2</integer>
-	<integer name="alt_shaddah">28</integer>
-	<!-- on alif, waw, ya -->
-	<integer name="maddah">2</integer>
-	<integer name="hamza">28</integer>
+	<integer name="alt">6</integer>
+	<integer name="alt2">8</integer> <!-- on alif, waw, ya -->
 
 	<!-- cyrillic gestures -->
 	<integer name="soft">2</integer>
