@@ -6,9 +6,18 @@
     <Action gesture="@integer/long_tap" cmd="showGestures" label="@string/cmd_show_gestures"/>
 
     <!-- Numeric keys -->
+    <Key id="@id/key_Backtick" text="`">
+        <Action gesture="@integer/dirN"     text="~"/>
+        <Action gesture="@integer/dirS"     text="\@"/> <!-- @ -->
+        <Action gesture="@integer/dirE"     text="\#"/>
+        <Script id="@integer/arabic"        text="ذ">
+            <Action gesture="@integer/spec"         text="&#1617;" label="◌ّ"/>
+        </Script>
+    </Key>
+
     <Key id="@id/key_0" text="0">
         <Script id="@integer/arabic" text="0">
-            <Action gesture="@integer/dirS" text="٠"/>
+            <Action gesture="@integer/spec" text="٠"/>
         </Script>
     </Key>
     <Key id="@id/key_1" text="1">
@@ -73,7 +82,9 @@
                 <Action gesture="@integer/tilde"    text="Q̃"/>
             </State>
         </Script>
-        <Script id="@integer/arabic" text="ق"/>
+        <Script id="@integer/arabic" text="ض">
+            <Action gesture="@integer/spec"        text="&#1614;" label="◌َ"/>
+        </Script>
         <Script id="@integer/cyrillic" text="ъ">
             <Action gesture="@integer/soft"        text="ь"/>
             <State mod="@integer/shift" text="Ъ">
@@ -101,8 +112,8 @@
                 <Action gesture="@integer/umlaut"   text="Ẅ"/>
             </State>
         </Script>
-        <Script id="@integer/arabic" text="و">
-            <Action gesture="@integer/alt"          text="&#1617;" label="◌ّ"/>
+        <Script id="@integer/arabic" text="ص">
+            <Action gesture="@integer/spec"        text="&#1611;" label="◌ً"/>
         </Script>
         <Script id="@integer/cyrillic" text="ы">
             <State mod="@integer/shift" text="Ы"/>
@@ -144,9 +155,8 @@
                 <Action gesture="@integer/umlaut"   text="Ë"/>
             </State>
         </Script>
-        <Script id="@integer/arabic" text="&#1614;" label="◌َ">
-            <Action gesture="@integer/alt" text="&#1620;" label="◌ٔ"/>
-            <Action gesture="@integer/alt" text="&#1620;&#1614;" label="◌َٔ"/>
+        <Script id="@integer/arabic" text="ث">
+            <Action gesture="@integer/spec" text="&#1615;" label="◌ُ"/>
         </Script>
         <Script id="@integer/cyrillic" text="э">
             <Action gesture="@integer/soft"        text="е"/>
@@ -182,7 +192,7 @@
                 <Action gesture="@integer/hacek"    text="Ř"/>
             </State>
         </Script>
-        <Script id="@integer/arabic" text="ر"/>
+        <Script id="@integer/arabic" text="ق"/>
         <Script id="@integer/cyrillic" text="р">
             <State mod="@integer/shift" text="Р"/>
         </Script>
@@ -205,8 +215,8 @@
                 <Action gesture="@integer/spec"     text="Þ"/>
             </State>
         </Script>
-        <Script id="@integer/arabic" text="ت">
-            <Action gesture="@integer/alt"         text="ث"/>
+        <Script id="@integer/arabic" text="ف">
+            <Action gesture="@integer/spec"        text="ﻹ"/>
         </Script>
         <Script id="@integer/cyrillic" text="т">
             <State mod="@integer/shift" text="Т"/>
@@ -241,7 +251,9 @@
                 <Action gesture="@integer/umlaut"   text="Ÿ"/>
             </State>
         </Script>
-        <Script id="@integer/arabic" text="ي"/>
+        <Script id="@integer/arabic" text="غ">
+            <Action gesture="@integer/spec"        text="إ"/>
+        </Script>
         <Script id="@integer/cyrillic" text="й"> <!-- NOTE: this is redundant, see key_I+soft -->
             <Action gesture="@integer/variant"     text="ї"/>
             <State mod="@integer/shift" text="Й">
@@ -285,9 +297,8 @@
                 <Action gesture="@integer/umlaut"   text="Ü"/>
             </State>
         </Script>
-        <Script id="@integer/arabic" text="&#1615;" label="◌ُ">
-            <!--Action gesture="@integer/alt" text="&#1620;" label="◌ٔ"/-->
-            <Action gesture="@integer/alt" text="&#1620;&#1615;" label="◌ُٔ"/>
+        <Script id="@integer/arabic" text="ع">
+            <Action gesture="@integer/spec"        text="`"/>
         </Script>
         <Script id="@integer/cyrillic" text="у">
             <Action gesture="@integer/soft"        text="ю"/>
@@ -330,9 +341,8 @@
                 <Action gesture="@integer/spec"     text="I"/>
             </State>
         </Script>
-        <Script id="@integer/arabic" text="&#1616;" label="◌ِ">
-            <Action gesture="@integer/alt" text="&#1621;" label="◌ٕ"/>
-            <Action gesture="@integer/alt2" text="&#1621;&#1616;" label="◌ِٕ"/>
+        <Script id="@integer/arabic" text="ه">
+            <Action gesture="@integer/spec"        text="÷"/>
         </Script>
         <Script id="@integer/cyrillic" text="и">
             <Action gesture="@integer/soft"        text="й"/>
@@ -390,8 +400,8 @@
                 <Action gesture="@integer/spec"     text="Œ"/>
             </State>
         </Script>
-        <Script id="@integer/arabic" text="&#1618;" label="◌ْ">
-            <Action gesture="@integer/alt"         text="ء"/>
+        <Script id="@integer/arabic" text="خ">
+            <Action gesture="@integer/spec"        text="◌ٔ"/>
         </Script>
         <Script id="@integer/cyrillic" text="о">
             <Action gesture="@integer/soft"        text="ё"/>
@@ -423,7 +433,9 @@
                 <Action gesture="@integer/spec"     text="Π"/>
             </State>
         </Script>
-        <Script id="@integer/arabic" text="ع"/>
+        <Script id="@integer/arabic" text="ح">
+            <Action gesture="@integer/spec"        text="؛"/>
+        </Script>
         <Script id="@integer/cyrillic" text="п">
             <State mod="@integer/shift" text="П"/>
         </Script>
@@ -432,6 +444,32 @@
         </Script>
         <Script id="@integer/georgian" text="ფ">
             <Action gesture="@integer/ejective"    text="პ"/>
+        </Script>
+    </Key>
+
+    <Key id="@id/key_OpenSquare" text="[">
+        <Action gesture="@integer/dirN"     text="&lt;"/>
+        <Action gesture="@integer/dirS"     text="("/>
+        <Action gesture="@integer/dirNS"    text="{"/>
+        <Action gesture="@integer/dirSN"    text="{"/>
+        <Script id="@integer/arabic" text="ج">
+            <Action gesture="@integer/dirN"     text="&gt;"/>
+            <Action gesture="@integer/dirS"     text=")"/>
+            <Action gesture="@integer/dirNS"    text="}"/>
+            <Action gesture="@integer/dirSN"    text="}"/>
+        </Script>
+    </Key>
+
+    <Key id="@id/key_CloseSquare" text="]">
+        <Action gesture="@integer/dirN"     text="&gt;"/>
+        <Action gesture="@integer/dirS"     text=")"/>
+        <Action gesture="@integer/dirNS"    text="}"/>
+        <Action gesture="@integer/dirSN"    text="}"/>
+        <Script id="@integer/arabic" text="د">
+            <Action gesture="@integer/dirN"     text="&lt;"/>
+            <Action gesture="@integer/dirS"     text="("/>
+            <Action gesture="@integer/dirNS"    text="{"/>
+            <Action gesture="@integer/dirSN"    text="{"/>
         </Script>
     </Key>
 
@@ -466,9 +504,8 @@
                 <Action gesture="@integer/spec"     text="Æ"/>
             </State>
         </Script>
-        <Script id="@integer/arabic"        text="ا">
-            <Action gesture="@integer/alt"      text="ى"/>
-            <Action gesture="@integer/alt2"     text="آ"/>
+        <Script id="@integer/arabic"        text="ش">
+            <Action gesture="@integer/spec"   text="&#1616;"  label="◌ِ"/>
         </Script>
         <Script id="@integer/cyrillic" text="а">
             <Action gesture="@integer/soft"        text="я"/>
@@ -509,7 +546,7 @@
             </State>
         </Script>
         <Script id="@integer/arabic" text="س">
-            <Action gesture="@integer/alt"         text="ش"/>
+            <Action gesture="@integer/spec"  text="&#1613;"   label="◌ٍ"/>
         </Script>
         <Script id="@integer/cyrillic" text="с">
             <State mod="@integer/shift" text="С"/>
@@ -540,9 +577,7 @@
                 <Action gesture="@integer/spec"     text="Ð"/>
             </State>
         </Script>
-        <Script id="@integer/arabic" text="د">
-            <Action gesture="@integer/alt"         text="ذ"/>
-        </Script>
+        <Script id="@integer/arabic" text="د"/>
         <Script id="@integer/cyrillic" text="д">
             <Action gesture="@integer/soft"        text="ђ"/>
             <State mod="@integer/shift" text="Д">
@@ -565,9 +600,7 @@
                 <Action gesture="@integer/dot"      text="Ḟ"/>
             </State>
         </Script>
-        <Script id="@integer/arabic" text="ف">
-            <Action gesture="@integer/alt"         text="ڤ"/>
-        </Script>
+        <Script id="@integer/arabic" text="ب"/>
         <Script id="@integer/cyrillic" text="ф">
             <State mod="@integer/shift" text="Ф"/>
         </Script>
@@ -592,7 +625,9 @@
                 <Action gesture="@integer/hacek"    text="Ğ"/>
             </State>
         </Script>
-        <Script id="@integer/arabic" text="غ"/>
+        <Script id="@integer/arabic" text="ل">
+            <Action gesture="@integer/spec"         text="ﻷ"/>
+        </Script>
         <Script id="@integer/cyrillic" text="г">
             <Action gesture="@integer/soft"        text="ѓ"/>
             <Action gesture="@integer/upturn"      text="ґ"/>
@@ -625,8 +660,8 @@
                 <Action gesture="@integer/macron"   text="ẖ"/>
             </State>
         </Script>
-        <Script id="@integer/arabic" text="ه">
-            <Action gesture="@integer/alt"         text="ة‎"/>
+        <Script id="@integer/arabic" text="ا">
+            <Action gesture="@integer/spec"         text="أ"/>
         </Script>
         <Script id="@integer/cyrillic" text="х">
             <Action gesture="@integer/descender"   text="ҳ"/>
@@ -656,7 +691,7 @@
                 <Action gesture="@integer/dot"      text="ȷ"/>
             </State>
         </Script>
-        <Script id="@integer/arabic" text="ج"/>
+        <Script id="@integer/arabic" text="ت"/>
         <Script id="@integer/cyrillic" text="ж">
             <Action gesture="@integer/soft"        text="џ"/>
             <Action gesture="@integer/descender"   text="җ"/>
@@ -688,7 +723,7 @@
                 <Action gesture="@integer/macron"   text="Ḵ"/>
             </State>
         </Script>
-        <Script id="@integer/arabic" text="ك"/>
+        <Script id="@integer/arabic" text="ن"/>
         <Script id="@integer/cyrillic" text="к">
             <Action gesture="@integer/soft"        text="ќ"/>
             <Action gesture="@integer/descender"   text="қ"/>
@@ -720,9 +755,7 @@
                 <Action gesture="@integer/spec"     text="£"/>
             </State>
         </Script>
-        <Script id="@integer/arabic" text="ل">
-            <Action gesture="@integer/alt"         text="لا"/>
-        </Script>
+        <Script id="@integer/arabic" text="م"/>
         <Script id="@integer/cyrillic" text="л">
             <Action gesture="@integer/soft"        text="љ"/>
             <State mod="@integer/shift" text="Л">
@@ -733,6 +766,23 @@
             <State mod="@integer/shift" text="Λ"/>
         </Script>
         <Script id="@integer/georgian" text="ლ"/>
+    </Key>
+
+    <Key id="@id/key_Semicolon" text=";">
+        <Action gesture="@integer/dirN"     text=":"/>
+        <Action gesture="@integer/dirS"     text="$"/>
+        <Script id="@integer/arabic" text="ك">
+            <Action gesture="@integer/spec" text=";"/>
+        </Script>
+    </Key>
+
+    <Key id="@id/key_Apostrophe" text="'">
+        <Action gesture="@integer/dirN"     text="&quot;"/>
+        <Action gesture="@integer/dirS"     text="|"/>
+        <Action gesture="@integer/dirW"     text="&amp;"/>
+        <Script id="@integer/arabic" text="ط">
+            <Action gesture="@integer/spec" text="'"/>
+        </Script>
     </Key>
 
     <!-- ZXCV row -->
@@ -754,7 +804,7 @@
                 <Action gesture="@integer/macron"   text="Ẕ"/>
             </State>
         </Script>
-        <Script id="@integer/arabic" text="ز"/>
+        <Script id="@integer/arabic" text="ئ"/>
         <Script id="@integer/cyrillic" text="з">
             <Action gesture="@integer/soft"        text="ѕ"/>
             <State mod="@integer/shift" text="З">
@@ -776,8 +826,8 @@
                 <Action gesture="@integer/umlaut"   text="Ẍ"/>
             </State>
         </Script>
-        <Script id="@integer/arabic" text="ح">
-            <Action gesture="@integer/alt"         text="خ"/>
+        <Script id="@integer/arabic" text="ء">
+            <Action gesture="@integer/spec"         text="◌ْ"/>
         </Script>
         <Script id="@integer/cyrillic" text="ш">
             <Action gesture="@integer/soft"        text="щ"/>
@@ -813,9 +863,8 @@
                 <Action gesture="@integer/spec"     text="©"/>
             </State>
         </Script>
-        <Script id="@integer/arabic" text="ص">
-            <Action gesture="@integer/alt"         text="ض"/>
-        </Script>
+        <Script id="@integer/arabic" text="ؤ"/>
+        <Script id="@integer/arabic" text="ق"/>
         <Script id="@integer/cyrillic" text="ц">
             <Action gesture="@integer/soft"        text="ч"/>
             <Action gesture="@integer/soft_variant" text="ћ"/>
@@ -843,9 +892,7 @@
                 <Action gesture="@integer/tilde"    text="Ṽ"/>
             </State>
         </Script>
-        <Script id="@integer/arabic" text="ط">
-            <Action gesture="@integer/alt"         text="ظ"/>
-        </Script>
+        <Script id="@integer/arabic" text="ر"/>
         <Script id="@integer/cyrillic" text="в">
             <State mod="@integer/shift" text="В"/>
         </Script>
@@ -869,8 +916,8 @@
                 <Action gesture="@integer/macron"   text="Ḇ"/>
             </State>
         </Script>
-        <Script id="@integer/arabic"        text="ب">
-            <Action gesture="@integer/alt"         text="پ"/>
+        <Script id="@integer/arabic"        text="ﻻ">
+            <Action gesture="@integer/spec"         text="ﻵ"/>
         </Script>
         <Script id="@integer/cyrillic" text="б">
             <State mod="@integer/shift" text="Б"/>
@@ -896,7 +943,9 @@
                 <Action gesture="@integer/tilde"    text="Ñ"/>
             </State>
         </Script>
-        <Script id="@integer/arabic" text="ن"/>
+        <Script id="@integer/arabic" text="ى">
+            <Action gesture="@integer/spec"         text="آ"/>
+        </Script>
         <Script id="@integer/cyrillic" text="н">
             <Action gesture="@integer/soft"        text="њ"/>
             <Action gesture="@integer/descender"   text="ң"/>
@@ -920,7 +969,7 @@
                 <Action gesture="@integer/dot"      text="Ṁ"/>
             </State>
         </Script>
-        <Script id="@integer/arabic" text="م"/>
+        <Script id="@integer/arabic" text="ة"/>
         <Script id="@integer/cyrillic" text="м">
             <State mod="@integer/shift" text="М"/>
         </Script>
@@ -928,6 +977,36 @@
             <State mod="@integer/shift" text="Μ"/>
         </Script>
         <Script id="@integer/georgian" text="მ"/>
+    </Key>
+
+    <Key id="@id/key_Comma" text=",">
+        <Action gesture="@integer/dirE"     text="-"/>
+        <Action gesture="@integer/dirW"     text="+"/>
+        <Action gesture="@integer/dirN"     text="^"/>
+        <Action gesture="@integer/dirS"     text="*"/>
+        <Script id="@integer/arabic" text="و">
+            <Action gesture="@integer/spec"        text="،"/>
+        </Script>
+    </Key>
+
+    <Key id="@id/key_Dot" text=".">
+        <Action gesture="@integer/dirN"     text="!"/>
+        <Action gesture="@integer/dirS"     text="¡"/>
+        <Action gesture="@integer/dirE"     text="\?"/>
+        <Action gesture="@integer/dirW"     text="¿"/>
+        <Script id="@integer/arabic" text="ز">
+            <Action gesture="@integer/spec"        text="."/>
+            <Action gesture="@integer/dirE"     text="؟"/>
+        </Script>
+    </Key>
+
+    <Key id="@id/key_Slash" text="/">
+        <Action gesture="@integer/dirN"     text="\\"/> <!-- \ -->
+        <Action gesture="@integer/dirS"     text="&#37;"/> <!-- % -->
+        <Action gesture="@integer/dirE"     text="="/>
+        <Script id="@integer/arabic" text="ظ">
+            <Action gesture="@integer/spec"        text="/"/>
+        </Script>
     </Key>
 
     <!-- Shift, Space, Enter, Backspace, Arrow keys -->
@@ -950,6 +1029,9 @@
     <Key id="@id/key_Space" text=" ">
         <Action gesture="@integer/dirN"     code="61" label="⇨"/>
         <Action gesture="@integer/dirE"     text="_"/>
+        <Script id="@integer/arabic" text=" ">
+            <Action gesture="@integer/dirE"         text="ـ"/>
+        </Script>
     </Key>
 
     <Key id="@id/key_Enter" code="66" label="↵">
@@ -974,51 +1056,6 @@
 
     <Key id="@id/key_Right" code="22" label="⇢">
         <Action gesture="@integer/dirN"     cmd="selectEnd" label="@string/cmd_select_end"/>
-    </Key>
-
-    <!-- Special keys: At, Dollar, Dot, Quote -->
-
-    <Key id="@id/key_At" text="\@"> <!-- @ -->
-        <Action gesture="@integer/dirW"     text="["/>
-        <Action gesture="@integer/dirE"     text="]"/>
-        <Action gesture="@integer/dirN"     text="("/>
-        <Action gesture="@integer/dirS"     text=")"/>
-        <Action gesture="@integer/dirWE"    text="{"/>
-        <Action gesture="@integer/dirEW"    text="}"/>
-        <Action gesture="@integer/dirSN"    text="&lt;"/>
-        <Action gesture="@integer/dirNS"    text="&gt;"/>
-    </Key>
-
-    <Key id="@id/key_Dollar" text="$">
-        <Action gesture="@integer/dirNE"    text="/"/>
-        <Action gesture="@integer/dirSW"    text="/"/>
-        <Action gesture="@integer/dirSE"    text="\\"/> <!-- \ -->
-        <Action gesture="@integer/dirE"     text="-"/>
-        <Action gesture="@integer/dirW"     text="+"/>
-        <Action gesture="@integer/dirN"     text="*"/>
-        <Action gesture="@integer/dirS"     text="&#37;"/> <!-- % -->
-        <Action gesture="@integer/dirEW"    text="="/>
-        <Action gesture="@integer/dirNS"    text="^"/>
-    </Key>
-
-    <Key id="@id/key_Dot" text=".">
-        <Action gesture="@integer/dirN"     text="!"/>
-        <Action gesture="@integer/dirNS"    text="¡"/>
-        <Action gesture="@integer/dirS"     text=","/>
-        <Action gesture="@integer/dirSW"    text=","/>
-        <Action gesture="@integer/dirE"     text="\?"/>
-        <Action gesture="@integer/dirEW"    text="¿"/>
-        <Action gesture="@integer/dirW"     text=":"/>
-        <Action gesture="@integer/dirWE"    text=";"/>
-    </Key>
-
-    <Key id="@id/key_Quote" text="&quot;">
-        <Action gesture="@integer/dirSE"    text="`"/>
-        <Action gesture="@integer/dirSW"    text="'"/>
-        <Action gesture="@integer/dirS"     text="|"/>
-        <Action gesture="@integer/dirN"     text="&amp;"/>
-        <Action gesture="@integer/dirWE"    text="~"/>
-        <Action gesture="@integer/dirEW"    text="\#"/>
     </Key>
 
 </KeyMap>
