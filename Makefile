@@ -1,7 +1,7 @@
 # Required environment variables:
 # ANDROID_SDK		the root of the Android SDK
 # JAVA_HOME		the root of the Java JDK
-JAVA_HOME=/usr/lib/jvm/java-7-oracle/
+JAVA_HOME=/usr/lib/jvm/java-1.8.0/
 
 # Project settings
 PROJECT=grkey
